@@ -1,5 +1,21 @@
 {
-    "example": {
-        "title": "这是 Example 的标题"
+    "navbar": {
+        "home": "首页",
+        "tools": "工具",
+        "articles": "文章",
+        "label": "网站导航",
+        "languageswitcher": {
+            "trigger": "选择语言",
+            "menu": "语言列表"
+        }
+    },
+    "footer": {
+        "label": "网站底部导航",
+        "tools": {
+            "label": "工具"
+        },
+        "articles": {
+            "label": "文章"
+        }
     }
 }

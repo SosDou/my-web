@@ -1,0 +1,221 @@
+/* 设置整个 Footer 的基础外观。 */
+.footer {
+  /* 让 Footer 占满页面可用宽度。 */
+  width: 100%;
+
+  /* 使用顶部边框分隔正文内容和 Footer。 */
+  border-top: 1px solid var(--color-border, #d0d7de);
+
+  /* 使用页面背景变量，并提供白色默认值。 */
+  background: var(--color-background, #ffffff);
+}
+
+/* 设置 Footer 内部的四列网格布局。 */
+.inner {
+  /* 使用网格布局划分 Footer 内容。 */
+  display: grid;
+
+  /* 将 Footer 水平均分为四个相同宽度的部分。 */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  /* 设置栏目之间的水平和垂直距离。 */
+  gap: 32px;
+
+  /* 让 Footer 内容占满可用宽度。 */
+  width: 100%;
+
+  /* 使用与导航栏相同的内容最大宽度。 */
+  max-width: var(--layout-max-width);
+
+  /* 让 Footer 内容在页面中水平居中。 */
+  margin: 0 auto;
+
+  /* 设置上下间距，并使用统一的左右间距。 */
+  padding: 48px var(--layout-padding-inline);
+}
+
+/* 设置 Footer 左侧 Logo。 */
+.logo {
+  /* 将 Logo 放入四列布局中的第一列。 */
+  grid-column: 1;
+
+  /* 让 Logo 与所在网格单元顶部对齐。 */
+  align-self: start;
+
+  /* 让 Logo 宽度只占文字本身需要的空间。 */
+  width: fit-content;
+
+  /* 使用主要文字颜色。 */
+  color: var(--color-text, #1f2328);
+
+  /* 设置 Logo 字号。 */
+  font-size: 18px;
+
+  /* 使用较明显的字重突出网站名称。 */
+  font-weight: 600;
+
+  /* 默认不显示下划线。 */
+  text-decoration: none;
+}
+
+/* 设置 Logo 悬停时的文字效果。 */
+.logo:hover {
+  /* 鼠标悬停时显示下划线。 */
+  text-decoration: underline;
+
+  /* 增加文字与下划线之间的距离。 */
+  text-underline-offset: 4px;
+}
+
+/* 设置所有 Footer 栏目的公共布局。 */
+.section {
+  /* 使用纵向弹性布局排列一级链接和二级链接。 */
+  display: flex;
+
+  /* 让栏目内容从上到下排列。 */
+  flex-direction: column;
+
+  /* 让所有链接靠左对齐。 */
+  align-items: flex-start;
+
+  /* 设置一级链接和二级列表之间的距离。 */
+  gap: 14px;
+
+  /* 防止网格内容撑开列宽。 */
+  min-width: 0;
+}
+
+/* 设置工具栏目在宽屏布局中的位置。 */
+.tools {
+  /* 将工具栏目放入四列布局中的第三列。 */
+  grid-column: 3;
+}
+
+/* 设置文章栏目在宽屏布局中的位置。 */
+.articles {
+  /* 将文章栏目放入四列布局中的第四列。 */
+  grid-column: 4;
+}
+
+/* 设置工具和文章的一级跳转链接。 */
+.primaryLink {
+  /* 让链接宽度只包含文字本身。 */
+  width: fit-content;
+
+  /* 使用主要文字颜色。 */
+  color: var(--color-text, #1f2328);
+
+  /* 设置一级链接字号。 */
+  font-size: 14px;
+
+  /* 使用半粗字体体现一级导航层级。 */
+  font-weight: 600;
+
+  /* 默认不显示下划线。 */
+  text-decoration: none;
+}
+
+/* 设置一级链接悬停时的效果。 */
+.primaryLink:hover {
+  /* 鼠标悬停时显示文字下划线。 */
+  text-decoration: underline;
+
+  /* 增加下划线与文字之间的距离。 */
+  text-underline-offset: 4px;
+}
+
+/* 设置二级链接列表的基础样式。 */
+.subList {
+  /* 使用弹性布局排列所有二级链接。 */
+  display: flex;
+
+  /* 让二级链接从上到下排列。 */
+  flex-direction: column;
+
+  /* 设置不同二级链接之间的距离。 */
+  gap: 8px;
+
+  /* 移除无序列表默认的外边距。 */
+  margin: 0;
+
+  /* 移除无序列表默认的内边距。 */
+  padding: 0;
+
+  /* 移除无序列表默认的圆点。 */
+  list-style: none;
+}
+
+/* 设置二级跳转链接的外观。 */
+.secondaryLink {
+  /* 让链接宽度只占文字本身需要的空间。 */
+  width: fit-content;
+
+  /* 使用较弱的次要文字颜色。 */
+  color: var(--color-text-secondary, #57606a);
+
+  /* 设置与一级链接一致但视觉更轻的字号。 */
+  font-size: 14px;
+
+  /* 使用正常字重区分一级和二级链接。 */
+  font-weight: 400;
+
+  /* 默认不显示下划线。 */
+  text-decoration: none;
+}
+
+/* 设置二级链接悬停时的效果。 */
+.secondaryLink:hover {
+  /* 鼠标悬停时显示文字下划线。 */
+  text-decoration: underline;
+
+  /* 增加下划线与文字之间的距离。 */
+  text-underline-offset: 4px;
+}
+
+/* 设置所有链接使用键盘聚焦时的可见轮廓。 */
+.logo:focus-visible,
+.primaryLink:focus-visible,
+.secondaryLink:focus-visible {
+  /* 使用当前文字颜色绘制焦点轮廓。 */
+  outline: 2px solid currentColor;
+
+  /* 让焦点轮廓与文字之间保留少量距离。 */
+  outline-offset: 3px;
+
+  /* 设置轻微圆角，避免焦点轮廓过于生硬。 */
+  border-radius: 2px;
+}
+
+/* 在页面宽度较窄时切换为三列布局。 */
+@media (max-width: 720px) {
+
+  /* 调整 Footer 内部网格。 */
+  .inner {
+    /* 将 Footer 平均划分为三个相同宽度的部分。 */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    /* 缩小窄屏状态下的栏目间距。 */
+    gap: 32px 16px;
+
+    /* 缩小上下间距，并统一移动端左右间距。 */
+    padding: 32px var(--layout-padding-inline-mobile);
+  }
+
+  /* 调整窄屏状态下的 Logo 位置。 */
+  .logo {
+    /* 让 Logo 跨越完整的三列并独占第一行。 */
+    grid-column: 1 / -1;
+  }
+
+  /* 调整窄屏状态下的工具栏目位置。 */
+  .tools {
+    /* 将工具栏目放入第二列。 */
+    grid-column: 2;
+  }
+
+  /* 调整窄屏状态下的文章栏目位置。 */
+  .articles {
+    /* 将文章栏目放入第三列。 */
+    grid-column: 3;
+  }
+}

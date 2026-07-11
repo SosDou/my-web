@@ -1,0 +1,161 @@
+/* 定义网站顶部导航栏容器。 */
+.header {
+  /* 让导航栏宽度占满整个页面。 */
+  width: 100%;
+
+  /* 在导航栏底部显示一条分隔线。 */
+  border-bottom: 1px solid var(--border-color);
+
+  /* 使用全局定义的页面背景颜色。 */
+  background-color: var(--background-color);
+}
+
+/* 定义导航栏内部的内容容器。 */
+.inner {
+  /* 使用 Flexbox 横向排列 Logo、导航链接和右侧功能按钮。 */
+  display: flex;
+
+  /* 让所有导航栏元素在垂直方向居中。 */
+  align-items: center;
+
+  /* 让内部容器占满父元素的可用宽度。 */
+  width: 100%;
+
+  /* 使用统一的内容最大宽度。 */
+  max-width: var(--layout-max-width);
+
+  /* 设置导航栏的最小高度。 */
+  min-height: 64px;
+
+  /* 让导航栏内容水平居中。 */
+  margin: 0 auto;
+
+  /* 使用统一的页面左右间距。 */
+  padding-inline: var(--layout-padding-inline);
+}
+
+/* 定义左侧网站 Logo 的样式。 */
+.logo {
+  /* 防止空间不足时 Logo 被压缩。 */
+  flex-shrink: 0;
+
+  /* 使用全局定义的主要文字颜色。 */
+  color: var(--foreground-color);
+
+  /* 设置 Logo 文字大小。 */
+  font-size: 20px;
+
+  /* 设置 Logo 文字为半粗体。 */
+  font-weight: 600;
+
+  /* 设置紧凑的行高，避免文字上下产生额外空间。 */
+  line-height: 1;
+
+  /* 删除 Link 默认显示的下划线。 */
+  text-decoration: none;
+}
+
+/* 定义主要导航链接区域。 */
+.nav {
+  /* 使用 Flexbox 横向排列所有导航链接。 */
+  display: flex;
+
+  /* 让导航链接在垂直方向居中。 */
+  align-items: center;
+
+  /* 设置导航链接之间的间距。 */
+  gap: 8px;
+
+  /* 设置 Logo 与导航链接区域之间的距离。 */
+  margin-left: 40px;
+}
+
+/* 定义单个普通导航链接的样式。 */
+.link {
+  /* 设置导航链接上下和左右的内部空间。 */
+  padding: 8px 12px;
+
+  /* 设置导航链接悬停背景的圆角。 */
+  border-radius: 6px;
+
+  /* 使用全局定义的次要文字颜色。 */
+  color: var(--muted-foreground-color);
+
+  /* 设置导航链接文字大小。 */
+  font-size: 14px;
+
+  /* 设置导航链接文字为中等粗细。 */
+  font-weight: 500;
+
+  /* 删除 Link 默认显示的下划线。 */
+  text-decoration: none;
+
+  /* 定义需要平滑过渡的样式属性。 */
+  transition:
+    /* 让文字颜色变化在 0.15 秒内完成。 */
+    color 0.15s ease,
+
+    /* 让背景颜色变化在 0.15 秒内完成。 */
+    background-color 0.15s ease;
+}
+
+/* 定义鼠标悬停在导航链接上时的样式。 */
+.link:hover {
+  /* 悬停时使用主要文字颜色。 */
+  color: var(--foreground-color);
+
+  /* 悬停时显示全局定义的背景颜色。 */
+  background-color: var(--hover-background-color);
+}
+
+/* 定义导航栏右侧的功能按钮区域。 */
+.actions {
+  /* 使用 Flexbox 横向排列语言选择器和其他功能按钮。 */
+  display: flex;
+
+  /* 让所有功能按钮在垂直方向居中。 */
+  align-items: center;
+
+  /* 设置各个功能按钮之间的间距。 */
+  gap: 8px;
+
+  /* 自动占用左侧剩余空间，将整个功能区域推到最右侧。 */
+  margin-left: auto;
+
+  /* 防止空间不足时右侧功能区域被压缩。 */
+  flex-shrink: 0;
+}
+
+/* 当页面宽度不超过 640px 时应用移动端样式。 */
+@media (max-width: 640px) {
+
+  /* 调整移动端导航栏内部容器。 */
+  .inner {
+    /* 减小移动端导航栏的最小高度。 */
+    min-height: 56px;
+
+    /* 使用统一的移动端左右间距。 */
+    padding-inline: var(--layout-padding-inline-mobile);
+  }
+
+  /* 调整移动端主要导航区域。 */
+  .nav {
+    /* 减小移动端导航链接之间的间距。 */
+    gap: 2px;
+
+    /* 减小 Logo 与导航链接区域之间的距离。 */
+    margin-left: 16px;
+  }
+
+  /* 调整移动端单个导航链接。 */
+  .link {
+    /* 减小导航链接左右方向占用的空间。 */
+    padding: 8px;
+  }
+
+  /* 调整移动端右侧功能按钮区域。 */
+  .actions {
+    /* 减小右侧各个功能按钮之间的间距。 */
+    gap: 4px;
+  }
+}

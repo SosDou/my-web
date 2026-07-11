@@ -1,5 +1,21 @@
 {
-    "example": {
-        "title": "This is the Example title"
+    "navbar": {
+        "home": "Home",
+        "tools": "Tools",
+        "articles": "Articles",
+        "label": "Main Navigation",
+        "languageswitcher": {
+            "trigger": "Select Language",
+            "menu": "Language List"
+        }
+    },
+    "footer": {
+        "label": "Footer Navigation",
+        "tools": {
+            "label": "Tools"
+        },
+        "articles": {
+            "label": "Articles"
+        }
     }
 }

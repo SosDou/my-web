@@ -1,4 +1,7 @@
+import Footer from "@/components/footer/footer";
+import Navbar from "@/components/navbar/navbar";
 import { htmlLangMap, PageParams } from "@/i18n/config";
+import "@/app/global.css";
 
 type RootLayoutProps = {
   children: React.ReactNode,
@@ -17,7 +20,15 @@ export default async function RootLayout({
 
   return (
     <html lang={htmlLang}>
-      <body>{children}</body>
+      <body>
+        <Navbar params={params} />
+
+        <main className="site-main">
+          {children}
+        </main>
+
+        <Footer params={params} />
+      </body>
     </html>
   );
 }

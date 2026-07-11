@@ -1,0 +1,50 @@
+/* 同时设置 html 根元素和 body 页面主体。 */
+html,
+body {
+  /* 保证页面基础高度至少占满父级可用高度。 */
+  min-height: 100%;
+}
+
+/* 设置页面主体的整体布局。 */
+body {
+  /* 使用传统视口单位，保证页面至少占满一个屏幕高度。 */
+  min-height: 100vh;
+
+  /* 使用动态视口单位，适配移动端浏览器地址栏高度变化。 */
+  min-height: 100dvh;
+
+  /* 使用弹性布局排列页面中的导航栏、正文和 Footer。 */
+  display: flex;
+
+  /* 让页面中的子元素从上到下纵向排列。 */
+  flex-direction: column;
+}
+
+/* 设置页面主要内容区域。 */
+.site-main {
+  /* 自动占据导航栏和 Footer 之外的全部剩余高度。 */
+  flex: 1;
+
+  /* 让主要内容区域占满页面可用宽度。 */
+  width: 100%;
+}
+
+/* 定义全局 CSS 变量。 */
+:root {
+  /* 设置网站主要内容区域的最大宽度。 */
+  --layout-max-width: 1280px;
+
+  /* 设置桌面端页面左右两侧的安全间距。 */
+  --layout-padding-inline: 24px;
+
+  /* 设置移动端页面左右两侧的安全间距。 */
+  --layout-padding-inline-mobile: 16px;
+}
+
+/* 同时选择所有元素及其前后伪元素。 */
+*,
+*::before,
+*::after {
+  /* 让元素声明的宽高包含内边距和边框。 */
+  box-sizing: border-box;
+}

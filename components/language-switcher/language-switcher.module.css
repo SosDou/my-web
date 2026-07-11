@@ -1,0 +1,141 @@
+/* 设置语言选择器根元素，并作为下拉菜单的定位参照。 */
+.root {
+  /* 让组件可以自然放入导航栏的横向布局中。 */
+  display: inline-block;
+
+  /* 让内部绝对定位的菜单相对于当前组件定位。 */
+  position: relative;
+}
+
+/* 设置地球图标触发器的点击区域。 */
+.trigger {
+  /* 使用网格布局简化图标居中。 */
+  display: grid;
+
+  /* 同时让图标水平和垂直居中。 */
+  place-items: center;
+
+  /* 设置一个易于点击但视觉上仍然紧凑的宽度。 */
+  width: 32px;
+
+  /* 设置与宽度相同的高度，形成正方形点击区域。 */
+  height: 32px;
+
+  /* 移除 summary 元素默认显示的展开三角形。 */
+  list-style: none;
+
+  /* 设置与示例图片接近的中性灰色图标。 */
+  color: #57606a;
+
+  /* 让鼠标经过时显示可点击指针。 */
+  cursor: pointer;
+
+  /* 让悬停背景呈现圆角正方形。 */
+  border-radius: 6px;
+}
+
+/* 移除 Chromium 和 Safari 浏览器中的默认 summary 标记。 */
+.trigger::-webkit-details-marker {
+  /* 隐藏浏览器自带的展开三角形。 */
+  display: none;
+}
+
+/* 设置键盘操作触发器时的焦点样式。 */
+.trigger:focus-visible {
+  /* 使用当前文字颜色绘制清晰的焦点轮廓。 */
+  outline: 2px solid currentColor;
+
+  /* 让焦点轮廓和图标按钮之间保留少量距离。 */
+  outline-offset: 2px;
+}
+
+/* 设置触发器悬停时的轻量交互反馈。 */
+.trigger:hover {
+  /* 使用浅灰色圆形背景，不影响整体简洁风格。 */
+  background: #f3f4f6;
+}
+
+/* 设置地球 SVG 图标本身的外观。 */
+.trigger svg {
+  /* 设置接近示例图片的图标宽度。 */
+  width: 20px;
+
+  /* 设置与宽度相同的高度，避免图标变形。 */
+  height: 20px;
+
+  /* 禁止 SVG 路径使用填充颜色。 */
+  fill: none;
+
+  /* 让 SVG 线条自动继承触发器的文字颜色。 */
+  stroke: currentColor;
+
+  /* 设置较细的线条，使图标保持轻量。 */
+  stroke-width: 1.6;
+
+  /* 让线条端点更加圆润。 */
+  stroke-linecap: round;
+
+  /* 让线条连接位置更加圆润。 */
+  stroke-linejoin: round;
+}
+
+/* 设置展开后的语言菜单。 */
+.menu {
+  /* 让菜单脱离正常布局，避免撑高导航栏。 */
+  position: absolute;
+
+  /* 将菜单显示在图标按钮下方。 */
+  top: calc(100% + 6px);
+
+  /* 让菜单右侧与图标按钮右侧对齐。 */
+  right: 0;
+
+  /* 防止语言名称较长时菜单过窄。 */
+  min-width: 120px;
+
+  /* 为菜单内部保留少量间距。 */
+  padding: 4px;
+
+  /* 设置菜单背景为白色。 */
+  background: #fff;
+
+  /* 使用浅灰色边框区分菜单和页面背景。 */
+  border: 1px solid #d0d7de;
+
+  /* 设置适中的菜单圆角。 */
+  border-radius: 6px;
+
+  /* 添加轻微阴影，表现菜单的浮层关系。 */
+  box-shadow: 0 8px 24px rgb(140 149 159 / 20%);
+
+  /* 确保菜单显示在附近普通页面元素上方。 */
+  z-index: 10;
+}
+
+/* 设置单个语言菜单项。 */
+.item {
+  /* 让每个语言链接独占一行并拥有完整点击区域。 */
+  display: block;
+
+  /* 设置菜单项内部上下和左右间距。 */
+  padding: 6px 8px;
+
+  /* 使用深灰色确保文字具有良好可读性。 */
+  color: #24292f;
+
+  /* 移除链接默认显示的下划线。 */
+  text-decoration: none;
+
+  /* 防止语言名称被自动换行。 */
+  white-space: nowrap;
+
+  /* 设置小圆角以配合悬停背景。 */
+  border-radius: 4px;
+}
+
+/* 设置语言菜单项悬停和键盘聚焦时的反馈。 */
+.item:hover,
+.item:focus-visible {
+  /* 使用浅灰色背景标记当前选中的菜单项。 */
+  background: #f6f8fa;
+}
