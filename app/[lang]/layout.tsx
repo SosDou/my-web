@@ -1,13 +1,32 @@
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navbar";
-import { htmlLangMap, PageParams } from "@/i18n/config";
+import { htmlLangMap, PageParams, PageProps } from "@/i18n/config";
 import "@/app/global.css";
+import { translation } from "@/i18n/translation";
+import { Metadata } from "next";
 
 type RootLayoutProps = {
   children: React.ReactNode,
   params: Promise<PageParams>
 }
 
+// 生成页面元数据的函数
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  // 获取当前语言的翻译内容
+  const t = await translation(params);
+
+  return {
+    title: {
+      default: t.metadata.title,
+      template: `%s | ${t.metadata.siteName}`,
+    },
+    description: t.metadata.description,
+  };
+}
+
+// 根布局组件
 export default async function RootLayout({
   children,
   params

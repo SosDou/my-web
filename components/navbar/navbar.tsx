@@ -4,15 +4,15 @@ import { translation } from "@/i18n/translation";
 import styles from "./navbar.module.css";
 import { LanguageSwitcher } from "../language-switcher/language-switcher";
 
-// 导出异步导航栏组件，并复用项目已有的 PageProps。
+// 导航栏组件
 export default async function Navbar({ params }: PageProps) {
-  // 获取当前语言环境。
+  // 获取当前语言环境
   const { lang } = await params;
 
-  // 获取当前语言翻译内容。
+  // 获取当前语言翻译内容
   const t = await translation(params);
 
-  // 集中定义导航链接。
+  // 集中定义导航链接
   const links = [
     {
       href: `/${lang}`,
@@ -31,12 +31,13 @@ export default async function Navbar({ params }: PageProps) {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        {/* 左侧 Logo。 */}
+
+        {/* 左侧 Logo */}
         <Link className={styles.logo} href={`/${lang}`}>
           Tomorin
         </Link>
 
-        {/* 偏左侧的主要导航链接。 */}
+        {/* 偏左侧的主要导航链接 */}
         <nav className={styles.nav} aria-label={t.navbar.label}>
           {links.map(({ href, label }) => (
             <Link className={styles.link} href={href} key={href}>
@@ -45,7 +46,7 @@ export default async function Navbar({ params }: PageProps) {
           ))}
         </nav>
 
-        {/* 右侧功能按钮区域。 */}
+        {/* 右侧功能按钮区域 */}
         <div className={styles.actions}>
           <LanguageSwitcher params={params} />
         </div>
