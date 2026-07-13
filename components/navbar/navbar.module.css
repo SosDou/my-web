@@ -4,10 +4,10 @@
   width: 100%;
 
   /* 在导航栏底部显示一条分隔线。 */
-  border-bottom: 1px solid var(--color-border, #d0d7de);
+  border-bottom: 1px solid var(--color-border);
 
   /* 使用全局定义的页面背景颜色。 */
-  background-color: var(--background-color);
+  background-color: var(--color-background);
 }
 
 /* 定义导航栏内部的内容容器。 */
@@ -40,7 +40,7 @@
   flex-shrink: 0;
 
   /* 使用全局定义的主要文字颜色。 */
-  color: var(--foreground-color);
+  color: var(--color-foreground);
 
   /* 设置 Logo 文字大小。 */
   font-size: 20px;
@@ -79,7 +79,7 @@
   border-radius: 6px;
 
   /* 使用全局定义的次要文字颜色。 */
-  color: var(--muted-foreground-color);
+  color: var(--color-muted-foreground);
 
   /* 设置导航链接文字大小。 */
   font-size: 14px;
@@ -102,10 +102,10 @@
 /* 定义鼠标悬停在导航链接上时的样式。 */
 .link:hover {
   /* 悬停时使用主要文字颜色。 */
-  color: var(--foreground-color);
+  color: var(--color-foreground);
 
   /* 悬停时显示全局定义的背景颜色。 */
-  background-color: var(--hover-background-color);
+  background-color: var(--color-hover-background);
 }
 
 /* 定义导航栏右侧的功能按钮区域。 */

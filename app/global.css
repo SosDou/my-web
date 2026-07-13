@@ -3,6 +3,9 @@ html,
 body {
   /* 保证页面基础高度至少占满父级可用高度。 */
   min-height: 100%;
+
+  /* 使用当前主题的页面背景颜色。 */
+  background-color: var(--color-background);
 }
 
 /* 设置页面主体的整体布局。 */
@@ -18,6 +21,14 @@ body {
 
   /* 让页面中的子元素从上到下纵向排列。 */
   flex-direction: column;
+
+  margin: 0;
+
+  /* 使用当前主题的页面背景颜色。 */
+  background-color: var(--color-background);
+
+  /* 使用当前主题的主要文字颜色。 */
+  color: var(--color-text);
 }
 
 /* 设置页面主要内容区域。 */
@@ -39,6 +50,74 @@ body {
 
   /* 设置移动端页面左右两侧的安全间距。 */
   --layout-padding-inline-mobile: 16px;
+}
+
+/* 默认浅色主题。 */
+:root,
+html[data-theme="light"] {
+  /* 告诉浏览器当前页面使用浅色系统控件。 */
+  color-scheme: light;
+
+  /* 页面、Navbar 和 Footer 的主要背景颜色。 */
+  --color-background: #ffffff;
+
+  /* 卡片、代码块和次级区域的背景颜色。 */
+  --color-background-secondary: #f6f8fa;
+
+  /* 导航链接、图标按钮和菜单项的悬停背景颜色。 */
+  --color-background-hover: #f3f4f6;
+
+  /* 当前选中项或按钮按下时的背景颜色。 */
+  --color-background-active: #eaeef2;
+
+  /* Logo、标题和正文主要文字颜色。 */
+  --color-text: #1f2328;
+
+  /* 次要说明、二级链接和普通图标颜色。 */
+  --color-text-secondary: #57606a;
+
+  /* Navbar、Footer、卡片和菜单的边框颜色。 */
+  --color-border: #d0d7de;
+
+  /* 下拉菜单和弹窗等浮层的背景颜色。 */
+  --color-overlay-background: #ffffff;
+
+  /* 下拉菜单和弹窗等浮层的阴影。 */
+  --color-overlay-shadow: 0 8px 24px rgb(140 149 159 / 20%);
+}
+
+/* 定义 OLED 风格的深色主题。 */
+:root,
+html[data-theme="dark"] {
+  /* 告诉浏览器使用深色系统控件。 */
+  color-scheme: dark;
+
+  /* 页面、Navbar 和 Footer 使用 OLED 纯黑背景。 */
+  --color-background: #000000;
+
+  /* 卡片、代码块和次级区域使用极深灰背景。 */
+  --color-background-secondary: #0d1117;
+
+  /* 导航链接、图标按钮和菜单项的悬停背景。 */
+  --color-background-hover: #161b22;
+
+  /* 当前选中项或按钮按下时的背景。 */
+  --color-background-active: #21262d;
+
+  /* Logo、标题和正文主要文字颜色。 */
+  --color-text: #f0f6fc;
+
+  /* 次要说明、Footer 二级链接和普通图标颜色。 */
+  --color-text-secondary: #8b949e;
+
+  /* Navbar、Footer、菜单和卡片边框颜色。 */
+  --color-border: #30363d;
+
+  /* 下拉菜单和弹窗等浮层背景。 */
+  --color-overlay-background: #161b22;
+
+  /* 深色环境下的浮层阴影。 */
+  --color-overlay-shadow: 0 8px 24px rgb(0 0 0 / 60%);
 }
 
 /* 同时选择所有元素及其前后伪元素。 */

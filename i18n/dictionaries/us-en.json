@@ -12,6 +12,12 @@
         "languageswitcher": {
             "trigger": "Select Language",
             "menu": "Language List"
+        },
+        "themeswitcher": {
+            "trigger": "Select Theme",
+            "menu": "Theme List",
+            "light": "Light",
+            "dark": "Dark"
         }
     },
     "home": {

@@ -4,10 +4,10 @@
   width: 100%;
 
   /* 使用顶部边框分隔正文内容和 Footer。 */
-  border-top: 1px solid var(--color-border, #d0d7de);
+  border-top: 1px solid var(--color-border);
 
   /* 使用页面背景变量，并提供白色默认值。 */
-  background: var(--color-background, #ffffff);
+  background: var(--color-background);
 }
 
 /* 设置 Footer 内部的四列网格布局。 */
@@ -46,7 +46,7 @@
   width: fit-content;
 
   /* 使用主要文字颜色。 */
-  color: var(--color-text, #1f2328);
+  color: var(--color-text);
 
   /* 设置 Logo 字号。 */
   font-size: 18px;
@@ -103,7 +103,7 @@
   width: fit-content;
 
   /* 使用主要文字颜色。 */
-  color: var(--color-text, #1f2328);
+  color: var(--color-text);
 
   /* 设置一级链接字号。 */
   font-size: 14px;
@@ -151,7 +151,7 @@
   width: fit-content;
 
   /* 使用较弱的次要文字颜色。 */
-  color: var(--color-text-secondary, #57606a);
+  color: var(--color-text-secondary);
 
   /* 设置与一级链接一致但视觉更轻的字号。 */
   font-size: 14px;

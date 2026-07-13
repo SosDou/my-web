@@ -1,0 +1,189 @@
+/* 设置主题选择器根元素，并作为菜单的定位参照。 */
+.root {
+  /* 让组件自然放入 Navbar 的横向布局中。 */
+  display: inline-block;
+
+  /* 让菜单相对于当前组件定位。 */
+  position: relative;
+}
+
+/* 设置主题选择器的点击区域。 */
+.trigger {
+  /* 使用网格布局让圆形主题图标居中。 */
+  display: grid;
+
+  /* 同时实现水平和垂直居中。 */
+  place-items: center;
+
+  /* 设置与语言选择器一致的点击区域宽度。 */
+  width: 32px;
+
+  /* 设置与宽度相同的高度。 */
+  height: 32px;
+
+  /* 移除 summary 默认显示的三角形。 */
+  list-style: none;
+
+  /* 设置鼠标指针样式。 */
+  cursor: pointer;
+
+  /* 让悬停背景显示为圆角正方形。 */
+  border-radius: 6px;
+}
+
+/* 移除 Chromium 和 Safari 中的默认展开标记。 */
+.trigger::-webkit-details-marker {
+  display: none;
+}
+
+/* 设置触发器悬停时的背景。 */
+.trigger:hover {
+  background-color: var(--color-background-hover);
+}
+
+/* 设置主题菜单触发器中的调色板图标容器。 */
+.trigger {
+  /* 使用网格布局方便图标居中。 */
+  display: grid;
+
+  /* 让图标水平和垂直居中。 */
+  place-items: center;
+
+  /* 让图标颜色继承当前文字颜色。 */
+  color: var(--color-text-secondary);
+}
+
+/* 设置调色板 SVG 图标本身。 */
+.trigger svg {
+  /* 设置图标宽度。 */
+  width: 20px;
+
+  /* 设置图标高度。 */
+  height: 20px;
+
+  /* 使用当前文字颜色填充图标。 */
+  fill: currentColor;
+
+  /* 避免额外行高影响对齐。 */
+  display: block;
+}
+
+/* 设置键盘操作时的焦点轮廓。 */
+.trigger:focus-visible {
+  outline: 2px solid var(--color-text-secondary);
+  outline-offset: 2px;
+}
+
+/* 设置菜单触发器和菜单项中的圆形主题图标。 */
+.themeIcon {
+  /* 防止圆形图标在 Flexbox 中被压缩。 */
+  flex-shrink: 0;
+
+  /* 设置圆形图标宽度。 */
+  width: 20px;
+
+  /* 设置圆形图标高度。 */
+  height: 20px;
+
+  /* 将正方形变成圆形。 */
+  border-radius: 50%;
+
+  /* 添加边框，让白色和黑色图标在不同背景下都能辨认。 */
+  border: 1px solid #8c959f;
+}
+
+/* 设置浅色主题图标。 */
+.themeIconLight {
+  /* 白色圆形代表 Light theme。 */
+  background-color: #ffffff;
+}
+
+/* 设置深色主题图标。 */
+.themeIconDark {
+  /* 纯黑色圆形代表 Dark theme。 */
+  background-color: #000000;
+}
+
+/* 设置展开后的主题菜单。 */
+.menu {
+  /* 让菜单脱离正常布局，避免撑高 Navbar。 */
+  position: absolute;
+
+  /* 将菜单显示在触发器下方。 */
+  top: calc(100% + 6px);
+
+  /* 让菜单右侧和触发器右侧对齐。 */
+  right: 0;
+
+  /* 自适应宽度。 */
+  width: max-content;
+
+  /* 设置菜单内部留白。 */
+  padding: 4px;
+
+  /* 使用当前主题的浮层背景颜色。 */
+  background-color: var(--color-overlay-background);
+
+  /* 使用当前主题的边框颜色。 */
+  border: 1px solid var(--color-border);
+
+  /* 设置菜单圆角。 */
+  border-radius: 6px;
+
+  /* 使用当前主题的浮层阴影。 */
+  box-shadow: var(--color-overlay-shadow);
+
+  /* 确保菜单显示在附近普通元素上方。 */
+  z-index: 10;
+}
+
+/* 设置单个主题菜单项。 */
+.item {
+  /* 使用 Flexbox 横向排列圆形图标和主题名称。 */
+  display: flex;
+
+  /* 让图标和文字垂直居中。 */
+  align-items: center;
+
+  /* 设置图标和文字之间的间距。 */
+  gap: 10px;
+
+  /* 让菜单项占满菜单宽度。 */
+  width: 100%;
+
+  /* 设置菜单项内部间距。 */
+  padding: 8px;
+
+  /* 移除按钮默认边框。 */
+  border: 0;
+
+  /* 使用透明背景。 */
+  background-color: transparent;
+
+  /* 使用当前主题的主要文字颜色。 */
+  color: var(--color-text);
+
+  /* 继承网站使用的字体。 */
+  font: inherit;
+
+  /* 设置文字大小。 */
+  font-size: 14px;
+
+  /* 设置文字左对齐。 */
+  text-align: left;
+
+  /* 防止主题名称换行。 */
+  white-space: nowrap;
+
+  /* 设置鼠标指针。 */
+  cursor: pointer;
+
+  /* 设置菜单项圆角。 */
+  border-radius: 4px;
+}
+
+/* 设置主题菜单项悬停和键盘聚焦状态。 */
+.item:hover,
+.item:focus-visible {
+  background-color: var(--color-background-hover);
+}

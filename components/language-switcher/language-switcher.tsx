@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./language-switcher.module.css";
 import { PageProps, localeConfig } from "@/i18n/config";
 import { translation } from "@/i18n/translation";
+import { Globe } from "lucide-react";
 
 // 语言选择器组件
 export async function LanguageSwitcher({ params }: PageProps) {
@@ -12,28 +13,24 @@ export async function LanguageSwitcher({ params }: PageProps) {
     return (
 
         // details 作为语言选择器的根元素，同时为下拉菜单提供定位参照
-        <details className={styles.root}>
+        <details className={styles.root} name="navbar-menu">
 
             {/* summary 是原生可点击和可通过键盘操作的菜单触发器 */}
-            <summary className={styles.trigger} aria-label={t.navbar.languageswitcher.trigger}>
-
-                {/* 使用内联 SVG 绘制线框地球图标，不需要安装图标库 */}
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-
-                    {/* 绘制地球最外层的圆形轮廓 */}
-                    <circle cx="12" cy="12" r="9" />
-
-                    {/* 绘制地球中间的水平线 */}
-                    <path d="M3 12h18" />
-
-                    {/* 绘制表示地球经线的左右弧线 */}
-                    <path d="M12 3c4 4 4 14 0 18M12 3c-4 4-4 14 0 18" />
-                </svg>
+            <summary
+                className={styles.trigger}
+                aria-label={t.navbar.languageswitcher.trigger}
+                title={t.navbar.languageswitcher.trigger}
+            >
+                <Globe size={20} strokeWidth={2} aria-hidden="true" />
             </summary>
 
             {/* nav 表示菜单中的链接是一组语言导航 */}
-            <nav className={styles.menu} aria-label={t.navbar.languageswitcher.menu}>
-                
+            <nav
+                className={styles.menu}
+                role="menu"
+                aria-label={t.navbar.languageswitcher.menu}
+            >
+
                 {/* 直接读取项目唯一的语言配置生成所有语言选项 */}
                 {localeConfig.map(({ locale, label, htmlLang }) => (
 

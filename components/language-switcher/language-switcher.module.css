@@ -24,8 +24,8 @@
   /* 移除 summary 元素默认显示的展开三角形。 */
   list-style: none;
 
-  /* 设置与示例图片接近的中性灰色图标。 */
-  color: #57606a;
+  /* 设置图标颜色。 */
+  color: var(--color-text-secondary);
 
   /* 让鼠标经过时显示可点击指针。 */
   cursor: pointer;
@@ -51,8 +51,8 @@
 
 /* 设置触发器悬停时的轻量交互反馈。 */
 .trigger:hover {
-  /* 使用浅灰色圆形背景，不影响整体简洁风格。 */
-  background: #f3f4f6;
+  /* 圆形背景。 */
+  background-color: var(--color-background-hover);
 }
 
 /* 设置地球 SVG 图标本身的外观。 */
@@ -90,23 +90,23 @@
   /* 让菜单右侧与图标按钮右侧对齐。 */
   right: 0;
 
-  /* 防止语言名称较长时菜单过窄。 */
-  min-width: 120px;
+  /* 自适应宽度。 */
+  width: max-content;
 
   /* 为菜单内部保留少量间距。 */
   padding: 4px;
 
-  /* 设置菜单背景为白色。 */
-  background: #fff;
+  /* 菜单背景。 */
+  background-color: var(--color-overlay-background);
 
-  /* 使用浅灰色边框区分菜单和页面背景。 */
-  border: 1px solid #d0d7de;
+  /* 使用边框区分菜单和页面背景。 */
+  border: 1px solid var(--color-border);
 
   /* 设置适中的菜单圆角。 */
   border-radius: 6px;
 
-  /* 添加轻微阴影，表现菜单的浮层关系。 */
-  box-shadow: 0 8px 24px rgb(140 149 159 / 20%);
+  /* 阴影，表现菜单的浮层关系。 */
+  box-shadow: var(--color-overlay-shadow);
 
   /* 确保菜单显示在附近普通页面元素上方。 */
   z-index: 10;
@@ -120,8 +120,8 @@
   /* 设置菜单项内部上下和左右间距。 */
   padding: 6px 8px;
 
-  /* 使用深灰色确保文字具有良好可读性。 */
-  color: #24292f;
+  /* 文字颜色。 */
+  color: var(--color-text);
 
   /* 移除链接默认显示的下划线。 */
   text-decoration: none;
@@ -136,6 +136,6 @@
 /* 设置语言菜单项悬停和键盘聚焦时的反馈。 */
 .item:hover,
 .item:focus-visible {
-  /* 使用浅灰色背景标记当前选中的菜单项。 */
-  background: #f6f8fa;
+  /* 背景标记当前选中的菜单项。 */
+  background-color: var(--color-background-hover);
 }

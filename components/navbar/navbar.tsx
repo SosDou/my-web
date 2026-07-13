@@ -4,6 +4,7 @@ import { translation } from "@/i18n/translation";
 import styles from "./navbar.module.css";
 import { LanguageSwitcher } from "../language-switcher/language-switcher";
 import { siteConfig } from "@/config/site";
+import ThemeSwitcher from "../theme-switcher/theme-switcher";
 
 // 导航栏组件
 export default async function Navbar({ params }: PageProps) {
@@ -49,7 +50,12 @@ export default async function Navbar({ params }: PageProps) {
 
         {/* 右侧功能按钮区域 */}
         <div className={styles.actions}>
+
+          {/* 语言切换器 */}
           <LanguageSwitcher params={params} />
+
+          {/* 主题切换器 */}
+          <ThemeSwitcher params={params} />
         </div>
       </div>
     </header>

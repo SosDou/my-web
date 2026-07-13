@@ -12,6 +12,12 @@
         "languageswitcher": {
             "trigger": "选择语言",
             "menu": "语言列表"
+        },
+        "themeswitcher": {
+            "trigger": "选择主题",
+            "menu": "主题列表",
+            "light": "浅色",
+            "dark": "深色"
         }
     },
     "home": {

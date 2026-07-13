@@ -25,17 +25,22 @@ my-web/
 │        └─ page.tsx                         # 文章列表页面
 │
 ├─ components/                               # 公共组件目录
-│  ├─ navbar/                                # 顶部导航栏组件
-│  │  ├─ navbar.tsx                          # 导航栏结构与逻辑
-│  │  └─ navbar.module.css                   # 导航栏局部样式
-│  │
 │  ├─ language-switcher/                     # 语言选择器组件
-│  │  ├─ language-switcher.tsx               # 语言切换结构与逻辑
-│  │  └─ language-switcher.module.css        # 语言选择器局部样式
+│  │  ├─ language-switcher.module.css        # 语言选择器局部样式
+│  │  └─ language-switcher.tsx               # 语言切换结构与逻辑
 │  │
-│  └─ footer/                                # 页面底部组件
-│     ├─ footer.tsx                          # Footer 结构与逻辑
-│     └─ footer.module.css                   # Footer 局部样式
+│  ├─ navbar/                                # 顶部导航栏组件
+│  │  ├─ navbar.module.css                   # 导航栏局部样式
+│  │  └─ navbar.tsx                          # 导航栏结构与逻辑
+│  │
+│  ├─ footer/                                # 页面底部组件
+│  │  ├─ footer.module.css                   # Footer 局部样式
+│  │  └─ footer.tsx                          # Footer 结构与逻辑
+│  │
+│  └─ theme-switcher
+│     ├─ theme-switcher-client.tsx           # 主题切换结构与逻辑
+│     ├─ theme-switcher.module.css           # 主题切换器局部样式
+│     └─ theme-switcher.tsx                  # 主题切换器
 │
 ├─ config/                                   # 网站公共配置目录
 │  └─ site.ts                                # 网站名称、正式域名和完整 URL 配置
