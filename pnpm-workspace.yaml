@@ -1,4 +1,8 @@
+nodeLinker: hoisted
+
 allowBuilds:
   bcrypt: false
-  sharp: false
+  esbuild: true
+  sharp: true
   unrs-resolver: false
+  workerd: true

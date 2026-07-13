@@ -4,7 +4,7 @@
   width: 100%;
 
   /* 在导航栏底部显示一条分隔线。 */
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--color-border, #d0d7de);
 
   /* 使用全局定义的页面背景颜色。 */
   background-color: var(--background-color);

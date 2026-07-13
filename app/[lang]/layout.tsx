@@ -4,6 +4,7 @@ import { htmlLangMap, PageParams, PageProps } from "@/i18n/config";
 import "@/app/global.css";
 import { translation } from "@/i18n/translation";
 import { Metadata } from "next";
+import { siteConfig } from "@/config/site";
 
 type RootLayoutProps = {
   children: React.ReactNode,
@@ -18,6 +19,7 @@ export async function generateMetadata({
   const t = await translation(params);
 
   return {
+    metadataBase: new URL(siteConfig.url),
     title: {
       default: t.metadata.title,
       template: `%s | ${t.metadata.siteName}`,

@@ -1,8 +1,8 @@
 {
     "metadata": {
-        "siteName": "Tomorin's Blog",
-        "title": "Tomorin's Blog",
-        "description": "Tomorin 的个人网站，记录一些项目、文章与工具等。"
+        "siteName": "{{myName}}'s Blog",
+        "title": "{{myName}}'s Blog",
+        "description": "{{myName}} 的个人网站，记录一些项目、文章与工具等。"
     },
     "navbar": {
         "home": "首页",
@@ -16,15 +16,15 @@
     },
     "home": {
         "title": "首页",
-        "description": "Tomorin 的个人网站，记录一些项目、文章与工具等。"
+        "description": "{{myName}} 的个人网站，记录一些项目、文章与工具等。"
     },
     "tools": {
         "title": "工具",
-        "description": "Tomorin 开发的在线工具。"
+        "description": "{{myName}} 开发的在线工具。"
     },
     "articles": {
         "title": "文章",
-        "description": "Tomorin 分享的技术文章和心得等。"
+        "description": "{{myName}} 分享的技术文章和心得等。"
     },
     "footer": {
         "label": "网站底部导航",

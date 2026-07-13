@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { locales } from "./i18n/config";
-import { getLocale } from "./i18n/utils";
+import { getLocale } from "./i18n/utils/get-locale";
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
     // 获取请求路径
     const { pathname } = request.nextUrl
 

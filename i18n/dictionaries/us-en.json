@@ -1,8 +1,8 @@
 {
     "metadata": {
-        "siteName": "Tomorin's Blog",
-        "title": "Tomorin's Blog",
-        "description": "Tomorin's personal website, where they keep some projects, articles, and tools."
+        "siteName": "{{myName}}'s Blog",
+        "title": "{{myName}}'s Blog",
+        "description": "{{myName}}'s personal website, where they keep some projects, articles, and tools."
     },
     "navbar": {
         "home": "Home",
@@ -16,15 +16,15 @@
     },
     "home": {
         "title": "Home",
-        "description": "Tomorin's personal website, where they keep some projects, articles, and tools."
+        "description": "{{myName}}'s personal website, where they keep some projects, articles, and tools."
     },
     "tools": {
         "title": "Tools",
-        "description": "An online tool developed by Tomorin."
+        "description": "An online tool developed by {{myName}}."
     },
     "articles": {
         "title": "Articles",
-        "description": "Technical articles and insights shared by Tomorin."
+        "description": "Technical articles and insights shared by {{myName}}."
     },
     "footer": {
         "label": "Footer Navigation",

@@ -9,10 +9,16 @@ export async function generateMetadata({
   // 获取当前语言的翻译内容
   const t = await translation(params);
 
+  // 获取 params 中的语言环境
+  const { lang } = await params;
+
   // 返回页面的元数据
   return {
     title: t.articles.title,
     description: t.articles.description,
+    alternates: {
+      canonical: `/${lang}/articles`,
+    },
   };
 }
 

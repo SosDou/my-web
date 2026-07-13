@@ -1,11 +1,15 @@
 {
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "next build --webpack",
     "dev": "next dev --turbopack",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "start": "next start"
+    "start": "next start",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -25,11 +29,14 @@
     "zod": "^3.25.17"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.20.1",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "22.10.7",
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
+    "esbuild": "^0.28.1",
     "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.10"
+    "eslint-config-next": "^16.2.10",
+    "wrangler": "^4.110.0"
   }
 }

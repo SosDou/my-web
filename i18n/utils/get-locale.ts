@@ -1,4 +1,4 @@
-import { browserLocaleMap, defaultLocale, isLocale, Locale } from "./config";
+import { browserLocaleMap, defaultLocale, isLocale, Locale } from "i18n/config";
 import { cookies, headers } from "next/headers";
 
 // 获取本地语言环境

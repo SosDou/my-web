@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 import { isLocale, PageParams } from './config';
+import { siteConfig } from '@/config/site';
+import { interpolateDictionary } from './utils/interpolate';
 
 // 定义字典对象，包含每个语言环境对应的字典加载函数
 const dictionaries = {
@@ -17,6 +19,11 @@ export async function translation(params: Promise<PageParams>) {
         notFound();
     }
 
-    // 返回对应语言的字典
-    return await dictionaries[lang]();
+    // 加载原始字典字典
+    const dictionary = await dictionaries[lang]();
+
+    // 为所有翻译文本统一注入公共变量
+    return interpolateDictionary(dictionary, {
+        myName: siteConfig['myName'],
+    });
 }

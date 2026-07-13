@@ -3,6 +3,7 @@ import type { PageProps } from "@/i18n/config";
 import { translation } from "@/i18n/translation";
 import styles from "./navbar.module.css";
 import { LanguageSwitcher } from "../language-switcher/language-switcher";
+import { siteConfig } from "@/config/site";
 
 // 导航栏组件
 export default async function Navbar({ params }: PageProps) {
@@ -34,7 +35,7 @@ export default async function Navbar({ params }: PageProps) {
 
         {/* 左侧 Logo */}
         <Link className={styles.logo} href={`/${lang}`}>
-          Tomorin
+          {siteConfig.myName}
         </Link>
 
         {/* 偏左侧的主要导航链接 */}

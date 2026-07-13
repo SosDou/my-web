@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { PageProps } from "@/i18n/config";
 import { translation } from "@/i18n/translation";
 import styles from "./footer.module.css";
+import { siteConfig } from "@/config/site";
 
 // 定义单个二级链接的数据结构
 type SecondaryLink = {
@@ -78,7 +79,7 @@ export default async function Footer({ params }: PageProps) {
                 <Link className={styles.logo} href={`/${lang}`}>
 
                     {/* 显示网站名称 */}
-                    Tomorin
+                    {siteConfig.myName}
                 </Link>
 
                 {/* 根据栏目配置生成工具和文章区域 */}
