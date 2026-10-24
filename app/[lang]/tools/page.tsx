@@ -22,7 +22,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Tools({ params }: PageProps) {
+export default async function Tools() {
     return (
         <>
 

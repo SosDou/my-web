@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import styles from "./theme-switcher.module.css";
-import { Palette } from "lucide-react";
+import { LuPalette } from "react-icons/lu";
 
 /* 定义网站支持的主题类型。 */
 type Theme = "light" | "dark";
@@ -130,11 +130,7 @@ export default function ThemeSwitcherClient({
         title={labels.trigger}
       >
         <span className={styles.trigger}>
-          <Palette
-            size={20}
-            strokeWidth={2}
-            aria-hidden="true"
-          />
+          <LuPalette size={20} aria-hidden="true"/>
         </span>
       </summary>
 

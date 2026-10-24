@@ -9,11 +9,11 @@
         "tools": "工具",
         "articles": "文章",
         "label": "网站导航",
-        "languageswitcher": {
+        "languageSwitcher": {
             "trigger": "选择语言",
             "menu": "语言列表"
         },
-        "themeswitcher": {
+        "themeSwitcher": {
             "trigger": "选择主题",
             "menu": "主题列表",
             "light": "浅色",
@@ -28,6 +28,30 @@
         "title": "工具",
         "description": "{{myName}} 开发的在线工具。"
     },
+    "eegToHypnogram": {
+        "title": "EEG to Hypnogram",
+        "description": "选择一个 EDF 文件，EDF 文件不会上传到服务器，在当前浏览器中完成睡眠阶段推理。",
+        "actions": {
+            "start": "开始离线推理",
+            "running": "正在分析……",
+            "download": "下载 Hypnogram CSV"
+        },
+        "progress": {
+            "preparing": "正在准备分析……",
+            "loading": "正在加载离线推理模型……",
+            "reading": "正在读取 EDF 文件……",
+            "predicting": "正在运行睡眠阶段推理……",
+            "completed": "分析完成"
+        },
+        "errors": {
+            "invalidExtension": "请选择扩展名为 .edf 的文件。",
+            "emptyFile": "EDF 文件为空。",
+            "fileTooLarge": "暂不支持超过 500 MB 的 EDF 文件。",
+            "noFileSelected": "请先选择一个 EDF 文件。",
+            "workerNotReady": "离线推理 Worker 尚未初始化。",
+            "workerLoadFailed": "离线推理 Worker 加载失败"
+        }
+    },
     "articles": {
         "title": "文章",
         "description": "{{myName}} 分享的技术文章和心得等。"
@@ -35,7 +59,10 @@
     "footer": {
         "label": "网站底部导航",
         "tools": {
-            "label": "工具"
+            "label": "工具",
+            "eegToHypnogram": {
+                "label": "EEG to Hypnogram"
+            }
         },
         "articles": {
             "label": "文章"

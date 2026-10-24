@@ -52,6 +52,21 @@ body {
   --layout-padding-inline-mobile: 16px;
 }
 
+/* 设置页面内容容器。 */
+.page-container {
+  /* 让内容区域占满可用宽度。 */
+  width: 100%;
+
+  /* 限制内容区域的最大宽度。 */
+  max-width: var(--layout-max-width);
+
+  /* 让内容区域水平居中。 */
+  margin-inline: auto;
+
+  /* 设置页面左右间距。 */
+  padding-inline: var(--layout-padding-inline);
+}
+
 /* 默认浅色主题。 */
 :root,
 html[data-theme="light"] {
@@ -126,4 +141,10 @@ html[data-theme="dark"] {
 *::after {
   /* 让元素声明的宽高包含内边距和边框。 */
   box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding-inline: var(--layout-padding-inline-mobile);
+  }
 }

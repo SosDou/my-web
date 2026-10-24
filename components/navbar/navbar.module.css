@@ -126,6 +126,73 @@
   flex-shrink: 0;
 }
 
+.menu {
+  position: relative;
+}
+
+.menuTrigger {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  padding: 0;
+  border: 0;
+
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+
+  list-style: none;
+  user-select: none;
+}
+
+/* 菜单展开后旋转箭头 */
+.menu[open] .menuArrow {
+  transform: rotate(180deg);
+}
+
+.menuList {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 0;
+  z-index: 100;
+
+  display: flex;
+  min-width: 13rem;
+  flex-direction: column;
+  padding: 0.4rem;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-background);
+
+  box-shadow:
+    0 4px 12px rgb(0 0 0 / 8%),
+    0 12px 28px rgb(0 0 0 / 8%);
+}
+
+.menuItem {
+  display: block;
+  padding: 0.65rem 0.8rem;
+
+  border-radius: calc(var(--radius-small) - 2px);
+  color: var(--color-text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background: var(--color-background-secondary);
+  outline: none;
+}
+
+.menuTrigger:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 /* 当页面宽度不超过 640px 时应用移动端样式。 */
 @media (max-width: 640px) {
 

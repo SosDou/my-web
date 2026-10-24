@@ -1,0 +1,4 @@
+Contact: mailto:1813962881@qq.com
+Expires: 2027-07-01T00:00:00Z
+Canonical: https://www.mikurin.fun/.well-known/security.txt
+Preferred-Languages: zh-CN, en

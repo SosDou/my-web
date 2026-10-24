@@ -49,7 +49,14 @@ export default async function Footer({ params }: PageProps) {
             // 设置工具栏目在网格中的位置
             className: styles.tools,
 
-            // 当前没有二级链接，因此不需要声明 links
+            // 二级链接
+            links: [
+                // EEG to Hypnogram
+                {
+                    href: `/${lang}/tools/eeg-to-hypnogram`,
+                    label: t.footer.tools.eegToHypnogram.label,
+                }
+            ],
         },
 
         // 定义文章栏目

@@ -11,10 +11,10 @@ export default async function ThemeSwitcher({ params }: PageProps) {
   return (
     <ThemeSwitcherClient
       labels={{
-        trigger: t.navbar.themeswitcher.trigger,
-        menu: t.navbar.themeswitcher.menu,
-        light: t.navbar.themeswitcher.light,
-        dark: t.navbar.themeswitcher.dark,
+        trigger: t.navbar.themeSwitcher.trigger,
+        menu: t.navbar.themeSwitcher.menu,
+        light: t.navbar.themeSwitcher.light,
+        dark: t.navbar.themeSwitcher.dark,
       }}
     />
   );
