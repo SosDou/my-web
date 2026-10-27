@@ -1,0 +1,25 @@
+{
+  "title": "EEG to Hypnogram",
+  "description": "选择一个 EDF 文件，EDF 文件不会上传到服务器，在当前浏览器中完成睡眠阶段推理。",
+  "actions": {
+    "selectFile": "选择 EDF 文件",
+    "start": "开始离线推理",
+    "running": "正在分析……",
+    "download": "下载 Hypnogram CSV"
+  },
+  "progress": {
+    "preparing": "正在准备分析……",
+    "loading": "正在加载离线推理模型……",
+    "reading": "正在读取 EDF 文件……",
+    "predicting": "正在运行睡眠阶段推理……",
+    "completed": "分析完成"
+  },
+  "errors": {
+    "invalidExtension": "请选择扩展名为 .edf 的文件。",
+    "emptyFile": "EDF 文件为空。",
+    "fileTooLarge": "暂不支持超过 500 MB 的 EDF 文件。",
+    "noFileSelected": "请先选择一个 EDF 文件。",
+    "workerNotReady": "离线推理 Worker 尚未初始化。",
+    "workerLoadFailed": "离线推理 Worker 加载失败"
+  }
+}

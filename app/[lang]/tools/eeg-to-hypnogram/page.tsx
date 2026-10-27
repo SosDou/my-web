@@ -23,8 +23,10 @@ export async function generateMetadata({
   };
 }
 
-export default function EegToHypnogram() {
+export default async function EegToHypnogram({ params }: PageProps) {
+    const t = await translation(params);
+
     return (
-        <EdfOfflineTool />
+        <EdfOfflineTool translations={t.eegToHypnogram} />
     );
 }

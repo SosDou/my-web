@@ -1,0 +1,12 @@
+{
+  "label": "网站底部导航",
+  "tools": {
+    "label": "工具",
+    "eegToHypnogram": {
+      "label": "EEG to Hypnogram"
+    }
+  },
+  "articles": {
+    "label": "文章"
+  }
+}

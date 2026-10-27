@@ -1,13 +1,16 @@
 import { notFound } from 'next/navigation';
-import { isLocale, PageParams } from './config';
+import { isLocale, Locale, PageParams } from './config';
 import { siteConfig } from '@/config/site';
 import { interpolateDictionary } from './utils/interpolate';
+import type { Dictionary } from './dictionaries/types';
+
+type DictionaryLoader = () => Promise<Dictionary>;
 
 // 定义字典对象，包含每个语言环境对应的字典加载函数
-const dictionaries = {
-    'us-en': () => import('../i18n/dictionaries/us-en.json').then((module) => module.default),
-    'cn-zh': () => import('../i18n/dictionaries/cn-zh.json').then((module) => module.default)
-}
+const dictionaries: Record<Locale, DictionaryLoader> = {
+    'us-en': () => import('./dictionaries/us-en').then((module) => module.default),
+    'cn-zh': () => import('./dictionaries/cn-zh').then((module) => module.default),
+};
 
 // 获取对应语言的字典
 export async function translation(params: Promise<PageParams>) {

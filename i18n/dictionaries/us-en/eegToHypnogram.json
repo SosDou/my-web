@@ -1,0 +1,25 @@
+{
+  "title": "EEG to Hypnogram",
+  "description": "Select an EDF file to run sleep stage inference directly in your browser. The EDF file will not be uploaded to the server.",
+  "actions": {
+    "selectFile": "Select EDF File",
+    "start": "Start Offline Inference",
+    "running": "Analyzing…",
+    "download": "Download Hypnogram CSV"
+  },
+  "progress": {
+    "preparing": "Preparing analysis…",
+    "loading": "Loading the offline inference model…",
+    "reading": "Reading the EDF file…",
+    "predicting": "Running sleep stage inference…",
+    "completed": "Analysis completed"
+  },
+  "errors": {
+    "invalidExtension": "Please select a file with the .edf extension.",
+    "emptyFile": "The EDF file is empty.",
+    "fileTooLarge": "EDF files exceeding 500 MB are not supported at this time.",
+    "noFileSelected": "Please select an EDF file first.",
+    "workerNotReady": "The offline inference worker has not been initialized.",
+    "workerLoadFailed": "Failed to load the offline inference worker."
+  }
+}

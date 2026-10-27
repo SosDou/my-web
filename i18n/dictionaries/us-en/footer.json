@@ -1,0 +1,12 @@
+{
+  "label": "Footer Navigation",
+  "tools": {
+    "label": "Tools",
+    "eegToHypnogram": {
+      "label": "EEG to Hypnogram"
+    }
+  },
+  "articles": {
+    "label": "Articles"
+  }
+}

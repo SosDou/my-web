@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { Dictionary } from "@/i18n/dictionaries/types";
 
 // 进度阶段类型
 type ProgressStage =
@@ -23,17 +24,17 @@ type WorkerMessage =
         message: string;
     };
 
-// 进度阶段对应的文本
-const PROGRESS_TEXT: Record<ProgressStage, string> = {
-    loading: "正在加载离线推理模型……",
-    reading: "正在读取 EDF 文件……",
-    predicting: "正在运行睡眠阶段推理……",
-};
-
 // 最大文件大小限制
 const MAX_FILE_SIZE_BYTES = 500 * 1024 * 1024;
 
-export function EdfOfflineTool() {
+type EdfOfflineToolProps = {
+    translations: Dictionary["eegToHypnogram"];
+};
+
+export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
+
+    // 文件输入框引用
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     // Worker 引用
     const workerRef = useRef<Worker | null>(null);
@@ -67,7 +68,7 @@ export function EdfOfflineTool() {
             // 正在加载模型
             if (message.type === "progress") {
                 setProgressText(
-                    PROGRESS_TEXT[message.stage],
+                    translations.progress[message.stage],
                 );
                 return;
             }
@@ -75,7 +76,7 @@ export function EdfOfflineTool() {
             // 推理成功完成
             if (message.type === "success") {
                 setCsvResult(message.csv);
-                setProgressText("分析完成");
+                setProgressText(translations.progress.completed);
                 setIsRunning(false);
                 return;
             }
@@ -96,7 +97,7 @@ export function EdfOfflineTool() {
             );
 
             setErrorMessage(
-                "离线推理 Worker 加载失败",
+                translations.errors.workerLoadFailed,
             );
             setProgressText("");
             setIsRunning(false);
@@ -110,20 +111,20 @@ export function EdfOfflineTool() {
             worker.terminate();
             workerRef.current = null;
         };
-    }, []);
+    }, [translations]);
 
     // 验证选择的文件是否符合要求
     function validateFile(file: File): string | null {
         if (!file.name.toLowerCase().endsWith(".edf")) {
-            return "请选择扩展名为 .edf 的文件。";
+            return translations.errors.invalidExtension;
         }
 
         if (file.size <= 0) {
-            return "EDF 文件为空。";
+            return translations.errors.emptyFile;
         }
 
         if (file.size > MAX_FILE_SIZE_BYTES) {
-            return "当前版本暂不支持超过 500 MB 的 EDF 文件。";
+            return translations.errors.fileTooLarge;
         }
 
         return null;
@@ -148,20 +149,20 @@ export function EdfOfflineTool() {
     // 运行推理
     function runPrediction() {
         if (!selectedFile) {
-            setErrorMessage("请先选择一个 EDF 文件。");
+            setErrorMessage(translations.errors.noFileSelected);
             return;
         }
 
         if (!workerRef.current) {
             setErrorMessage(
-                "离线推理 Worker 尚未初始化。",
+                translations.errors.workerNotReady,
             );
             return;
         }
 
         setCsvResult(null);
         setErrorMessage(null);
-        setProgressText("正在准备分析……");
+        setProgressText(translations.progress.preparing);
         setIsRunning(true);
 
         workerRef.current.postMessage({
@@ -204,33 +205,45 @@ export function EdfOfflineTool() {
             <header>
                 {/* 页面标题 */}
                 <h1 style={{ textAlign: "center" }}>
-                    EEG to Hypnogram
+                    {translations.title}
                 </h1>
 
                 {/* 页面描述 */}
                 <p style={{ textAlign: "center" }}>
-                    选择一个 EDF 文件，EDF 文件不会上传到服务器，在当前浏览器中完成睡眠阶段推理。
+                    {translations.description}
                 </p>
             </header>
 
             {/* EDF 文件选择区域 */}
             <div style={{ textAlign: "center" }}>
                 {/* 文件选择表单 */}
-                <label>
-                    {/* EDF 文件输入框 */}
-                    <input
-                        type="file"
-                        accept=".edf,application/octet-stream"
-                        disabled={isRunning}
-                        onChange={(event) => {
-                            const file = event.target.files?.[0];
+                {/* EDF 文件输入框由自定义按钮触发，避免使用浏览器固定语言的原生按钮 */}
+                <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".edf,application/octet-stream"
+                    disabled={isRunning}
+                    hidden
+                    onChange={(event) => {
+                        const file = event.target.files?.[0];
 
-                            if (file) {
-                                selectFile(file);
-                            }
-                        }}
-                    />
-                </label>
+                        if (file) {
+                            selectFile(file);
+                        }
+                    }}
+                />
+
+                <button
+                    type="button"
+                    disabled={isRunning}
+                    onClick={() => fileInputRef.current?.click()}
+                >
+                    {translations.actions.selectFile}
+                </button>
+
+                {selectedFile && <span>{selectedFile.name}</span>}
+
+                <span style={{ margin: "0 10px" }}></span>
 
                 {/* 开始推理按钮 */}
                 <button
@@ -241,8 +254,8 @@ export function EdfOfflineTool() {
                     onClick={runPrediction}
                 >
                     {isRunning
-                        ? "正在分析……"
-                        : "开始离线推理"}
+                        ? translations.actions.running
+                        : translations.actions.start}
                 </button>
             </div>
 
@@ -276,7 +289,7 @@ export function EdfOfflineTool() {
                             marginInline: "auto",
                         }}
                     >
-                        下载 Hypnogram CSV
+                        {translations.actions.download}
                     </button>
 
 
