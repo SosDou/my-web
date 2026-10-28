@@ -9,8 +9,8 @@ export async function LanguageSwitcher({ params }: PageProps) {
     return (
         <LanguageSwitcherClient
             localeConfig={localeConfig}
-            triggerLabel={t.navbar.languageSwitcher.trigger}
-            menuLabel={t.navbar.languageSwitcher.menu}
+            triggerLabel={t.languageSwitcher.trigger}
+            menuLabel={t.languageSwitcher.menu}
         />
     );
 }

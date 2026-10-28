@@ -5,7 +5,10 @@ import styles from "./theme-switcher.module.css";
 import { LuPalette } from "react-icons/lu";
 
 /* 定义网站支持的主题类型。 */
-type Theme = "light" | "dark";
+type Theme = "light" | "dark" | "system";
+
+/* 定义最终应用到页面的明暗主题类型。 */
+type ResolvedTheme = Exclude<Theme, "system">;
 
 /* 定义服务端传递给客户端的翻译文本。 */
 type ThemeSwitcherLabels = {
@@ -13,6 +16,7 @@ type ThemeSwitcherLabels = {
   menu: string;
   light: string;
   dark: string;
+  system: string;
 };
 
 /* 定义客户端组件接收的参数。 */
@@ -37,12 +41,21 @@ function getThemeSnapshot(): Theme {
   const savedTheme = window.localStorage.getItem(themeStorageKey);
 
   /* 只接受有效的主题值。 */
-  return savedTheme === "dark" ? "dark" : "light";
+  return savedTheme === "dark" || savedTheme === "system"
+    ? savedTheme
+    : "light";
 }
 
 /* 定义服务端渲染期间使用的默认主题。 */
 function getServerThemeSnapshot(): Theme {
   return "light";
+}
+
+/* 根据系统配色偏好获取最终使用的明暗主题。 */
+function getSystemTheme(): ResolvedTheme {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 }
 
 /* 订阅主题变化。 */
@@ -93,6 +106,10 @@ export default function ThemeSwitcherClient({
         value: "dark",
         label: labels.dark,
       },
+      {
+        value: "system",
+        label: labels.system,
+      },
     ];
 
   /* 从浏览器存储中读取并订阅当前主题。 */
@@ -102,9 +119,27 @@ export default function ThemeSwitcherClient({
     getServerThemeSnapshot,
   );
 
-  /* 当当前主题变化时，将主题同步到 html 根元素。 */
+  /* 当当前主题变化时，将最终的明暗主题同步到 html 根元素。 */
   useEffect(() => {
-    document.documentElement.dataset.theme = currentTheme;
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+    /* 应用用户指定的主题，或跟随当前系统配色。 */
+    function applyTheme() {
+      document.documentElement.dataset.theme =
+        currentTheme === "system" ? getSystemTheme() : currentTheme;
+    }
+
+    applyTheme();
+
+    /* 仅在跟随系统时监听系统配色变化。 */
+    if (currentTheme === "system") {
+      systemTheme.addEventListener("change", applyTheme);
+    }
+
+    /* 主题变化或组件卸载时移除系统配色监听。 */
+    return () => {
+      systemTheme.removeEventListener("change", applyTheme);
+    };
   }, [currentTheme]);
 
   /* 切换并保存用户选择的主题。 */
@@ -150,11 +185,13 @@ export default function ThemeSwitcherClient({
               aria-checked={currentTheme === theme.value}
               onClick={() => changeTheme(theme.value)}
             >
-              {/* 显示主题对应的白色或黑色圆形图标。 */}
+              {/* 显示主题对应的浅色、深色或跟随系统图标。 */}
               <span
                 className={`${styles.themeIcon} ${theme.value === "dark"
                   ? styles.themeIconDark
-                  : styles.themeIconLight
+                  : theme.value === "system"
+                    ? styles.themeIconSystem
+                    : styles.themeIconLight
                   }`}
               />
 

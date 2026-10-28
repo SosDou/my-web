@@ -104,6 +104,12 @@
   background-color: #000000;
 }
 
+/* 设置跟随系统主题图标。 */
+.themeIconSystem {
+  /* 使用黑白各半的圆形表示主题会跟随系统配色。 */
+  background: linear-gradient(90deg, #ffffff 50%, #000000 50%);
+}
+
 /* 设置展开后的主题菜单。 */
 .menu {
   /* 让菜单脱离正常布局，避免撑高 Navbar。 */
