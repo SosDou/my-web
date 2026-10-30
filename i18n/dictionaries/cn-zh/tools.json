@@ -1,4 +1,8 @@
 {
   "title": "工具",
-  "description": "{{myName}} 开发的在线工具。"
+  "description": "{{myName}} 开发的在线工具。",
+  "eegToHypnogram": {
+    "title": "EEG 转换为睡眠分期图",
+    "description": "将脑电图(EEG)数据转换为睡眠分期图的在线工具。"
+  }
 }

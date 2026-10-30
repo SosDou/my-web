@@ -87,18 +87,30 @@
 
 /* 设置工具栏目在宽屏布局中的位置。 */
 .tools {
-  /* 将工具栏目放入四列布局中的第三列。 */
-  grid-column: 3;
+  /* 将工具栏目放在 Logo 右侧的第一列。 */
+  grid-column: 2;
 }
 
 /* 设置文章栏目在宽屏布局中的位置。 */
 .articles {
-  /* 将文章栏目放入四列布局中的第四列。 */
+  /* 将文章栏目放在 Logo 右侧的第二列。 */
+  grid-column: 3;
+}
+
+/* 设置联系栏目在宽屏布局中的位置。 */
+.contact {
+  /* 将联系栏目放在 Logo 右侧的第三列。 */
   grid-column: 4;
 }
 
 /* 设置工具和文章的一级跳转链接。 */
 .primaryLink {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
   /* 让链接宽度只包含文字本身。 */
   width: fit-content;
 
@@ -116,7 +128,7 @@
 }
 
 /* 设置一级链接悬停时的效果。 */
-.primaryLink:hover {
+a.primaryLink:hover {
   /* 鼠标悬停时显示文字下划线。 */
   text-decoration: underline;
 
@@ -147,6 +159,12 @@
 
 /* 设置二级跳转链接的外观。 */
 .secondaryLink {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
   /* 让链接宽度只占文字本身需要的空间。 */
   width: fit-content;
 
@@ -163,8 +181,15 @@
   text-decoration: none;
 }
 
+/* 统一 Footer 链接图标的尺寸，并防止图标被压缩。 */
+.linkIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
 /* 设置二级链接悬停时的效果。 */
-.secondaryLink:hover {
+a.secondaryLink:hover {
   /* 鼠标悬停时显示文字下划线。 */
   text-decoration: underline;
 
@@ -209,13 +234,19 @@
 
   /* 调整窄屏状态下的工具栏目位置。 */
   .tools {
-    /* 将工具栏目放入第二列。 */
-    grid-column: 2;
+    /* 将工具栏目放入第一列。 */
+    grid-column: 1;
   }
 
   /* 调整窄屏状态下的文章栏目位置。 */
   .articles {
-    /* 将文章栏目放入第三列。 */
+    /* 将文章栏目放入第二列。 */
+    grid-column: 2;
+  }
+
+  /* 调整窄屏状态下的联系栏目位置。 */
+  .contact {
+    /* 将联系栏目放入第三列。 */
     grid-column: 3;
   }
 }

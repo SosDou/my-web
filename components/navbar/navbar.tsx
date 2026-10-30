@@ -24,10 +24,10 @@ export default async function Navbar({ params }: PageProps) {
       href: `/${lang}/tools`,
       label: t.navbar.tools,
     },
-    {
-      href: `/${lang}/articles`,
-      label: t.navbar.articles,
-    },
+    // {
+    //   href: `/${lang}/articles`,
+    //   label: t.navbar.articles,
+    // },
   ] as const;
 
   return (

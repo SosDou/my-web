@@ -1,4 +1,8 @@
 {
   "title": "Tools",
-  "description": "An online tool developed by {{myName}}."
+  "description": "An online tool developed by {{myName}}.",
+  "eegToHypnogram": {
+    "title": "EEG to Hypnogram",
+    "description": "An online tool that converts EEG data into a hypnogram."
+  }
 }

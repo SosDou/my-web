@@ -8,5 +8,8 @@
   },
   "articles": {
     "label": "Articles"
+  },
+  "contact": {
+    "label": "Contact Me"
   }
 }

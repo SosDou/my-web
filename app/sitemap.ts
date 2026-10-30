@@ -10,11 +10,6 @@ const routes = [
     priority: 1,
   },
   {
-    path: "/about",
-    changeFrequency: "monthly",
-    priority: 0.8,
-  },
-  {
     path: "/tools",
     changeFrequency: "weekly",
     priority: 0.8,

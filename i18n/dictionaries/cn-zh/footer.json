@@ -8,5 +8,8 @@
   },
   "articles": {
     "label": "文章"
+  },
+  "contact": {
+    "label": "联系我"
   }
 }
