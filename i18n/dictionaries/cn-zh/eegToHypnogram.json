@@ -1,6 +1,7 @@
 {
   "title": "EEG to Hypnogram",
   "description": "选择一个 EDF 文件，EDF 文件不会上传到服务器，在当前浏览器中完成睡眠阶段推理。",
+  "repositoryLink": "在 GitHub 上查看项目仓库",
   "actions": {
     "selectFile": "选择 EDF 文件",
     "start": "开始离线推理",
@@ -13,6 +14,26 @@
     "reading": "正在读取 EDF 文件……",
     "predicting": "正在运行睡眠阶段推理……",
     "completed": "分析完成"
+  },
+  "hypnogram": {
+    "title": "睡眠阶段图",
+    "description": "共 {count} 个时间段的睡眠阶段随时间变化图。",
+    "timeAxis": "时间（时:分 / 分:秒）",
+    "summary": "{count} 个时间段 · 总时长 {duration}",
+    "stages": {
+      "W": "清醒",
+      "REM": "快速眼动",
+      "N1": "N1",
+      "N2": "N2",
+      "N3": "N3"
+    },
+    "errors": {
+      "noEpochData": "Hypnogram CSV 中没有睡眠阶段数据。",
+      "invalidHeader": "Hypnogram CSV 表头无效，预期为：{header}",
+      "invalidRow": "Hypnogram CSV 第 {row} 行格式无效。",
+      "invalidValues": "Hypnogram CSV 第 {row} 行的数据无效。",
+      "unorderedTimes": "Hypnogram CSV 第 {row} 行的时间顺序无效。"
+    }
   },
   "errors": {
     "invalidExtension": "请选择扩展名为 .edf 的文件。",

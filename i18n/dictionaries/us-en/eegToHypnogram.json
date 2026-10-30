@@ -1,6 +1,7 @@
 {
   "title": "EEG to Hypnogram",
   "description": "Select an EDF file to run sleep stage inference directly in your browser. The EDF file will not be uploaded to the server.",
+  "repositoryLink": "View the project repository on GitHub",
   "actions": {
     "selectFile": "Select EDF File",
     "start": "Start Offline Inference",
@@ -13,6 +14,26 @@
     "reading": "Reading the EDF file…",
     "predicting": "Running sleep stage inference…",
     "completed": "Analysis completed"
+  },
+  "hypnogram": {
+    "title": "Sleep stage hypnogram",
+    "description": "Sleep stages over time for {count} epochs.",
+    "timeAxis": "Time (h:mm / m:ss)",
+    "summary": "{count} epochs · {duration} total duration",
+    "stages": {
+      "W": "Wake",
+      "REM": "REM",
+      "N1": "N1",
+      "N2": "N2",
+      "N3": "N3"
+    },
+    "errors": {
+      "noEpochData": "Hypnogram CSV does not contain any epoch data.",
+      "invalidHeader": "Invalid Hypnogram CSV header. Expected: {header}",
+      "invalidRow": "Invalid Hypnogram CSV row {row}.",
+      "invalidValues": "Invalid Hypnogram CSV values on row {row}.",
+      "unorderedTimes": "Hypnogram CSV times are not ordered on row {row}."
+    }
   },
   "errors": {
     "invalidExtension": "Please select a file with the .edf extension.",

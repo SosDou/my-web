@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { Dictionary } from "@/i18n/dictionaries/types";
+import { HypnogramPainter } from "./HypnogramPainter";
+import { LuGithub } from "react-icons/lu";
 
 // 进度阶段类型
 type ProgressStage =
@@ -212,6 +214,23 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
                 <p style={{ textAlign: "center" }}>
                     {translations.description}
                 </p>
+
+                {/* 项目源码仓库 */}
+                <p style={{ textAlign: "center" }}>
+                    <a
+                        href="https://github.com/SosDou/eeg-to-hypnogram"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "6px",
+                        }}
+                    >
+                        <LuGithub aria-hidden="true" />
+                        {translations.repositoryLink}
+                    </a>
+                </p>
             </header>
 
             {/* EDF 文件选择区域 */}
@@ -293,10 +312,11 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
                     </button>
 
 
-                    {/* CSV 内容预览区域 */}
-                    <pre style={{ textAlign: "center" }}>
-                        {csvResult}
-                    </pre>
+                    {/* Hypnogram 图像预览区域 */}
+                    <HypnogramPainter
+                        csvResult={csvResult}
+                        translations={translations.hypnogram}
+                    />
 
                 </section>
             )}

@@ -25,7 +25,9 @@ my-web/
 │
 ├─ components/                               # 公共组件目录
 │  ├─ eeg-to-hypnogram/                      # eeg-to-hypnogram 组件
-│  │  └─ EdfOfflineTool.tsx                  # edf 离线工具
+│  │  ├─ EdfOfflineTool.tsx                  # edf 离线工具
+│  │  ├─ HypnogramPainter.css                # hypnogram 绘图工具局部样式
+│  │  └─ HypnogramPainter.tsx                # hypnogram 绘图工具
 │  │
 │  ├─ footer/                                # 页面底部组件
 │  │  ├─ footer.module.css                   # Footer 局部样式
@@ -62,9 +64,12 @@ my-web/
 │     ├─ zn-zh/                              # 简体中文翻译内容
 │     └─ us-en/                              # 美式英语翻译内容
 │
-├─ public/                                   # 静态资源目录
-│  ├─ favicon.ico                            # 网站浏览器图标
-│  └─ _headers                               # Cloudflare 静态资源响应头配置
-│
-└─ README.md                                 # 项目说明文档
+└─ public/                                   # 静态资源目录
+   ├─ favicon.ico                            # 网站浏览器图标
+   ├─ _headers                               # Cloudflare 静态资源响应头配置
+   └─ eeg-to-hypnogram/                      # eeg-to-hypnogram 浏览器端推理资源
+      ├─ eeg_inference.js                    # 自动生成的 WASM 加载器/胶水代码
+      ├─ eeg_inference.wasm                  # EDF 解析、EEG 特征处理和睡眠分期预测的 WebAssembly 二进制程序
+      ├─ eeg-inference.worker.js             # 推理流程控制器
+      └─ sleep_rf.srf.gz.bin                 # 睡眠分期模型
 ```
