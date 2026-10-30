@@ -39,32 +39,25 @@ type FooterSection = {
 // Footer 组件
 export default async function Footer({ params }: PageProps) {
     const { lang } = await params;
-    const t = await translation(params);
+    const footer = await translation(params, "footer");
     const sections: readonly FooterSection[] = [
         // 工具
         {
             href: `/${lang}/tools`,
-            label: t.footer.tools.label,
+            label: footer.tools.label,
             className: styles.tools,
             links: [
                 // EEG to Hypnogram
                 {
                     href: `/${lang}/tools/eeg-to-hypnogram`,
-                    label: t.footer.tools.eegToHypnogram.label,
+                    label: footer.tools.eegToHypnogram.label,
                 }
             ],
         },
 
-        // 文章
-        // {
-        //     href: `/${lang}/articles`,
-        //     label: t.footer.articles.label,
-        //     className: styles.articles,
-        // },
-
         // 联系我
         {
-            label: t.footer.contact.label,
+            label: footer.contact.label,
             className: styles.contact,
             links: [
                 {
@@ -83,7 +76,7 @@ export default async function Footer({ params }: PageProps) {
     // 返回网站底部区域
     return (
         <footer className={styles.footer}>
-            <nav className={styles.inner} aria-label={t.footer.label}>
+            <nav className={styles.inner} aria-label={footer.label}>
                 <Link className={styles.logo} href={`/${lang}`}>
                     {siteConfig.myName}
                 </Link>

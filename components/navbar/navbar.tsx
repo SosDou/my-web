@@ -12,22 +12,18 @@ export default async function Navbar({ params }: PageProps) {
   const { lang } = await params;
 
   // 获取当前语言翻译内容
-  const t = await translation(params);
+  const navbar = await translation(params, "navbar");
 
   // 集中定义导航链接
   const links = [
     {
       href: `/${lang}`,
-      label: t.navbar.home,
+      label: navbar.home,
     },
     {
       href: `/${lang}/tools`,
-      label: t.navbar.tools,
+      label: navbar.tools,
     },
-    // {
-    //   href: `/${lang}/articles`,
-    //   label: t.navbar.articles,
-    // },
   ] as const;
 
   return (
@@ -40,7 +36,7 @@ export default async function Navbar({ params }: PageProps) {
         </Link>
 
         {/* 偏左侧的主要导航链接 */}
-        <nav className={styles.nav} aria-label={t.navbar.label}>
+        <nav className={styles.nav} aria-label={navbar.label}>
           {links.map(({ href, label }) => (
             <Link className={styles.link} href={href} key={href}>
               {label}

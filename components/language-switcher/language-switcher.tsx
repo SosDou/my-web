@@ -4,13 +4,13 @@ import { LanguageSwitcherClient } from "./language-switcher-client";
 
 // 服务端组件负责读取翻译
 export async function LanguageSwitcher({ params }: PageProps) {
-    const t = await translation(params);
+    const translations = await translation(params, "languageSwitcher");
 
     return (
         <LanguageSwitcherClient
             localeConfig={localeConfig}
-            triggerLabel={t.languageSwitcher.trigger}
-            menuLabel={t.languageSwitcher.menu}
+            triggerLabel={translations.trigger}
+            menuLabel={translations.menu}
         />
     );
 }

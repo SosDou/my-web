@@ -1,32 +1,54 @@
-import { notFound } from 'next/navigation';
-import { isLocale, Locale, PageParams } from './config';
-import { siteConfig } from '@/config/site';
-import { interpolateDictionary } from './utils/interpolate';
-import type { Dictionary } from './dictionaries/types';
+import { siteConfig } from "@/config/site";
+import { notFound } from "next/navigation";
+import { isLocale, Locale, PageParams } from "./config";
+import type { Dictionary, DictionaryNamespace } from "./dictionaries/types";
+import { interpolateDictionary } from "./utils/interpolate";
 
-type DictionaryLoader = () => Promise<Dictionary>;
-
-// 定义字典对象，包含每个语言环境对应的字典加载函数
-const dictionaries: Record<Locale, DictionaryLoader> = {
-    'us-en': () => import('./dictionaries/us-en').then((module) => module.default),
-    'cn-zh': () => import('./dictionaries/cn-zh').then((module) => module.default),
+type DictionaryLoaders = {
+  [L in Locale]: {
+    [N in DictionaryNamespace]: () => Promise<Dictionary[N]>;
+  };
 };
 
-// 获取对应语言的字典
-export async function translation(params: Promise<PageParams>) {
-    // 获取 params 中的 语言环境
-    const { lang } = await params;
+// 每种语言和命名空间都有自己的代码块，所以调用者只加载他们使用的部分
+const dictionaries: DictionaryLoaders = {
+  "us-en": {
+    articles: () => import("./dictionaries/us-en/articles.json").then((module) => module.default),
+    eegToHypnogram: () => import("./dictionaries/us-en/eegToHypnogram.json").then((module) => module.default),
+    footer: () => import("./dictionaries/us-en/footer.json").then((module) => module.default),
+    home: () => import("./dictionaries/us-en/home.json").then((module) => module.default),
+    languageSwitcher: () => import("./dictionaries/us-en/languageSwitcher.json").then((module) => module.default),
+    metadata: () => import("./dictionaries/us-en/metadata.json").then((module) => module.default),
+    navbar: () => import("./dictionaries/us-en/navbar.json").then((module) => module.default),
+    themeSwitcher: () => import("./dictionaries/us-en/themeSwitcher.json").then((module) => module.default),
+    tools: () => import("./dictionaries/us-en/tools.json").then((module) => module.default),
+  },
+  "cn-zh": {
+    articles: () => import("./dictionaries/cn-zh/articles.json").then((module) => module.default),
+    eegToHypnogram: () => import("./dictionaries/cn-zh/eegToHypnogram.json").then((module) => module.default),
+    footer: () => import("./dictionaries/cn-zh/footer.json").then((module) => module.default),
+    home: () => import("./dictionaries/cn-zh/home.json").then((module) => module.default),
+    languageSwitcher: () => import("./dictionaries/cn-zh/languageSwitcher.json").then((module) => module.default),
+    metadata: () => import("./dictionaries/cn-zh/metadata.json").then((module) => module.default),
+    navbar: () => import("./dictionaries/cn-zh/navbar.json").then((module) => module.default),
+    themeSwitcher: () => import("./dictionaries/cn-zh/themeSwitcher.json").then((module) => module.default),
+    tools: () => import("./dictionaries/cn-zh/tools.json").then((module) => module.default),
+  },
+};
 
-    // 验证 lang 是否为有效的语言代码
-    if (!isLocale(lang)) {
-        notFound();
-    }
+export async function translation<N extends DictionaryNamespace>(
+  params: Promise<PageParams>,
+  namespace: N,
+) {
+  const { lang } = await params;
 
-    // 加载原始字典字典
-    const dictionary = await dictionaries[lang]();
+  if (!isLocale(lang)) {
+    notFound();
+  }
 
-    // 为所有翻译文本统一注入公共变量
-    return interpolateDictionary(dictionary, {
-        myName: siteConfig['myName'],
-    });
+  const dictionary = await dictionaries[lang][namespace]();
+
+  return interpolateDictionary(dictionary, {
+    myName: siteConfig.myName,
+  });
 }

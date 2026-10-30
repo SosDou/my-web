@@ -16,15 +16,15 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   // 获取当前语言的翻译内容
-  const t = await translation(params);
+  const metadata = await translation(params, "metadata");
 
   return {
     metadataBase: new URL(siteConfig.url),
     title: {
-      default: t.metadata.title,
-      template: `%s | ${t.metadata.siteName}`,
+      default: metadata.title,
+      template: `%s | ${metadata.siteName}`,
     },
-    description: t.metadata.description,
+    description: metadata.description,
   };
 }
 

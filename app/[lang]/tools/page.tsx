@@ -8,15 +8,15 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   // 获取当前语言的翻译内容
-  const t = await translation(params);
+  const tools = await translation(params, "tools");
 
   // 获取 params 中的语言环境
   const { lang } = await params;
 
   // 返回页面的元数据
   return {
-    title: t.tools.title,
-    description: t.tools.description,
+    title: tools.title,
+    description: tools.description,
     alternates: {
       canonical: `/${lang}/tools`,
     },

@@ -8,15 +8,15 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   // 获取当前语言的翻译内容
-  const t = await translation(params);
+  const eegToHypnogram = await translation(params, "eegToHypnogram");
 
   // 获取 params 中的语言环境
   const { lang } = await params;
 
   // 返回页面的元数据
   return {
-    title: t.eegToHypnogram.title,
-    description: t.eegToHypnogram.description,
+    title: eegToHypnogram.title,
+    description: eegToHypnogram.description,
     alternates: {
       canonical: `/${lang}/tools/eeg-to-hypnogram`,
     },
@@ -24,9 +24,9 @@ export async function generateMetadata({
 }
 
 export default async function EegToHypnogram({ params }: PageProps) {
-    const t = await translation(params);
+    const eegToHypnogram = await translation(params, "eegToHypnogram");
 
     return (
-        <EdfOfflineTool translations={t.eegToHypnogram} />
+        <EdfOfflineTool translations={eegToHypnogram} />
     );
 }

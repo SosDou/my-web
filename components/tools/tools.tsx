@@ -17,22 +17,22 @@ type ToolListItem = {
 
 export default async function Tools({ params }: PageProps) {
     const { lang } = await params;
-    const t = await translation(params);
+    const translations = await translation(params, "tools");
 
     // 工具列表
     const tools: readonly ToolListItem[] = [
         {
             href: `/${lang}/tools/eeg-to-hypnogram`,
-            title: t.tools.eegToHypnogram.title,
-            description: t.tools.eegToHypnogram.description,
+            title: translations.eegToHypnogram.title,
+            description: translations.eegToHypnogram.description,
         },
     ];
 
     return (
         <section className="tools-page page-container">
-            <h1 className="tools-page__title">{t.tools.title}</h1>
+            <h1 className="tools-page__title">{translations.title}</h1>
 
-            <ul className="tools-list" aria-label={t.tools.title}>
+            <ul className="tools-list" aria-label={translations.title}>
                 {tools.map(({ href, title, description }) => (
                     <li className="tools-list__item" key={href}>
                         <Link className="tools-list__link" href={href}>

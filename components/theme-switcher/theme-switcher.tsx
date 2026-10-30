@@ -5,17 +5,17 @@ import ThemeSwitcherClient from "./theme-switcher-client";
 /* 定义主题选择器的服务端组件。 */
 export default async function ThemeSwitcher({ params }: PageProps) {
   /* 在服务端异步获取当前语言的翻译字典。 */
-  const t = await translation(params);
+  const translations = await translation(params, "themeSwitcher");
 
   /* 将翻译后的普通字符串传递给客户端组件。 */
   return (
     <ThemeSwitcherClient
       labels={{
-        trigger: t.themeSwitcher.trigger,
-        menu: t.themeSwitcher.menu,
-        light: t.themeSwitcher.light,
-        dark: t.themeSwitcher.dark,
-        system: t.themeSwitcher.system,
+        trigger: translations.trigger,
+        menu: translations.menu,
+        light: translations.light,
+        dark: translations.dark,
+        system: translations.system,
       }}
     />
   );

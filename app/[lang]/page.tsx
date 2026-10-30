@@ -7,22 +7,25 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   // 获取当前语言的翻译内容
-  const t = await translation(params);
+  const [home, metadata] = await Promise.all([
+    translation(params, "home"),
+    translation(params, "metadata"),
+  ]);
 
   // 获取 params 中的语言环境
   const { lang } = await params;
 
   // 返回页面的元数据
   return {
-    title: { absolute: t.home.title + ' | ' + t.metadata.siteName },
-    description: t.home.description,
+    title: { absolute: home.title + ' | ' + metadata.siteName },
+    description: home.description,
     alternates: {
       canonical: `/${lang}`,
     },
   };
 }
 
-export default async function Home({ params }: PageProps) {
+export default async function Home(_props: PageProps) {
 
   return (
 
