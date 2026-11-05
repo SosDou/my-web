@@ -34,13 +34,21 @@ my-web/
 │  ├─ language-switcher/language-switcher.tsx  # 语言选择器
 │  ├─ navbar/navbar.tsx                        # 顶部导航栏
 │  │
-│  ├─ theme-switcher
+│  ├─ theme-switcher/
 │  │  ├─ theme-switcher-client.tsx           # 主题切换结构与逻辑
-│  │  └─ theme-switcher.tsx                  # 主题切换器
+│  │  └─ theme-switcher.tsx                  # 对外暴露的主题切换器
 │  │
 │  ├─ tools/tools.tsx                        # 工具列表
-│  ├─ ui/                                    # shadcn ui
-│  └─ wgs84-gcj02/wgs84-gcj02.tsx            # wgs84-gcj02 组件
+│  │
+│  ├─ ui/                                    # 通用 ui
+│  │  ├─ button.tsx                          # shadcn 按钮
+│  │  ├─ code-block.tsx                      # shadcn 代码块
+│  │  └─ math-block.tsx                      # LaTeX 数学公式
+│  │
+│  └─ wgs84-gcj02/
+│  │  ├─ codes.ts                            # 文章中展示的代码
+│     ├─ formulas.ts                         # 文章使用的 LaTeX 数学公式
+│     └─ wgs84-gcj02.tsx                     # wgs84-gcj02 文章
 │
 ├─ config/                                   # 网站公共配置目录
 │  └─ site.ts                                # 网站名称、正式域名和完整 URL 配置

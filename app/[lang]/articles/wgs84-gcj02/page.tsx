@@ -1,6 +1,7 @@
 import { PageProps } from "@/i18n/config";
 import { translation } from "@/i18n/translation";
 import { Metadata } from "next";
+import { WGS84GCJ02Article } from "@/components/wgs84-gcj02/wgs84-gcj02";
 
 // 生成页面的元数据
 export async function generateMetadata({
@@ -22,12 +23,8 @@ export async function generateMetadata({
     };
 }
 
-export default async function wgs84Gcj02({ params }: PageProps) {
+export default async function Wgs84Gcj02({ params }: PageProps) {
     const wgs84Gcj02 = await translation(params, "wgs84Gcj02");
 
-    return (
-        <>
-
-        </>
-    );
+    return <WGS84GCJ02Article translations={wgs84Gcj02} />;
 }

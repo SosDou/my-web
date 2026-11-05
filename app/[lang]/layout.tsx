@@ -2,6 +2,7 @@ import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navbar";
 import { htmlLangMap, PageParams, PageProps } from "@/i18n/config";
 import "@/app/global.css";
+import "katex/dist/katex.min.css";
 import { translation } from "@/i18n/translation";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";

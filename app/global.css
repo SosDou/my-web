@@ -147,6 +147,15 @@ html[data-theme="dark"] {
   box-sizing: border-box;
 }
 
+/* 根据网站的 data-theme 属性切换 Shiki 代码高亮颜色。 */
+.shiki-token {
+  color: var(--shiki-light);
+}
+
+html[data-theme="dark"] .shiki-token {
+  color: var(--shiki-dark);
+}
+
 @media (max-width: 768px) {
   .page-container {
     padding-inline: var(--layout-padding-inline-mobile);
