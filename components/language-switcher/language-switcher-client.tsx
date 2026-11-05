@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LuGlobe } from "react-icons/lu";
+import { buttonVariants, Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type LocaleItem = {
     locale: string;
@@ -37,7 +39,10 @@ export function LanguageSwitcherClient({
     return (
         <details className="relative inline-block" name="navbar-menu">
             <summary
-                className="grid h-8 w-8 cursor-pointer list-none place-items-center rounded-md text-[var(--color-text-secondary)] hover:bg-[var(--color-background-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current [&::-webkit-details-marker]:hidden"
+                className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "cursor-pointer list-none rounded-md text-[var(--color-text-secondary)] hover:bg-[var(--color-background-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current [&::-webkit-details-marker]:hidden",
+                )}
                 aria-label={triggerLabel}
                 title={triggerLabel}
             >
@@ -53,15 +58,22 @@ export function LanguageSwitcherClient({
                 aria-label={menuLabel}
             >
                 {localeConfig.map(({ locale, label, htmlLang }) => (
-                    <Link
+                    <Button
                         key={locale}
-                        href={getLocalizedPath(locale)}
-                        hrefLang={htmlLang}
-                        lang={htmlLang}
-                        className="block whitespace-nowrap rounded px-2 py-1.5 text-[var(--color-text)] no-underline hover:bg-[var(--color-background-hover)] focus-visible:bg-[var(--color-background-hover)]"
+                        render={(
+                            <Link
+                                href={getLocalizedPath(locale)}
+                                hrefLang={htmlLang}
+                                lang={htmlLang}
+                            />
+                        )}
+                        nativeButton={false}
+                        variant="ghost"
+                        size="sm"
+                        className="w-full justify-start whitespace-nowrap rounded px-2 py-1.5 text-[var(--color-text)] no-underline hover:bg-[var(--color-background-hover)] focus-visible:bg-[var(--color-background-hover)]"
                     >
                         {label}
-                    </Link>
+                    </Button>
                 ))}
             </nav>
         </details>

@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { LuPalette } from "react-icons/lu";
+import { buttonVariants, Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 /* 定义网站支持的主题类型。 */
 type Theme = "light" | "dark" | "system";
@@ -159,7 +161,10 @@ export default function ThemeSwitcherClient({
     <details ref={detailsRef} className="relative inline-block" name="navbar-menu">
       {/* 使用当前主题对应的圆形图标作为菜单触发器。 */}
       <summary
-        className="grid h-8 w-8 cursor-pointer list-none place-items-center rounded-md text-[var(--color-text-secondary)] hover:bg-[var(--color-background-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-text-secondary)] [&::-webkit-details-marker]:hidden"
+        className={cn(
+          buttonVariants({ variant: "ghost", size: "icon" }),
+          "cursor-pointer list-none rounded-md text-[var(--color-text-secondary)] hover:bg-[var(--color-background-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-text-secondary)] [&::-webkit-details-marker]:hidden",
+        )}
         aria-label={labels.trigger}
         title={labels.trigger}
       >
@@ -176,10 +181,11 @@ export default function ThemeSwitcherClient({
       >
         {themes.map((theme) => {
           return (
-            <button
+            <Button
               key={theme.value}
               type="button"
-              className="flex w-full cursor-pointer items-center gap-2.5 whitespace-nowrap rounded border-0 bg-transparent p-2 text-left font-[inherit] text-sm text-[var(--color-text)] hover:bg-[var(--color-background-hover)] focus-visible:bg-[var(--color-background-hover)]"
+              variant="ghost"
+              className="h-auto w-full cursor-pointer justify-start gap-2.5 whitespace-nowrap rounded p-2 text-left font-[inherit] text-sm text-[var(--color-text)] hover:bg-[var(--color-background-hover)] focus-visible:bg-[var(--color-background-hover)]"
               role="menuitemradio"
               aria-checked={currentTheme === theme.value}
               onClick={() => changeTheme(theme.value)}
@@ -196,7 +202,7 @@ export default function ThemeSwitcherClient({
 
               {/* 显示翻译后的主题名称。 */}
               <span>{theme.label}</span>
-            </button>
+            </Button>
           );
         })}
       </div>

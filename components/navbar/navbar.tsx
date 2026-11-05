@@ -3,6 +3,7 @@ import type { PageProps } from "@/i18n/config";
 import { translation } from "@/i18n/translation";
 import { LanguageSwitcher } from "../language-switcher/language-switcher";
 import { siteConfig } from "@/config/site";
+import { Button } from "@/components/ui/button";
 import ThemeSwitcher from "../theme-switcher/theme-switcher";
 
 // 导航栏组件
@@ -37,13 +38,15 @@ export default async function Navbar({ params }: PageProps) {
         {/* 偏左侧的主要导航链接 */}
         <nav className="ml-10 flex items-center gap-2 max-sm:ml-4 max-sm:gap-0.5" aria-label={navbar.label}>
           {links.map(({ href, label }) => (
-            <Link
-              className="rounded-md px-3 py-2 text-sm font-medium text-[var(--color-text-secondary)] no-underline transition-colors duration-150 ease-in-out hover:bg-[var(--color-background-hover)] hover:text-[var(--color-text)] max-sm:px-2"
-              href={href}
+            <Button
+              render={<Link href={href} />}
+              nativeButton={false}
+              variant="ghost"
+              className="h-auto rounded-md px-3 py-2 text-sm font-medium text-[var(--color-text-secondary)] no-underline transition-colors duration-150 ease-in-out hover:bg-[var(--color-background-hover)] hover:text-[var(--color-text)] max-sm:px-2"
               key={href}
             >
               {label}
-            </Link>
+            </Button>
           ))}
         </nav>
 

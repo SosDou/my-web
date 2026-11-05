@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import type { Dictionary } from "@/i18n/dictionaries/types";
 import { HypnogramPainter } from "./HypnogramPainter";
-import { LuGithub } from "react-icons/lu";
+import { LuArrowRight, LuGithub } from "react-icons/lu";
+import { Button } from "@/components/ui/button";
 
 // 进度阶段类型
 type ProgressStage =
@@ -202,21 +203,17 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
 
     return (
         // 页面整体区域
-        <section className="page-container">
+        <section className="page-container" style={{ textAlign: "center" }}>
             {/* 页面头部 */}
             <header>
                 {/* 页面标题 */}
-                <h1 style={{ textAlign: "center" }}>
-                    {translations.title}
-                </h1>
+                <h1>{translations.title}</h1>
 
                 {/* 页面描述 */}
-                <p style={{ textAlign: "center" }}>
-                    {translations.description}
-                </p>
+                <p>{translations.description}</p>
 
                 {/* 项目源码仓库 */}
-                <p style={{ textAlign: "center" }}>
+                <p>
                     <a
                         href="https://github.com/SosDou/eeg-to-hypnogram"
                         target="_blank"
@@ -229,12 +226,13 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
                     >
                         <LuGithub aria-hidden="true" />
                         {translations.repositoryLink}
+                        <LuArrowRight aria-hidden="true" />
                     </a>
                 </p>
             </header>
 
             {/* EDF 文件选择区域 */}
-            <div style={{ textAlign: "center" }}>
+            <div>
                 {/* 文件选择表单 */}
                 {/* EDF 文件输入框由自定义按钮触发，避免使用浏览器固定语言的原生按钮 */}
                 <input
@@ -252,21 +250,24 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
                     }}
                 />
 
-                <button
+                <Button
                     type="button"
+                    variant="outline"
+                    className="border-[var(--color-border)] bg-[var(--color-background)] text-[var(--color-text)] hover:bg-[var(--color-background-hover)] hover:text-[var(--color-text)]"
                     disabled={isRunning}
                     onClick={() => fileInputRef.current?.click()}
                 >
                     {translations.actions.selectFile}
-                </button>
+                </Button>
 
                 {selectedFile && <span>{selectedFile.name}</span>}
 
                 <span style={{ margin: "0 10px" }}></span>
 
                 {/* 开始推理按钮 */}
-                <button
+                <Button
                     type="button"
+                    className="bg-[var(--color-text)] text-[var(--color-background)] hover:bg-[var(--color-text)] hover:opacity-[0.85]"
                     disabled={
                         !selectedFile || isRunning
                     }
@@ -275,7 +276,7 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
                     {isRunning
                         ? translations.actions.running
                         : translations.actions.start}
-                </button>
+                </Button>
             </div>
 
             {/* 推理进度提示 */}
@@ -300,16 +301,13 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
             {csvResult && (
                 <section>
                     {/* CSV 下载按钮 */}
-                    <button
+                    <Button
                         type="button"
                         onClick={downloadCsv}
-                        style={{
-                            display: "block",
-                            marginInline: "auto",
-                        }}
+                        className="mx-auto block bg-[var(--color-text)] text-[var(--color-background)] hover:bg-[var(--color-text)] hover:opacity-[0.85]"
                     >
                         {translations.actions.download}
-                    </button>
+                    </Button>
 
 
                     {/* Hypnogram 图像预览区域 */}
