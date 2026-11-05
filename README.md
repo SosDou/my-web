@@ -15,17 +15,16 @@ my-web/
 │     ├─ page.tsx                            # 多语言首页
 │     │
 │     ├─ articles/                           # 文章页面目录
-│     │  └─ page.tsx                         # 文章列表页面
+│     │  ├─ page.tsx                         # 文章列表页面
+│     │  └─ wgs84-gcj02/page.tsx             # wgs84-gcj02 页面
 │     │
-│     ├─ tools/                              # 工具页面目录
-│     │  ├─ page.tsx                         # 工具列表页面
-│     │  │
-│     │  └─ eeg-to-hypnogram/                # eeg-to-hypnogram 页面目录
-│     │     └─ page.tsx                      # eeg-to-hypnogram 页面
-│     │
-│     └─ ui/                                 # shadcn ui
+│     └─ tools/                              # 工具页面目录
+│        ├─ page.tsx                         # 工具列表页面
+│        └─ eeg-to-hypnogram/page.tsx        # eeg-to-hypnogram 页面                  
 │
 ├─ components/                               # 公共组件目录
+│  ├─ articles/articles.tsx                  # 文章列表
+│  │
 │  ├─ eeg-to-hypnogram/                      # eeg-to-hypnogram 组件
 │  │  ├─ EdfOfflineTool.tsx                  # edf 离线工具
 │  │  ├─ HypnogramPainter.css                # hypnogram 绘图工具局部样式
@@ -39,7 +38,9 @@ my-web/
 │  │  ├─ theme-switcher-client.tsx           # 主题切换结构与逻辑
 │  │  └─ theme-switcher.tsx                  # 主题切换器
 │  │
-│  └─ tools/tools.tsx                        # 工具
+│  ├─ tools/tools.tsx                        # 工具列表
+│  ├─ ui/                                    # shadcn ui
+│  └─ wgs84-gcj02/wgs84-gcj02.tsx            # wgs84-gcj02 组件
 │
 ├─ config/                                   # 网站公共配置目录
 │  └─ site.ts                                # 网站名称、正式域名和完整 URL 配置

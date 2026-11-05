@@ -21,6 +21,10 @@ export default async function Navbar({ params }: PageProps) {
       label: navbar.home,
     },
     {
+      href: `/${lang}/articles`,
+      label: navbar.articles,
+    },
+    {
       href: `/${lang}/tools`,
       label: navbar.tools,
     },

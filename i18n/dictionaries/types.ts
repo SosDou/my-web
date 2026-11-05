@@ -7,6 +7,7 @@ import type metadata from "./us-en/metadata.json";
 import type navbar from "./us-en/navbar.json";
 import type themeSwitcher from "./us-en/themeSwitcher.json";
 import type tools from "./us-en/tools.json";
+import type wgs84Gcj02 from "./us-en/wgs84Gcj02.json";
 
 export type Dictionary = {
   articles: typeof articles;
@@ -18,6 +19,7 @@ export type Dictionary = {
   navbar: typeof navbar;
   themeSwitcher: typeof themeSwitcher;
   tools: typeof tools;
+  wgs84Gcj02: typeof wgs84Gcj02;
 };
 
 export type DictionaryNamespace = keyof Dictionary;

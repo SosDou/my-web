@@ -30,9 +30,6 @@ type FooterSection = {
 
     // 二级链接，没有二级链接时可以省略
     links?: readonly SecondaryLink[];
-
-    // 当前栏目的网格位置样式
-    className: string;
 };
 
 // Footer 组件
@@ -40,24 +37,35 @@ export default async function Footer({ params }: PageProps) {
     const { lang } = await params;
     const footer = await translation(params, "footer");
     const sections: readonly FooterSection[] = [
+        // 文章
+        {
+            href: `/${lang}/articles`,
+            label: footer.articles.label,
+            links: [
+                // About WGS-84 and GCJ-02
+                {
+                    href: `/${lang}/articles/wgs84-gcj02`,
+                    label: footer.articles.wgs84Gcj02.label,
+                },
+            ],
+        },
+
         // 工具
         {
             href: `/${lang}/tools`,
             label: footer.tools.label,
-            className: "col-start-2 max-[720px]:col-start-1",
             links: [
                 // EEG to Hypnogram
                 {
                     href: `/${lang}/tools/eeg-to-hypnogram`,
                     label: footer.tools.eegToHypnogram.label,
-                }
+                },
             ],
         },
 
         // 联系我
         {
             label: footer.contact.label,
-            className: "col-start-4 max-[720px]:col-start-3",
             links: [
                 {
                     label: 'Sos_Dou@qq.com',
@@ -85,10 +93,10 @@ export default async function Footer({ params }: PageProps) {
                 >
                     {siteConfig.myName}
                 </Link>
-                {sections.map(({ href, label, icon: Icon, links, className }) => (
+                {sections.map(({ href, label, icon: Icon, links }) => (
                     <section
-                        className={`flex min-w-0 flex-col items-start gap-[14px] ${className}`}
-                        key={`${className}-${label}`}
+                        className="flex min-w-0 flex-col items-start gap-[14px]"
+                        key={label}
                     >
                         {href ? (
                             <Link

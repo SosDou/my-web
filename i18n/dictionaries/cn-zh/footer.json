@@ -7,7 +7,10 @@
     }
   },
   "articles": {
-    "label": "文章"
+    "label": "文章",
+    "wgs84Gcj02": {
+      "label": "关于 WGS-84 与 GCJ-02"
+    }
   },
   "contact": {
     "label": "联系我"

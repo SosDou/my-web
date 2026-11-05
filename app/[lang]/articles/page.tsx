@@ -1,6 +1,7 @@
 import { PageProps } from "@/i18n/config";
 import { translation } from "@/i18n/translation";
 import { Metadata } from "next";
+import ArticlesList from "@/components/articles/articles";
 
 // 生成页面的元数据
 export async function generateMetadata({
@@ -22,10 +23,6 @@ export async function generateMetadata({
   };
 }
 
-export default async function Articles(_props: PageProps) {
-    return (
-        <>
-
-        </>
-    );
+export default async function Articles({ params }: PageProps) {
+  return <ArticlesList params={params} />;
 }

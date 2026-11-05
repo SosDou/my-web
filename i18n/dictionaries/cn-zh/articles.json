@@ -1,4 +1,8 @@
 {
   "title": "文章",
-  "description": "{{myName}} 分享的技术文章和心得等。"
+  "description": "{{myName}} 分享的技术文章和心得等。",
+  "wgs84Gcj02": {
+    "title": "关于 WGS-84 和 GCJ-02",
+    "description": "详细介绍 WGS-84 和 GCJ-02 坐标系的区别和应用场景等。"
+  }
 }

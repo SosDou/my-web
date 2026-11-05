@@ -22,6 +22,7 @@ const dictionaries: DictionaryLoaders = {
     navbar: () => import("./dictionaries/us-en/navbar.json").then((module) => module.default),
     themeSwitcher: () => import("./dictionaries/us-en/themeSwitcher.json").then((module) => module.default),
     tools: () => import("./dictionaries/us-en/tools.json").then((module) => module.default),
+    wgs84Gcj02: () => import("./dictionaries/us-en/wgs84Gcj02.json").then((module) => module.default),
   },
   "cn-zh": {
     articles: () => import("./dictionaries/cn-zh/articles.json").then((module) => module.default),
@@ -33,6 +34,7 @@ const dictionaries: DictionaryLoaders = {
     navbar: () => import("./dictionaries/cn-zh/navbar.json").then((module) => module.default),
     themeSwitcher: () => import("./dictionaries/cn-zh/themeSwitcher.json").then((module) => module.default),
     tools: () => import("./dictionaries/cn-zh/tools.json").then((module) => module.default),
+    wgs84Gcj02: () => import("./dictionaries/cn-zh/wgs84Gcj02.json").then((module) => module.default),
   },
 };
 
