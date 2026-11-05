@@ -61,7 +61,7 @@ export default async function Footer({ params }: PageProps) {
             className: styles.contact,
             links: [
                 {
-                    label: '1813962881@qq.com',
+                    label: 'Sos_Dou@qq.com',
                     icon: LuMail,
                 },
                 {
