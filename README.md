@@ -17,11 +17,13 @@ my-web/
 │     ├─ articles/                           # 文章页面目录
 │     │  └─ page.tsx                         # 文章列表页面
 │     │
-│     └─ tools/                              # 工具页面目录
-│        ├─ page.tsx                         # 工具列表页面
-│        │
-│        └─ eeg-to-hypnogram/                # eeg-to-hypnogram 页面目录
-│           └─ page.tsx                      # eeg-to-hypnogram 页面
+│     ├─ tools/                              # 工具页面目录
+│     │  ├─ page.tsx                         # 工具列表页面
+│     │  │
+│     │  └─ eeg-to-hypnogram/                # eeg-to-hypnogram 页面目录
+│     │     └─ page.tsx                      # eeg-to-hypnogram 页面
+│     │
+│     └─ ui/                                 # shadcn ui
 │
 ├─ components/                               # 公共组件目录
 │  ├─ eeg-to-hypnogram/                      # eeg-to-hypnogram 组件
