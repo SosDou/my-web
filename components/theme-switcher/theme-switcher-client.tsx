@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useSyncExternalStore } from "react";
-import styles from "./theme-switcher.module.css";
 import { LuPalette } from "react-icons/lu";
 
 /* 定义网站支持的主题类型。 */
@@ -157,21 +156,21 @@ export default function ThemeSwitcherClient({
   }
 
   return (
-    <details ref={detailsRef} className={styles.root} name="navbar-menu">
+    <details ref={detailsRef} className="relative inline-block" name="navbar-menu">
       {/* 使用当前主题对应的圆形图标作为菜单触发器。 */}
       <summary
-        className={styles.trigger}
+        className="grid h-8 w-8 cursor-pointer list-none place-items-center rounded-md text-[var(--color-text-secondary)] hover:bg-[var(--color-background-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-text-secondary)] [&::-webkit-details-marker]:hidden"
         aria-label={labels.trigger}
         title={labels.trigger}
       >
-        <span className={styles.trigger}>
-          <LuPalette size={20} aria-hidden="true"/>
+        <span className="grid place-items-center">
+          <LuPalette className="block h-5 w-5 fill-current" aria-hidden="true"/>
         </span>
       </summary>
 
       {/* 定义展开后的主题菜单。 */}
       <div
-        className={styles.menu}
+        className="absolute right-0 top-[calc(100%+6px)] z-10 w-max rounded-md border border-[var(--color-border)] bg-[var(--color-overlay-background)] p-1 shadow-[var(--color-overlay-shadow)]"
         role="menu"
         aria-label={labels.menu}
       >
@@ -180,18 +179,18 @@ export default function ThemeSwitcherClient({
             <button
               key={theme.value}
               type="button"
-              className={styles.item}
+              className="flex w-full cursor-pointer items-center gap-2.5 whitespace-nowrap rounded border-0 bg-transparent p-2 text-left font-[inherit] text-sm text-[var(--color-text)] hover:bg-[var(--color-background-hover)] focus-visible:bg-[var(--color-background-hover)]"
               role="menuitemradio"
               aria-checked={currentTheme === theme.value}
               onClick={() => changeTheme(theme.value)}
             >
               {/* 显示主题对应的浅色、深色或跟随系统图标。 */}
               <span
-                className={`${styles.themeIcon} ${theme.value === "dark"
-                  ? styles.themeIconDark
+                className={`h-5 w-5 shrink-0 rounded-full border border-[#8c959f] ${theme.value === "dark"
+                  ? "bg-black"
                   : theme.value === "system"
-                    ? styles.themeIconSystem
-                    : styles.themeIconLight
+                    ? "[background:linear-gradient(90deg,#fff_50%,#000_50%)]"
+                    : "bg-white"
                   }`}
               />
 

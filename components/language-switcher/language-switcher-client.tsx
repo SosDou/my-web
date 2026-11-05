@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LuGlobe } from "react-icons/lu";
-import styles from "./language-switcher.module.css";
 
 type LocaleItem = {
     locale: string;
@@ -36,17 +35,20 @@ export function LanguageSwitcherClient({
     }
 
     return (
-        <details className={styles.root} name="navbar-menu">
+        <details className="relative inline-block" name="navbar-menu">
             <summary
-                className={styles.trigger}
+                className="grid h-8 w-8 cursor-pointer list-none place-items-center rounded-md text-[var(--color-text-secondary)] hover:bg-[var(--color-background-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current [&::-webkit-details-marker]:hidden"
                 aria-label={triggerLabel}
                 title={triggerLabel}
             >
-                <LuGlobe size={20} aria-hidden="true" />
+                <LuGlobe
+                    className="h-5 w-5 fill-none stroke-current [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.6]"
+                    aria-hidden="true"
+                />
             </summary>
 
             <nav
-                className={styles.menu}
+                className="absolute right-0 top-[calc(100%+6px)] z-10 w-max rounded-md border border-[var(--color-border)] bg-[var(--color-overlay-background)] p-1 shadow-[var(--color-overlay-shadow)]"
                 role="menu"
                 aria-label={menuLabel}
             >
@@ -56,7 +58,7 @@ export function LanguageSwitcherClient({
                         href={getLocalizedPath(locale)}
                         hrefLang={htmlLang}
                         lang={htmlLang}
-                        className={styles.item}
+                        className="block whitespace-nowrap rounded px-2 py-1.5 text-[var(--color-text)] no-underline hover:bg-[var(--color-background-hover)] focus-visible:bg-[var(--color-background-hover)]"
                     >
                         {label}
                     </Link>

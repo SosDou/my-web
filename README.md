@@ -29,26 +29,15 @@ my-web/
 │  │  ├─ HypnogramPainter.css                # hypnogram 绘图工具局部样式
 │  │  └─ HypnogramPainter.tsx                # hypnogram 绘图工具
 │  │
-│  ├─ footer/                                # 页面底部组件
-│  │  ├─ footer.module.css                   # Footer 局部样式
-│  │  └─ footer.tsx                          # Footer 结构与逻辑
-│  │
-│  ├─ language-switcher/                     # 语言选择器组件
-│  │  ├─ language-switcher.module.css        # 语言选择器局部样式
-│  │  └─ language-switcher.tsx               # 语言切换结构与逻辑
-│  │
-│  ├─ navbar/                                # 顶部导航栏组件
-│  │  ├─ navbar.module.css                   # 导航栏局部样式
-│  │  └─ navbar.tsx                          # 导航栏结构与逻辑
+│  ├─ footer/footer.tsx                        # 页脚
+│  ├─ language-switcher/language-switcher.tsx  # 语言选择器
+│  ├─ navbar/navbar.tsx                        # 顶部导航栏
 │  │
 │  ├─ theme-switcher
 │  │  ├─ theme-switcher-client.tsx           # 主题切换结构与逻辑
-│  │  ├─ theme-switcher.module.css           # 主题切换器局部样式
 │  │  └─ theme-switcher.tsx                  # 主题切换器
 │  │
-│  └─ tools/                                 # 工具组件
-│     ├─ tools.css                           # 工具局部样式
-│     └─ tools.tsx                           # 工具
+│  └─ tools/tools.tsx                        # 工具
 │
 ├─ config/                                   # 网站公共配置目录
 │  └─ site.ts                                # 网站名称、正式域名和完整 URL 配置

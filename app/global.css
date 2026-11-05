@@ -1,4 +1,6 @@
 /* 同时设置 html 根元素和 body 页面主体。 */
+@tailwind utilities;
+
 html,
 body {
   /* 保证页面基础高度至少占满父级可用高度。 */
