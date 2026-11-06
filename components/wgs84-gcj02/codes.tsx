@@ -11,8 +11,7 @@ import {
     CodeBlockTitle,
 } from "@/components/ui/code-block";
 
-export const typescriptCoordinateCodeString = String.raw`
-const CHINA_BBOX = {
+export const typescriptCoordinateCodeString = String.raw`const CHINA_BBOX = {
   minLng: 72.004,
   maxLng: 137.8347,
   minLat: 0.8293,
@@ -105,8 +104,7 @@ export function gcj02ToWgs84(lat: number, lng: number): MapCoordinate {
   return { lat: wgsLat, lng: wgsLng };
 }`;
 
-export const pythonCoordinateCodeString = String.raw`
-from dataclasses import dataclass
+export const pythonCoordinateCodeString = String.raw`from dataclasses import dataclass
 from math import cos, isfinite, pi, sin, sqrt
 
 
@@ -204,8 +202,7 @@ def gcj02_to_wgs84(lat: float, lng: float) -> MapCoordinate:
 
     return MapCoordinate(wgs_lat, wgs_lng)`;
 
-export const cppCoordinateCodeString = String.raw`
-#include <cmath>
+export const cppCoordinateCodeString = String.raw`#include <cmath>
 
 struct MapCoordinate {
     double lat;
@@ -291,8 +288,7 @@ MapCoordinate gcj02ToWgs84(double lat, double lng) {
     return {wgsLat, wgsLng};
 }`;
 
-export const cCoordinateCodeString = String.raw`
-#include <math.h>
+export const cCoordinateCodeString = String.raw`#include <math.h>
 #include <stdbool.h>
 
 typedef struct {
@@ -377,8 +373,7 @@ MapCoordinate gcj02_to_wgs84(double lat, double lng) {
     return (MapCoordinate){wgs_lat, wgs_lng};
 }`;
 
-export const dartCoordinateCodeString = String.raw`
-import 'dart:math' as math;
+export const dartCoordinateCodeString = String.raw`import 'dart:math' as math;
 
 class MapCoordinate {
   final double lat;
@@ -472,8 +467,7 @@ MapCoordinate gcj02ToWgs84(double lat, double lng) {
   return MapCoordinate(wgsLat, wgsLng);
 }`;
 
-export const javaCoordinateCodeString = String.raw`
-public final class CoordinateConverter {
+export const javaCoordinateCodeString = String.raw`public final class CoordinateConverter {
     private static final double MIN_LNG = 72.004;
     private static final double MAX_LNG = 137.8347;
     private static final double MIN_LAT = 0.8293;

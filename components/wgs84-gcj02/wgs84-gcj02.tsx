@@ -15,6 +15,9 @@ export function WGS84GCJ02Article({ translations }: WGS84GCJ02ArticleProps) {
 
             <div className="mx-auto mt-10 w-full max-w-[760px] space-y-6 text-left text-base leading-8 text-[var(--color-text)] max-sm:mt-7 max-sm:space-y-5 max-sm:leading-7">
                 <h1 id="article-title" className="scroll-mt-6">{translations.title}</h1>
+                <p>阅读时长：约 ? 分钟 发布时间：???? 年 ?? 月 ?? 日</p>
+
+                <hr className="my-6 border-t border-[var(--color-border)] max-sm:my-5" />
 
                 <h2 id="what-is-wgs84-gcj02" className="scroll-mt-6">什么是 WGS84 和 GCJ02</h2>
                 <p>WGS84（World Geodetic System 1984）是一种全球通用的地理坐标系统，用于表示地球表面的地理位置。它是 GPS 使用的坐标系统，广泛应用于导航、测绘和地理信息系统中。</p>
@@ -35,18 +38,6 @@ export function WGS84GCJ02Article({ translations }: WGS84GCJ02ArticleProps) {
                 <p className="font-semibold">1. 中国区域判断范围</p>
                 <p>GCJ-02 转换只对中国境内的坐标生效。工程实现通常先使用以下四个边界常量进行快速判断，决定输入坐标是否需要继续转换：</p>
 
-                {/* 中国最小经度 */}
-                <MathBlock>{WGS84GCJ02Formulas.minLongitudeString}</MathBlock>
-
-                {/* 中国最大经度 */}
-                <MathBlock>{WGS84GCJ02Formulas.maxLongitudeString}</MathBlock>
-
-                {/* 中国最小纬度 */}
-                <MathBlock>{WGS84GCJ02Formulas.minLatitudeString}</MathBlock>
-
-                {/* 中国最大纬度 */}
-                <MathBlock>{WGS84GCJ02Formulas.maxLatitudeString}</MathBlock>
-
                 {/* 中国境内的经纬度范围 */}
                 <MathBlock>{WGS84GCJ02Formulas.chinaBoundsString}</MathBlock>
 
@@ -64,11 +55,9 @@ export function WGS84GCJ02Article({ translations }: WGS84GCJ02ArticleProps) {
                 <h3 id="coordinate-offset-formulas" className="scroll-mt-6">二、坐标偏移计算公式</h3>
                 <p>正式计算前，先以 <span className="whitespace-nowrap">105°E、35°N</span> 为参考点对经纬度进行平移。这里的 <span className="whitespace-nowrap">x</span> 表示经度方向的相对量，<span className="whitespace-nowrap">y</span> 表示纬度方向的相对量：</p>
 
-                {/* 经度相对于参考点的偏移量 */}
-                <MathBlock>{WGS84GCJ02Formulas.longitudeToReferencePointOffsetString}</MathBlock>
+                {/* 经纬度相对于参考点的偏移量 */}
+                <MathBlock>{WGS84GCJ02Formulas.longitudeAndLatitudeToReferencePointOffsetString}</MathBlock>
 
-                {/* 纬度相对于参考点的偏移量 */}
-                <MathBlock>{WGS84GCJ02Formulas.latitudeToReferencePointOffsetString}</MathBlock>
 
                 <p className="font-semibold">1. 经度偏移计算函数</p>
                 <p>将 <span className="whitespace-nowrap">x</span> 和 <span className="whitespace-nowrap">y</span> 代入经度偏移函数，得到尚未经过椭球体修正的经度方向初始偏移。函数由多项式项与多组周期项共同组成：</p>
@@ -86,11 +75,8 @@ export function WGS84GCJ02Article({ translations }: WGS84GCJ02ArticleProps) {
                 <p className="font-semibold">1. 计算初始偏移量</p>
                 <p>分别调用纬度与经度偏移函数，得到两个方向上尚未换算为实际角度差的初始偏移量：</p>
 
-                {/* 初始经度偏移量 */}
-                <MathBlock>{WGS84GCJ02Formulas.initialLongitudeOffsetString}</MathBlock>
-
-                {/* 初始纬度偏移量 */}
-                <MathBlock>{WGS84GCJ02Formulas.initialLatitudeOffsetString}</MathBlock>
+                {/* 初始经纬度偏移量 */}
+                <MathBlock>{WGS84GCJ02Formulas.initialLongitudeAndLatitudeOffsetString}</MathBlock>
 
                 <p className="font-semibold">2. 计算椭球体修正参数</p>
                 <p>椭球体修正涉及纬度的正弦和余弦，因此先将原始纬度由角度制转换为弧度制，再计算修正因子 <span className="whitespace-nowrap">M</span> 及其平方根 <span className="whitespace-nowrap">S</span>：</p>
@@ -119,11 +105,8 @@ export function WGS84GCJ02Article({ translations }: WGS84GCJ02ArticleProps) {
                 <p className="font-semibold">5. 得到 GCJ-02 坐标</p>
                 <p>最后，将两个方向的偏移量分别叠加到原始 WGS-84 纬度和经度上，即可得到 GCJ-02 坐标：</p>
 
-                {/* WGS84 to GCJ02 纬度 */}
-                <MathBlock>{WGS84GCJ02Formulas.wgs84ToGcj02LatitudeString}</MathBlock>
-
-                {/* WGS84 to GCJ02 经度 */}
-                <MathBlock>{WGS84GCJ02Formulas.wgs84ToGcj02LongitudeString}</MathBlock>
+                {/* WGS84 to GCJ02 经纬度 */}
+                <MathBlock>{WGS84GCJ02Formulas.wgs84ToGcj02LongitudeAndLatitudeString}</MathBlock>
 
                 <p>其中，下标 <span className="whitespace-nowrap">WGS</span> 表示原始 WGS-84 坐标，下标 <span className="whitespace-nowrap">GCJ</span> 表示转换后的 GCJ-02 坐标。</p>
 
@@ -138,11 +121,8 @@ export function WGS84GCJ02Article({ translations }: WGS84GCJ02ArticleProps) {
 
                 <p>由于两套坐标通常相距不远，可以直接以输入的 GCJ-02 坐标作为待求 WGS-84 坐标的初始估计：</p>
 
-                {/* 初始化待求解的 WGS-84 纬度 */}
-                <MathBlock>{WGS84GCJ02Formulas.initialWgs84LatitudeString}</MathBlock>
-
-                {/* 初始化待求解的 WGS-84 经度 */}
-                <MathBlock>{WGS84GCJ02Formulas.initialWgs84LongitudeString}</MathBlock>
+                {/* 初始化待求解的 WGS-84 经纬度 */}
+                <MathBlock>{WGS84GCJ02Formulas.initialWgs84LongitudeAndLatitudeString}</MathBlock>
 
                 <p className="font-semibold">2. 正向转换与误差计算</p>
                 <p>第 <span className="whitespace-nowrap">k</span> 次迭代时，将当前 WGS-84 估计值传入正向转换函数 <span className="whitespace-nowrap">F</span>，得到相应的 GCJ-02 预测坐标：</p>
@@ -152,20 +132,14 @@ export function WGS84GCJ02Article({ translations }: WGS84GCJ02ArticleProps) {
 
                 <p>预测坐标与目标 GCJ-02 坐标之差，就是本轮迭代需要消除的纬度误差和经度误差：</p>
 
-                {/* 纬度误差 */}
-                <MathBlock>{WGS84GCJ02Formulas.latitudeErrorString}</MathBlock>
-
-                {/* 经度误差 */}
-                <MathBlock>{WGS84GCJ02Formulas.longitudeErrorString}</MathBlock>
+                {/* 经纬度误差 */}
+                <MathBlock>{WGS84GCJ02Formulas.longitudeAndLatitudeErrorString}</MathBlock>
 
                 <p className="font-semibold">3. 迭代修正</p>
                 <p>从当前估计值中减去对应方向的误差，得到下一轮估计值。若迭代收敛，其正向转换结果会逐步逼近目标 GCJ-02 坐标：</p>
 
-                {/* 纬度误差修正 */}
-                <MathBlock>{WGS84GCJ02Formulas.latitudeCorrectionString}</MathBlock>
-
-                {/* 经度误差修正 */}
-                <MathBlock>{WGS84GCJ02Formulas.longitudeCorrectionString}</MathBlock>
+                {/* 经纬度误差修正 */}
+                <MathBlock>{WGS84GCJ02Formulas.longitudeAndLatitudeCorrectionString}</MathBlock>
 
                 <p className="font-semibold">4. 迭代终止条件</p>
                 <p>设置最大迭代次数 <span className="whitespace-nowrap">N</span> 和误差阈值 <span className="whitespace-nowrap">ε</span>。当两个方向的误差都小于阈值时终止迭代：</p>
@@ -178,11 +152,8 @@ export function WGS84GCJ02Article({ translations }: WGS84GCJ02ArticleProps) {
                 <p className="font-semibold">5. 得到 WGS-84 坐标</p>
                 <p>满足终止条件后，当前估计值即作为反算得到的 WGS-84 坐标：</p>
 
-                {/* GCJ-02 to WGS-84 纬度 */}
-                <MathBlock>{WGS84GCJ02Formulas.gcj02ToWgs84LatitudeString}</MathBlock>
-
-                {/* GCJ-02 to WGS-84 经度 */}
-                <MathBlock>{WGS84GCJ02Formulas.gcj02ToWgs84LongitudeString}</MathBlock>
+                {/* GCJ-02 to WGS-84 经纬度 */}
+                <MathBlock>{WGS84GCJ02Formulas.gcj02ToWgs84LongitudeAndLatitudeString}</MathBlock>
 
                 <h2 id="wait-why" className="scroll-mt-6">等一下！这些公式是怎么来的？</h2>
                 <p>你肯定想问：</p>
