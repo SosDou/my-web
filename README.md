@@ -43,7 +43,8 @@ my-web/
 │  ├─ ui/                                    # 通用 ui
 │  │  ├─ button.tsx                          # shadcn 按钮
 │  │  ├─ code-block.tsx                      # shadcn 代码块
-│  │  └─ math-block.tsx                      # LaTeX 数学公式
+│  │  ├─ math-block.tsx                      # LaTeX 数学公式
+│  │  └─ visualization-window.tsx            # 支持多视图和多语言的可视化窗口
 │  │
 │  └─ wgs84-gcj02/
 │     ├─ codes.tsx                           # 文章代码与代码块
@@ -62,8 +63,10 @@ my-web/
 │  │  └─ interpolate.ts                      # 文本替换函数
 │  │
 │  └─ dictionaries/                          # 各语言翻译文件目录
-│     ├─ zn-zh/                              # 简体中文翻译内容
+│     ├─ cn-zh/                              # 简体中文翻译内容
+│     │  └─ visualizationWindow.json          # 可视化窗口中文文案
 │     └─ us-en/                              # 美式英语翻译内容
+│        └─ visualizationWindow.json          # 可视化窗口英文文案
 │
 └─ public/                                   # 静态资源目录
    ├─ favicon.ico                            # 网站浏览器图标
