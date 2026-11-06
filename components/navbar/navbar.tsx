@@ -31,7 +31,7 @@ export default async function Navbar({ params }: PageProps) {
   ] as const;
 
   return (
-    <header className="w-full border-b border-[var(--color-border)] bg-[var(--color-background)]">
+    <header className="sticky top-0 z-50 w-full border-b border-[var(--color-border)] bg-[var(--color-background)]">
       <div className="mx-auto flex min-h-16 w-full max-w-[var(--layout-max-width)] items-center px-[var(--layout-padding-inline)] max-sm:min-h-14 max-sm:px-[var(--layout-padding-inline-mobile)]">
 
         {/* 左侧 Logo */}

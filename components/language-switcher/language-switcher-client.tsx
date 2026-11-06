@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { LuGlobe } from "react-icons/lu";
 import { buttonVariants, Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -24,6 +25,23 @@ export function LanguageSwitcherClient({
     menuLabel,
 }: LanguageSwitcherClientProps) {
     const pathname = usePathname();
+    const detailsRef = useRef<HTMLDetailsElement>(null);
+
+    useEffect(() => {
+        function handlePointerDown(event: PointerEvent) {
+            const details = detailsRef.current;
+
+            if (details?.open && !details.contains(event.target as Node)) {
+                details.open = false;
+            }
+        }
+
+        document.addEventListener("pointerdown", handlePointerDown);
+
+        return () => {
+            document.removeEventListener("pointerdown", handlePointerDown);
+        };
+    }, []);
 
     // 只替换 URL 的第一个路径段，也就是当前语言
     function getLocalizedPath(targetLocale: string) {
@@ -37,7 +55,7 @@ export function LanguageSwitcherClient({
     }
 
     return (
-        <details className="relative inline-block" name="navbar-menu">
+        <details ref={detailsRef} className="relative inline-block" name="navbar-menu">
             <summary
                 className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
@@ -69,8 +87,7 @@ export function LanguageSwitcherClient({
                         )}
                         nativeButton={false}
                         variant="ghost"
-                        size="sm"
-                        className="w-full justify-start whitespace-nowrap rounded px-2 py-1.5 text-[var(--color-text)] no-underline hover:bg-[var(--color-background-hover)] focus-visible:bg-[var(--color-background-hover)]"
+                        className="h-auto w-full cursor-pointer justify-start gap-2.5 whitespace-nowrap rounded p-2 text-left font-[inherit] text-sm text-[var(--color-text)] no-underline hover:bg-[var(--color-background-hover)] focus-visible:bg-[var(--color-background-hover)]"
                     >
                         {label}
                     </Button>

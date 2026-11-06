@@ -94,6 +94,22 @@ export default function ThemeSwitcherClient({
   /* 保存 details 元素的引用，用于选择主题后关闭菜单。 */
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
+  useEffect(() => {
+    function handlePointerDown(event: PointerEvent) {
+      const details = detailsRef.current;
+
+      if (details?.open && !details.contains(event.target as Node)) {
+        details.open = false;
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, []);
+
   /* 使用翻译后的文本生成主题菜单。 */
   const themes: {
     value: Theme;
