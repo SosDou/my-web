@@ -7,6 +7,26 @@ import { translation } from "@/i18n/translation";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 
+const themeInitializationScript = `
+  (() => {
+    try {
+      const savedTheme = window.localStorage.getItem("theme");
+      const theme = savedTheme === "light" || savedTheme === "dark"
+        ? savedTheme
+        : "system";
+      const resolvedTheme = theme === "system"
+        ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+        : theme;
+
+      document.documentElement.dataset.theme = resolvedTheme;
+    } catch {
+      document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+  })();
+`;
+
 type RootLayoutProps = {
   children: React.ReactNode,
   params: Promise<PageParams>
@@ -41,7 +61,10 @@ export default async function RootLayout({
   const htmlLang = htmlLangMap[lang as keyof typeof htmlLangMap];
 
   return (
-    <html lang={htmlLang}>
+    <html lang={htmlLang} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitializationScript }} />
+      </head>
       <body>
         <Navbar params={params} />
 

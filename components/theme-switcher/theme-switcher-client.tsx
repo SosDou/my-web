@@ -42,14 +42,14 @@ function getThemeSnapshot(): Theme {
   const savedTheme = window.localStorage.getItem(themeStorageKey);
 
   /* 只接受有效的主题值。 */
-  return savedTheme === "dark" || savedTheme === "system"
+  return savedTheme === "light" || savedTheme === "dark"
     ? savedTheme
-    : "light";
+    : "system";
 }
 
 /* 定义服务端渲染期间使用的默认主题。 */
 function getServerThemeSnapshot(): Theme {
-  return "light";
+  return "system";
 }
 
 /* 根据系统配色偏好获取最终使用的明暗主题。 */

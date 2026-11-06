@@ -46,8 +46,9 @@ my-web/
 │  │  └─ math-block.tsx                      # LaTeX 数学公式
 │  │
 │  └─ wgs84-gcj02/
-│  │  ├─ codes.ts                            # 文章中展示的代码
+│     ├─ codes.tsx                           # 文章代码与代码块
 │     ├─ formulas.ts                         # 文章使用的 LaTeX 数学公式
+│     ├─ table-of-contents.tsx               # 文章目录
 │     └─ wgs84-gcj02.tsx                     # wgs84-gcj02 文章
 │
 ├─ config/                                   # 网站公共配置目录

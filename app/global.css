@@ -106,7 +106,6 @@ html[data-theme="light"] {
 }
 
 /* 定义 OLED 风格的深色主题。 */
-:root,
 html[data-theme="dark"] {
   /* 告诉浏览器使用深色系统控件。 */
   color-scheme: dark;
@@ -219,7 +218,7 @@ html[data-theme="dark"] .shiki-token {
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
   }
-  .dark {
+  html[data-theme="dark"] {
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.205 0 0);

@@ -1,3 +1,16 @@
+"use client";
+
+import { useState } from "react";
+
+import {
+    CodeBlock,
+    CodeBlockActions,
+    CodeBlockContent,
+    CodeBlockCopyButton,
+    CodeBlockHeader,
+    CodeBlockTitle,
+} from "@/components/ui/code-block";
+
 export const typescriptCoordinateCodeString = String.raw`
 const CHINA_BBOX = {
   minLng: 72.004,
@@ -597,3 +610,55 @@ export const coordinateCodeExamples = {
 >;
 
 export type CoordinateCodeLanguage = keyof typeof coordinateCodeExamples;
+
+const codeLanguages = Object.keys(coordinateCodeExamples) as CoordinateCodeLanguage[];
+
+export function ArticleCodeBlock() {
+    const [language, setLanguage] = useState<CoordinateCodeLanguage>("typescript");
+    const example = coordinateCodeExamples[language];
+
+    return (
+        <CodeBlock>
+            <div
+                role="tablist"
+                aria-label="代码语言"
+                className="flex gap-1 overflow-x-auto border-b border-[var(--color-border)] p-1.5"
+            >
+                {codeLanguages.map((codeLanguage) => {
+                    const isActive = codeLanguage === language;
+                    const option = coordinateCodeExamples[codeLanguage];
+
+                    return (
+                        <button
+                            key={codeLanguage}
+                            type="button"
+                            role="tab"
+                            aria-selected={isActive}
+                            onClick={() => setLanguage(codeLanguage)}
+                            className={`shrink-0 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${isActive
+                                ? "bg-[var(--color-background-hover)] text-[var(--color-text)]"
+                                : "text-[var(--color-text-secondary)] hover:bg-[var(--color-background-hover)] hover:text-[var(--color-text)]"
+                                }`}
+                        >
+                            {option.label}
+                        </button>
+                    );
+                })}
+            </div>
+            <CodeBlockHeader>
+                <CodeBlockTitle>{example.fileName}</CodeBlockTitle>
+                <CodeBlockActions>
+                    <CodeBlockCopyButton value={example.code} />
+                </CodeBlockActions>
+            </CodeBlockHeader>
+            <CodeBlockContent
+                key={language}
+                className="max-h-[560px]"
+                language={language}
+                lineNumbers
+            >
+                {example.code}
+            </CodeBlockContent>
+        </CodeBlock>
+    );
+}
