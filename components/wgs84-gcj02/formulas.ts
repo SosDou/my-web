@@ -120,16 +120,16 @@ const wgs84ToGcj02FunctionString = String.raw` (\varphi'_k,\lambda'_k) = F(\varp
 // 经纬度误差
 const longitudeAndLatitudeErrorString = String.raw`
 \begin{aligned}
-\varepsilon_{\lambda}=\lambda'_k-\lambda_{GCJ} \\
-\varepsilon_{\varphi}=\varphi'_k-\varphi_{GCJ}
+\varepsilon_{\lambda} = \lambda'_k - \lambda_{GCJ} \\
+\varepsilon_{\varphi} = \varphi'_k - \varphi_{GCJ}
 \end{aligned}
 `;
 
 // 经纬度误差修正
 const longitudeAndLatitudeCorrectionString = String.raw`
 \begin{aligned}
-\lambda_{k+1}=\lambda_k-\varepsilon_{\lambda} \\
-\varphi_{k+1}=\varphi_k-\varepsilon_{\varphi}
+\lambda_{k+1} = \lambda_k - \varepsilon_{\lambda} \\
+\varphi_{k+1} = \varphi_k - \varepsilon_{\varphi}
 \end{aligned}
 `;
 
@@ -146,6 +146,66 @@ const gcj02ToWgs84LongitudeAndLatitudeString = String.raw`
 \lambda_{WGS} = \lambda_k \\
 \varphi_{WGS} = \varphi_k
 \end{aligned}
+`;
+
+// 非线性坐标扰动模型
+const disturbanceModelString = String.raw`T(x,y) = P(x,y) + R(x) + S(x,y)`;
+
+// 经度偏移函数描述
+const longitudeOffsetFunctionDescriptionString = String.raw`
+\begin{aligned}
+T_{\lambda}(x,y)
+= {}&P_{\lambda}(x,y) + R_{\lambda}(x) + S_{\lambda}(x)
+\\[12pt]
+P_{\lambda}(x,y)
+= {}&300 + x + 2y + 0.1x^2 + 0.1xy
+\\[8pt]
+R_{\lambda}(x)
+= {}&0.1\sqrt{|x|}
+\\[8pt]
+S_{\lambda}(x)
+= {}&\frac{40}{3}\left[\sin(6\pi x) + \sin(2\pi x)\right]
+\\
+&+ \frac{40}{3}\sin(\pi x)
+\\
+&+ \frac{80}{3}\sin\left(\frac{\pi x}{3}\right)
+\\
+&+ \frac{2}{3}\left[
+150\sin\left(\frac{\pi x}{12}\right)
++ 300\sin\left(\frac{\pi x}{30}\right)
+\right]
+\end{aligned}
+`;
+
+// 经度偏移函数多项式部分
+const longitudeOffsetFunctionPolynomialPartString = String.raw`
+P_{\lambda}(x,y) = 300 + x + 2y + 0.1x^2 + 0.1xy
+`;
+// 经度偏移函数平方根部分
+const longitudeOffsetFunctionSquareRootPartString = String.raw`
+R_{\lambda}(x) = 0.1\sqrt{|x|}
+`;
+
+// 经度偏移函数正弦扰动部分
+const longitudeOffsetFunctionSineDisturbancePartString = String.raw`
+\begin{aligned}
+S_{\lambda}(x)
+= {}&\frac{40}{3}\left[
+\sin(6\pi x)+\sin(2\pi x)
+\right]\\[6pt]
+&+ \frac{40}{3}\sin(\pi x)\\[6pt]
+&+ \frac{80}{3}\sin\left(\frac{\pi x}{3}\right)\\[6pt]
+&+ \frac{2}{3}\left[150\sin\left(\frac{\pi x}{12}\right) + 300\sin\left(\frac{\pi x}{30}\right)\right]
+\end{aligned}
+`;
+
+// 正弦函数的周期及示例
+const sineFunctionPeriodString = String.raw`
+\sin(\omega x)\text{ 的周期为 }T = \frac{2\pi}{|\omega|}
+`;
+
+const sineFunctionPeriodExampleString = String.raw`
+\sin(6\pi x)\text{ 的周期为 }T = \frac{2\pi}{6\pi} = \frac{1}{3}
 `;
 
 /** WGS84 与 GCJ02 转换文章中使用的 LaTeX 公式。 */
@@ -172,4 +232,11 @@ export class WGS84GCJ02Formulas {
     static readonly longitudeAndLatitudeCorrectionString = longitudeAndLatitudeCorrectionString;
     static readonly iterationTerminationConditionString = iterationTerminationConditionString;
     static readonly gcj02ToWgs84LongitudeAndLatitudeString = gcj02ToWgs84LongitudeAndLatitudeString;
+    static readonly disturbanceModelString = disturbanceModelString;
+    static readonly longitudeOffsetFunctionDescriptionString = longitudeOffsetFunctionDescriptionString;
+    static readonly longitudeOffsetFunctionPolynomialPartString = longitudeOffsetFunctionPolynomialPartString;
+    static readonly longitudeOffsetFunctionSquareRootPartString = longitudeOffsetFunctionSquareRootPartString;
+    static readonly longitudeOffsetFunctionSineDisturbancePartString = longitudeOffsetFunctionSineDisturbancePartString;
+    static readonly sineFunctionPeriodString = sineFunctionPeriodString;
+    static readonly sineFunctionPeriodExampleString = sineFunctionPeriodExampleString;
 }

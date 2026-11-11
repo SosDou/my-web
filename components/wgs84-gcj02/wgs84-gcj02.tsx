@@ -20,7 +20,7 @@ export function WGS84GCJ02Article({
 
             <div className="article-body mt-[var(--ds-gap-stack-lg)] w-full text-left text-[var(--ds-color-foreground)]">
                 <h1 id="article-title" className="scroll-mt-6">{translations.title}</h1>
-                <p>阅读时长：约 ? 分钟 发布时间：???? 年 ?? 月 ?? 日</p>
+                <p>阅读时长：约 10 分钟 发布时间：2026 年 11 月 11 日</p>
 
                 <hr className="my-6 border-t border-[var(--color-border)] max-sm:my-5" />
 
@@ -31,10 +31,7 @@ export function WGS84GCJ02Article({
                 <h2 id="wgs84-gcj02-differences" className="scroll-mt-6">WGS84 与 GCJ02 的区别</h2>
                 <p>WGS84 是全球通用的坐标系统，而 GCJ02 是中国特有的坐标系统。两者之间的主要区别在于坐标的偏移和加密处理。GCJ02 对 WGS84 坐标进行了加密和偏移，使得在中国境内使用的地图服务显示的位置与实际位置存在一定的偏差。</p>
                 <p>因此，在中国境内使用地图服务时，需要将 WGS84 坐标转换为 GCJ02 坐标，以确保位置的准确性。</p>
-                <CoordinateComparisonMap
-                    labels={translations.map}
-                    mapLabels={mapTranslations}
-                />
+                <CoordinateComparisonMap labels={translations.map} mapLabels={mapTranslations} />
 
                 <h2 id="wgs84-gcj02-conversion" className="scroll-mt-6">WGS84 与 GCJ02 的转换</h2>
                 <p>在中国境内使用地图服务时，通常需要将 WGS84 坐标转换为 GCJ02 坐标。以下是一些常用编程语言中的转换方法。</p>
@@ -167,13 +164,87 @@ export function WGS84GCJ02Article({
                 <h2 id="wait-why" className="scroll-mt-6">等一下！这些公式是怎么来的？</h2>
                 <p>你肯定想问：</p>
 
-                <p>1. 经度偏移计算函数</p>
+                <p className="font-semibold">1. 经度偏移计算函数</p>
                 <MathBlock>{WGS84GCJ02Formulas.longitudeOffsetFunctionString}</MathBlock>
 
-                <p>2. 纬度偏移计算函数</p>
+                <p className="font-semibold">2. 纬度偏移计算函数</p>
                 <MathBlock>{WGS84GCJ02Formulas.latitudeOffsetFunctionString}</MathBlock>
 
                 <p>这两个奇怪的公式是怎么得到的？</p>
+                <p>GCJ-02 的坐标偏移函数并不是通过地球几何或地球物理定律直接推导出来的，而是一套人为构造的非线性坐标扰动模型，由多项式、平方根函数和多组正弦函数组合而成，可以将两个偏移函数统一表示为：</p>
+
+                {/* 非线性坐标扰动模型 */}
+                <MathBlock>{WGS84GCJ02Formulas.disturbanceModelString}</MathBlock>
+
+                <p>其中 <span className="whitespace-nowrap">P(x,y)</span> 为多项式部分，用于构建基础偏移变化；<span className="whitespace-nowrap">R(x,y)</span> 为平方根部分，用于引入非线性变化；<span className="whitespace-nowrap">S(x,y)</span> 为正弦扰动部分，用于构建多尺度周期性扰动。</p>
+                <p>以经度偏移函数为例：</p>
+
+                {/* 经度偏移函数描述 */}
+                <MathBlock>{WGS84GCJ02Formulas.longitudeOffsetFunctionDescriptionString}</MathBlock>
+
+                <h3 id="part-polynomial" className="scroll-mt-6">一、多项式部分</h3>
+                <MathBlock>{WGS84GCJ02Formulas.longitudeOffsetFunctionPolynomialPartString}</MathBlock>
+                <p>多项式负责描述随位置平滑变化的基础偏移。从数学效果看，常数项 <span className="whitespace-nowrap">300</span> 给出经度方向的基准量；<span className="whitespace-nowrap">x</span> 与 <span className="whitespace-nowrap">2y</span> 控制偏移随经度、纬度变化的一阶趋势；<span className="whitespace-nowrap">0.1x²</span> 引入经度方向的曲率；<span className="whitespace-nowrap">0.1xy</span> 则使经度和纬度不再彼此独立，让同一经度变化在不同纬度上产生不同影响。</p>
+                <p>这些系数决定各项在总偏移中的相对权重：常数项确定整体基线，一次项控制变化方向和斜率，二次项与交叉项控制弯曲程度及两个方向的耦合强度。先使用 <span className="whitespace-nowrap">x = λ - 105</span>、<span className="whitespace-nowrap">y = φ - 35</span> 将坐标平移到参考点附近，也能避免直接代入较大的经纬度数值，使各项的量级更容易控制。</p>
+
+                <h3 id="part-square-root" className="scroll-mt-6">二、平方根部分</h3>
+                <MathBlock>{WGS84GCJ02Formulas.longitudeOffsetFunctionSquareRootPartString}</MathBlock>
+                <p>平方根项补充了多项式难以用少量项表达的非线性变化。绝对值保证 <span className="whitespace-nowrap">x</span> 为负数时仍能得到实数结果；平方根会随 <span className="whitespace-nowrap">|x|</span> 增大而增长，但增长速度逐渐放缓，因此它会在参考经线两侧引入对称、幅度受控的弯曲变化。</p>
+                <p>系数 <span className="whitespace-nowrap">0.1</span> 用于压低这一非线性项的权重。在前述矩形筛选范围内，<span className="whitespace-nowrap">0.1√|x|</span> 的值不足约 <span className="whitespace-nowrap">0.58</span>，说明它主要用于细调函数形状，而不是决定偏移的主体大小。这里的数值仍是椭球体修正前的中间量，不能直接理解为米或最终的经度差。</p>
+
+                <h3 id="part-sine-disturbance" className="scroll-mt-6">三、正弦扰动部分</h3>
+                <MathBlock>{WGS84GCJ02Formulas.longitudeOffsetFunctionSineDisturbancePartString}</MathBlock>
+                <p>正弦函数是这套模型的重要组成部分。叠加不同周期、不同振幅的正弦项，可以让偏移量同时在多个空间尺度上产生平滑的周期性变化。对于一般形式 <span className="whitespace-nowrap">sin(ωx)</span>，周期由角频率 <span className="whitespace-nowrap">ω</span> 决定：</p>
+                <MathBlock>{WGS84GCJ02Formulas.sineFunctionPeriodString}</MathBlock>
+                <p>例如：</p>
+                <MathBlock>{WGS84GCJ02Formulas.sineFunctionPeriodExampleString}</MathBlock>
+                <p>经度偏移函数中各正弦项的实际振幅和周期如下。由于 <span className="whitespace-nowrap">x = λ - 105</span>，平移不会改变周期，因此表中的周期单位为经度的度。</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">正弦函数</th>
+                            <th scope="col">实际振幅</th>
+                            <th scope="col">周期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span className="whitespace-nowrap">sin(6πx)</span></td>
+                            <td><span className="whitespace-nowrap">40/3</span></td>
+                            <td><span className="whitespace-nowrap">1/3°</span></td>
+                        </tr>
+                        <tr>
+                            <td><span className="whitespace-nowrap">sin(2πx)</span></td>
+                            <td><span className="whitespace-nowrap">40/3</span></td>
+                            <td><span className="whitespace-nowrap">1°</span></td>
+                        </tr>
+                        <tr>
+                            <td><span className="whitespace-nowrap">sin(πx)</span></td>
+                            <td><span className="whitespace-nowrap">40/3</span></td>
+                            <td><span className="whitespace-nowrap">2°</span></td>
+                        </tr>
+                        <tr>
+                            <td><span className="whitespace-nowrap">sin(πx/3)</span></td>
+                            <td><span className="whitespace-nowrap">80/3</span></td>
+                            <td><span className="whitespace-nowrap">6°</span></td>
+                        </tr>
+                        <tr>
+                            <td><span className="whitespace-nowrap">sin(πx/12)</span></td>
+                            <td><span className="whitespace-nowrap">100</span></td>
+                            <td><span className="whitespace-nowrap">24°</span></td>
+                        </tr>
+                        <tr>
+                            <td><span className="whitespace-nowrap">sin(πx/30)</span></td>
+                            <td><span className="whitespace-nowrap">200</span></td>
+                            <td><span className="whitespace-nowrap">60°</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>正弦项前的系数控制振幅：系数的绝对值越大，该项对中间偏移量的最大贡献越大；正弦函数内部乘在 <span className="whitespace-nowrap">x</span> 前的系数控制周期。这里较短周期的项振幅较小，用于叠加局部、细尺度起伏；较长周期的项振幅较大，用于形成更宽缓的区域变化。所有正弦项相加后，会得到比单一周期更复杂、但仍保持连续的空间扰动。</p>
+                <p>这种构造在形式上与傅里叶级数使用不同频率的三角函数描述复杂信号相似，但这只能解释各项的数学作用，不能据此认定 GCJ-02 的具体系数是通过傅里叶分析或某种公开拟合过程得到的。现有公开实现并未给出这些常数的权威推导依据，因此无法严格回答为什么恰好选择 <span className="whitespace-nowrap">300</span>、<span className="whitespace-nowrap">0.1</span>、<span className="whitespace-nowrap">40/3</span> 或 <span className="whitespace-nowrap">200</span>；能够确定的是，它们共同定义了该经验模型的基线、趋势、非线性强度、振幅和空间尺度。为了与常见 GCJ-02 转换实现保持一致，工程中应将它们视为固定模型参数，而不应自行调整。</p>
+
             </div>
         </article>
     );

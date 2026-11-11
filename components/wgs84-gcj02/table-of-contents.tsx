@@ -21,7 +21,10 @@ export function TableOfContents({ translations }: TableOfContentsProps) {
         { id: "coordinate-offset-formulas", label: "二、坐标偏移计算公式", level: 3 },
         { id: "wgs84-to-gcj02", label: "三、WGS-84 转换为 GCJ-02", level: 3 },
         { id: "gcj02-to-wgs84", label: "四、GCJ-02 反算为 WGS-84", level: 3 },
-        { id: "wait-why", label: "等一下！这些公式是怎么来的？", level: 2 }
+        { id: "wait-why", label: "等一下！这些公式是怎么来的？", level: 2 },
+        { id: "part-polynomial", label: "一、多项式部分", level: 3 },
+        { id: "part-square-root", label: "二、平方根部分", level: 3 },
+        { id: "part-sine-disturbance", label: "三、正弦扰动部分", level: 3 },
     ];
 
     return (
