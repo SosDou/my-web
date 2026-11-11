@@ -2,13 +2,18 @@ import type { Dictionary } from "@/i18n/dictionaries/types";
 import { ArticleCodeBlock } from "@/components/wgs84-gcj02/codes";
 import { TableOfContents } from "@/components/wgs84-gcj02/table-of-contents";
 import { WGS84GCJ02Formulas } from "@/components/wgs84-gcj02/formulas";
+import { CoordinateComparisonMap } from "@/components/wgs84-gcj02/coordinate-comparison-map";
 import { MathBlock } from "../ui/math-block";
 
 type WGS84GCJ02ArticleProps = {
+    mapTranslations: Dictionary["map"];
     translations: Dictionary["wgs84Gcj02"];
 };
 
-export function WGS84GCJ02Article({ translations }: WGS84GCJ02ArticleProps) {
+export function WGS84GCJ02Article({
+    mapTranslations,
+    translations,
+}: WGS84GCJ02ArticleProps) {
     return (
         <article className="page-container py-10 pb-16 max-sm:py-7 max-sm:pb-12">
             <TableOfContents translations={translations} />
@@ -26,6 +31,10 @@ export function WGS84GCJ02Article({ translations }: WGS84GCJ02ArticleProps) {
                 <h2 id="wgs84-gcj02-differences" className="scroll-mt-6">WGS84 与 GCJ02 的区别</h2>
                 <p>WGS84 是全球通用的坐标系统，而 GCJ02 是中国特有的坐标系统。两者之间的主要区别在于坐标的偏移和加密处理。GCJ02 对 WGS84 坐标进行了加密和偏移，使得在中国境内使用的地图服务显示的位置与实际位置存在一定的偏差。</p>
                 <p>因此，在中国境内使用地图服务时，需要将 WGS84 坐标转换为 GCJ02 坐标，以确保位置的准确性。</p>
+                <CoordinateComparisonMap
+                    labels={translations.map}
+                    mapLabels={mapTranslations}
+                />
 
                 <h2 id="wgs84-gcj02-conversion" className="scroll-mt-6">WGS84 与 GCJ02 的转换</h2>
                 <p>在中国境内使用地图服务时，通常需要将 WGS84 坐标转换为 GCJ02 坐标。以下是一些常用编程语言中的转换方法。</p>

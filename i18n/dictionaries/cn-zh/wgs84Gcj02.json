@@ -1,4 +1,11 @@
 {
   "title": "关于 WGS-84 和 GCJ-02",
-  "description": "详细介绍 WGS-84 和 GCJ-02 坐标系的区别和应用场景等。"
+  "description": "详细介绍 WGS-84 和 GCJ-02 坐标系的区别和应用场景等。",
+  "map": {
+    "legendLabel": "坐标标记颜色图例",
+    "wgs84Coordinate": "WGS84 坐标",
+    "gcj02Coordinate": "GCJ02 坐标",
+    "wgs84Marker": "WGS84",
+    "gcj02Marker": "GCJ02"
+  }
 }

@@ -1,4 +1,11 @@
 {
   "title": "About WGS-84 and GCJ-02",
-  "description": "A detailed explanation of the differences between the WGS-84 and GCJ-02 coordinate systems, as well as their use cases and so on."
+  "description": "A detailed explanation of the differences between the WGS-84 and GCJ-02 coordinate systems, as well as their use cases and so on.",
+  "map": {
+    "legendLabel": "Coordinate marker color legend",
+    "wgs84Coordinate": "WGS84 coordinate",
+    "gcj02Coordinate": "GCJ02 coordinate",
+    "wgs84Marker": "WGS84",
+    "gcj02Marker": "GCJ02"
+  }
 }

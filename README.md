@@ -41,15 +41,22 @@ my-web/
 │  ├─ tools/tools.tsx                        # 工具列表
 │  │
 │  ├─ ui/                                    # 通用 ui
-│  │  ├─ button.tsx                          # shadcn 按钮
-│  │  ├─ code-block.tsx                      # shadcn 代码块
-│  │  ├─ math-block.tsx                      # LaTeX 数学公式
-│  │  └─ visualization-window.tsx            # 支持多视图和多语言的可视化窗口
+│  │  ├─ map/                                # 地图 (MapLibre GL + OpenFreeMap)
+│  │  │  ├─ map-marker.tsx                   # 地图标点组件
+│  │  │  ├─ map-theme.tsx                    # 地图主题组件
+│  │  │  └─ map.tsx                          # 对外保留的地图组件
+│  │  │
+│  │  ├─ button.tsx                          # 按钮
+│  │  ├─ code-block.tsx                      # 代码块
+│  │  ├─ math-block.tsx                      # LaTeX 数学公式 (katex)
+│  │  └─ visualization-window.tsx            # 可视化窗口
 │  │
 │  └─ wgs84-gcj02/
 │     ├─ codes.tsx                           # 文章代码与代码块
+│     ├─ coordinate-comparison-map.tsx       # 文章中的可操作地图组件
 │     ├─ formulas.ts                         # 文章使用的 LaTeX 数学公式
 │     ├─ table-of-contents.tsx               # 文章目录
+│     ├─ transform.ts                        # 地图组件中使用的坐标转换函数
 │     └─ wgs84-gcj02.tsx                     # wgs84-gcj02 文章
 │
 ├─ config/                                   # 网站公共配置目录

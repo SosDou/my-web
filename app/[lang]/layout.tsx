@@ -6,6 +6,7 @@ import "katex/dist/katex.min.css";
 import { translation } from "@/i18n/translation";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
+import 'maplibre-gl/dist/maplibre-gl.css';
 
 const themeInitializationScript = `
   (() => {

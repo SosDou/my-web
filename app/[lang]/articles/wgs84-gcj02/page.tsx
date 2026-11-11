@@ -24,7 +24,15 @@ export async function generateMetadata({
 }
 
 export default async function Wgs84Gcj02({ params }: PageProps) {
-    const wgs84Gcj02 = await translation(params, "wgs84Gcj02");
+    const [wgs84Gcj02, map] = await Promise.all([
+        translation(params, "wgs84Gcj02"),
+        translation(params, "map"),
+    ]);
 
-    return <WGS84GCJ02Article translations={wgs84Gcj02} />;
+    return (
+        <WGS84GCJ02Article
+            mapTranslations={map}
+            translations={wgs84Gcj02}
+        />
+    );
 }
