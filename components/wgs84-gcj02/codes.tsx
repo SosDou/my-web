@@ -630,7 +630,7 @@ export function ArticleCodeBlock() {
                             aria-selected={isActive}
                             onClick={() => setLanguage(codeLanguage)}
                             className={`shrink-0 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${isActive
-                                ? "bg-[var(--color-background-hover)] text-[var(--color-text)]"
+                                ? "bg-accent text-accent-foreground"
                                 : "text-[var(--color-text-secondary)] hover:bg-[var(--color-background-hover)] hover:text-[var(--color-text)]"
                                 }`}
                         >

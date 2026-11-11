@@ -1,4 +1,6 @@
 /* 同时设置 html 根元素和 body 页面主体。 */
+@import "./design-tokens.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -45,18 +47,6 @@ body {
 }
 
 /* 定义全局 CSS 变量。 */
-:root {
-  /* 设置网站主要内容区域的最大宽度。 */
-  --layout-max-width: 1280px;
-
-  /* 设置桌面端页面左右两侧的安全间距。 */
-  --layout-padding-inline: 24px;
-
-  /* 设置移动端页面左右两侧的安全间距。 */
-  --layout-padding-inline-mobile: 16px;
-}
-
-/* 设置页面内容容器。 */
 .page-container {
   /* 让内容区域占满可用宽度。 */
   width: 100%;
@@ -84,10 +74,10 @@ html[data-theme="light"] {
   --color-background-secondary: #f6f8fa;
 
   /* 导航链接、图标按钮和菜单项的悬停背景颜色。 */
-  --color-background-hover: #f3f4f6;
+  --color-background-hover: var(--ds-color-brand-primary-soft);
 
   /* 当前选中项或按钮按下时的背景颜色。 */
-  --color-background-active: #eaeef2;
+  --color-background-active: var(--ds-color-brand-primary-active);
 
   /* Logo、标题和正文主要文字颜色。 */
   --color-text: #1f2328;
@@ -102,7 +92,9 @@ html[data-theme="light"] {
   --color-overlay-background: #ffffff;
 
   /* 下拉菜单和弹窗等浮层的阴影。 */
-  --color-overlay-shadow: 0 8px 24px rgb(140 149 159 / 20%);
+  --color-overlay-shadow: 0 8px 24px rgb(0 0 0 / 60%);
+  --color-link: var(--ds-color-brand-primary);
+  --color-link-hover: var(--ds-color-brand-primary-hover);
 }
 
 /* 定义 OLED 风格的深色主题。 */
@@ -117,10 +109,10 @@ html[data-theme="dark"] {
   --color-background-secondary: #0d1117;
 
   /* 导航链接、图标按钮和菜单项的悬停背景。 */
-  --color-background-hover: #161b22;
+  --color-background-hover: var(--ds-color-brand-primary-soft);
 
   /* 当前选中项或按钮按下时的背景。 */
-  --color-background-active: #21262d;
+  --color-background-active: var(--ds-color-brand-primary-active);
 
   /* Logo、标题和正文主要文字颜色。 */
   --color-text: #f0f6fc;
@@ -136,6 +128,8 @@ html[data-theme="dark"] {
 
   /* 深色环境下的浮层阴影。 */
   --color-overlay-shadow: 0 8px 24px rgb(0 0 0 / 60%);
+  --color-link: var(--ds-color-brand-primary);
+  --color-link-hover: var(--ds-color-brand-primary-hover);
 }
 
 /* 同时选择所有元素及其前后伪元素。 */
@@ -210,109 +204,47 @@ html[data-theme="dark"] .shiki-token {
   white-space: pre-line;
 }
 
-@media (max-width: 768px) {
-  .page-container {
-    padding-inline: var(--layout-padding-inline-mobile);
-  }
-}
 
 @layer base {
-  .theme {
-    --font-heading: var(--font-sans);
-    --font-sans: var(--font-sans);
-  }
-  h1 {
-    @apply text-4xl;
-  }
-  h2 {
-    @apply text-3xl;
-  }
-  h3 {
-    @apply text-2xl;
-  }
-  h4 {
-    @apply text-xl;
-  }
-  h5 {
-    @apply text-lg;
-  }
-  h6 {
-    @apply text-base;
-  }
-  :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-  }
-  html[data-theme="dark"] {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
-  }
-  * {
-    @apply border-border outline-ring;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-  }
+  html { font-family: var(--ds-font-sans); }
+  body { background: var(--background); color: var(--foreground); font-size: var(--ds-text-body-size); line-height: var(--ds-text-body-line); }
+  * { border-color: var(--border); }
+  :focus-visible { outline: var(--ds-border-strong) solid var(--ring); outline-offset: var(--ds-space-2); }
 }
+
+/* Explicit page densities keep article rhythm away from maps and controls. */
+.page-shell { padding-block: var(--ds-padding-page-block) var(--ds-gap-sections); }
+.page-title { margin: 0; font-size: var(--ds-text-title-lg-size); line-height: var(--ds-text-title-lg-line); font-weight: var(--ds-weight-semibold); overflow-wrap: anywhere; }
+.list-panel { max-width: var(--ds-reading-max); margin: var(--ds-gap-stack-lg) auto 0; border: var(--ds-border-subtle) solid var(--ds-color-border); border-radius: var(--ds-card-radius); background: var(--ds-color-card); overflow: hidden; }
+.list-panel-link { display: flex; align-items: center; min-height: 96px; gap: var(--ds-gap-stack); padding: var(--ds-card-padding); transition: background-color var(--ds-motion-fast) ease; }
+.list-panel-link:hover { background: var(--ds-color-surface-muted); }
+.article-body { max-width: var(--ds-reading-max); margin-inline: auto; font-size: var(--ds-text-article-size); line-height: var(--ds-text-article-line); overflow-wrap: break-word; }
+.article-body > h1 { font-size: var(--ds-text-title-lg-size); line-height: var(--ds-text-title-lg-line); }
+.article-body > h2 { font-size: var(--ds-text-title-md-size); line-height: var(--ds-text-title-md-line); }
+.article-body > h3 { font-size: var(--ds-text-title-sm-size); line-height: var(--ds-text-title-sm-line); }
+.article-body > h4 { font-size: var(--ds-text-subtitle-size); line-height: var(--ds-text-subtitle-line); }
+.article-body > h5, .article-body > h6 { font-size: var(--ds-text-body-sm-size); line-height: var(--ds-text-body-sm-line); }
+.article-body > h1, .article-body > h2, .article-body > h3, .article-body > h4, .article-body > h5, .article-body > h6 { font-weight: var(--ds-weight-semibold); }
+.article-body pre { max-width: 100%; overflow-x: auto; }
+.article-body .katex-display { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.tool-body { display: flex; flex-direction: column; align-items: center; gap: var(--ds-gap-stack-lg); text-align: center; }
+.tool-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--ds-gap-controls); }
+@media (max-width: 639px) {
+  .list-panel-link { min-height: 88px; gap: var(--ds-gap-stack-sm); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .list-panel-link { transition-duration: 0ms; }
+}
+
+.article-body > * + * { margin-block-start: var(--ds-gap-stack); }
+.article-body > :is(h2, h3, h4, h5, h6) { margin-block-start: var(--ds-gap-sections); }
+.article-body > :is(h1, h2, h3, h4, h5, h6) + p { margin-block-start: var(--ds-gap-title-description); }
+.article-body > hr { margin-block: var(--ds-gap-stack-lg); }
+.article-body > :is(ul, ol) { padding-inline-start: var(--ds-space-24); }
+.article-body > blockquote { padding-inline-start: var(--ds-space-16); border-inline-start: var(--ds-border-strong) solid var(--ds-color-border); color: var(--ds-color-muted-foreground); }
+.article-body > table { display: block; max-width: 100%; overflow-x: auto; }
+.article-body > table :is(th, td) { padding: var(--ds-table-cell-padding-block) var(--ds-table-cell-padding-inline); border-bottom: var(--ds-border-subtle) solid var(--ds-color-border); }
+.article-body > img, .article-body > p img { max-width: 100%; height: auto; }
+.article-body > p a, .article-body > :is(ul, ol, blockquote) a { color: var(--ds-color-link); }
+.article-body > p a:hover, .article-body > :is(ul, ol, blockquote) a:hover { color: var(--ds-color-link-hover); }
+.article-body > p code, .article-body > :is(ul, ol, blockquote) code { font-family: var(--ds-font-mono); font-size: var(--ds-text-code-size); }

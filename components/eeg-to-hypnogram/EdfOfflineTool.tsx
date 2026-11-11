@@ -203,26 +203,22 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
 
     return (
         // 页面整体区域
-        <section className="page-container" style={{ textAlign: "center" }}>
+        <section className="page-container page-shell tool-body">
             {/* 页面头部 */}
-            <header>
+            <header className="flex max-w-[var(--ds-reading-max)] flex-col items-center gap-[var(--ds-gap-title-description)]">
                 {/* 页面标题 */}
-                <h1>{translations.title}</h1>
+                <h1 className="page-title">{translations.title}</h1>
 
                 {/* 页面描述 */}
-                <p>{translations.description}</p>
+                <p className="m-0 text-ds-body text-muted-foreground">{translations.description}</p>
 
                 {/* 项目源码仓库 */}
-                <p>
+                <p className="m-0">
                     <a
                         href="https://github.com/SosDou/eeg-to-hypnogram"
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "6px",
-                        }}
+                        className="inline-flex items-center gap-[var(--ds-gap-icon-text)] text-link hover:underline"
                     >
                         <LuGithub aria-hidden="true" />
                         {translations.repositoryLink}
@@ -232,7 +228,7 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
             </header>
 
             {/* EDF 文件选择区域 */}
-            <div>
+            <div className="tool-actions">
                 {/* 文件选择表单 */}
                 {/* EDF 文件输入框由自定义按钮触发，避免使用浏览器固定语言的原生按钮 */}
                 <input
@@ -253,21 +249,18 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
                 <Button
                     type="button"
                     variant="outline"
-                    className="border-[var(--color-border)] bg-[var(--color-background)] text-[var(--color-text)] hover:bg-[var(--color-background-hover)] hover:text-[var(--color-text)]"
                     disabled={isRunning}
                     onClick={() => fileInputRef.current?.click()}
                 >
                     {translations.actions.selectFile}
                 </Button>
 
-                {selectedFile && <span>{selectedFile.name}</span>}
+                {selectedFile && <span className="max-w-full break-all text-ds-body-sm text-muted-foreground">{selectedFile.name}</span>}
 
-                <span style={{ margin: "0 10px" }}></span>
 
                 {/* 开始推理按钮 */}
                 <Button
                     type="button"
-                    className="bg-[var(--color-text)] text-[var(--color-background)] hover:bg-[var(--color-text)] hover:opacity-[0.85]"
                     disabled={
                         !selectedFile || isRunning
                     }
@@ -282,7 +275,7 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
             {/* 推理进度提示 */}
             {progressText && (
                 <div role="status">
-                    <h2 style={{ textAlign: "center" }}>
+                    <h2 className="text-ds-title-sm">
                         {progressText}
                     </h2>
                 </div>
@@ -291,7 +284,7 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
             {/* 错误信息提示 */}
             {errorMessage && (
                 <div role="alert">
-                    <h2 style={{ textAlign: "center" }}>
+                    <h2 className="text-ds-title-sm">
                         {errorMessage}
                     </h2>
                 </div>
@@ -299,12 +292,12 @@ export function EdfOfflineTool({ translations }: EdfOfflineToolProps) {
 
             {/* Hypnogram 推理结果 */}
             {csvResult && (
-                <section>
+                <section className="w-full min-w-0 space-y-[var(--ds-gap-stack-lg)]">
                     {/* CSV 下载按钮 */}
                     <Button
                         type="button"
                         onClick={downloadCsv}
-                        className="mx-auto block bg-[var(--color-text)] text-[var(--color-background)] hover:bg-[var(--color-text)] hover:opacity-[0.85]"
+                        className="mx-auto"
                     >
                         {translations.actions.download}
                     </Button>

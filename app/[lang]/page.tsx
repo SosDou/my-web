@@ -25,7 +25,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Home({ params }: PageProps) {
+export default async function Home(_props: PageProps) {
 
   return (
     <>

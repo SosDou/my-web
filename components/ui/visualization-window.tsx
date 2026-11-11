@@ -61,7 +61,7 @@ export function VisualizationWindow<ViewId extends string>({
     return (
         <section
             className={cn(
-                "overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-background)] shadow-[var(--color-overlay-shadow)]",
+                "overflow-hidden rounded-[var(--ds-card-radius)] border border-[var(--color-border)] bg-[var(--color-background)] shadow-ds-card",
                 className,
             )}
             aria-labelledby={titleId}
@@ -69,7 +69,7 @@ export function VisualizationWindow<ViewId extends string>({
             <header className="border-b border-[var(--color-border)] px-4 pb-3 pt-4">
                 <div className="flex items-start justify-between gap-3">
                     <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-600 dark:text-blue-400">
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--ds-color-accent-strong)]">
                             {name ?? translations.name}
                         </p>
                         <h3 id={titleId} className="mt-1 text-lg font-semibold leading-6">
@@ -81,7 +81,7 @@ export function VisualizationWindow<ViewId extends string>({
                         <button
                             type="button"
                             onClick={() => onResetView(selectedView.id)}
-                            className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-background-hover)] hover:text-[var(--color-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                            className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-background-hover)] hover:text-[var(--color-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ds-color-ring)]"
                             aria-label={resetLabel ?? translations.resetLabel}
                             title={resetLabel ?? translations.resetLabel}
                         >
@@ -112,9 +112,9 @@ export function VisualizationWindow<ViewId extends string>({
                                 tabIndex={selected ? 0 : -1}
                                 onClick={() => selectView(view.id)}
                                 className={cn(
-                                    "inline-flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-md px-2 py-2 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500",
+                                    "inline-flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-md px-2 py-2 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ds-color-ring)]",
                                     selected
-                                        ? "bg-[var(--color-overlay-background)] text-[var(--color-text)] shadow-sm"
+                                        ? "bg-accent text-accent-foreground shadow-ds-popover"
                                         : "text-[var(--color-text-secondary)] hover:text-[var(--color-text)]",
                                 )}
                             >

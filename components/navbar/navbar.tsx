@@ -31,8 +31,8 @@ export default async function Navbar({ params }: PageProps) {
   ] as const;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[var(--color-border)] bg-[var(--color-background)]">
-      <div className="mx-auto flex min-h-16 w-full max-w-[var(--layout-max-width)] items-center px-[var(--layout-padding-inline)] max-sm:min-h-14 max-sm:px-[var(--layout-padding-inline-mobile)]">
+    <header className="sticky top-0 z-[var(--ds-z-sticky)] w-full border-b border-[var(--color-border)] bg-[var(--color-background)]">
+      <div className="mx-auto flex min-h-[var(--ds-nav-height)] w-full max-w-[var(--layout-max-width)] items-center px-[var(--layout-padding-inline)]">
 
         {/* 左侧 Logo */}
         <Link className="shrink-0 text-xl font-semibold leading-none text-[var(--color-text)] no-underline" href={`/${lang}`}>
@@ -40,7 +40,7 @@ export default async function Navbar({ params }: PageProps) {
         </Link>
 
         {/* 偏左侧的主要导航链接 */}
-        <nav className="ml-10 flex items-center gap-2 max-sm:ml-4 max-sm:gap-0.5" aria-label={navbar.label}>
+        <nav className="ml-8 flex items-center gap-2 max-sm:ml-4 max-sm:gap-0.5" aria-label={navbar.label}>
           {links.map(({ href, label }) => (
             <Button
               render={<Link href={href} />}

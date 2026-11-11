@@ -84,7 +84,7 @@ export default async function Footer({ params }: PageProps) {
     return (
         <footer className="w-full border-t border-[var(--color-border)] bg-[var(--color-background)]">
             <nav
-                className="mx-auto grid w-full max-w-[var(--layout-max-width)] grid-cols-4 gap-8 px-[var(--layout-padding-inline)] py-12 max-[720px]:grid-cols-3 max-[720px]:gap-x-4 max-[720px]:gap-y-8 max-[720px]:px-[var(--layout-padding-inline-mobile)] max-[720px]:py-8"
+                className="mx-auto grid w-full max-w-[var(--layout-max-width)] grid-cols-4 gap-8 px-[var(--ds-padding-page)] py-12 max-[720px]:grid-cols-3 max-[720px]:gap-x-4 max-[720px]:gap-y-8  max-[720px]:py-8"
                 aria-label={footer.label}
             >
                 <Link
@@ -95,7 +95,7 @@ export default async function Footer({ params }: PageProps) {
                 </Link>
                 {sections.map(({ href, label, icon: Icon, links }) => (
                     <section
-                        className="flex min-w-0 flex-col items-start gap-[14px]"
+                        className="flex min-w-0 flex-col items-start gap-[var(--ds-gap-stack-sm)]"
                         key={label}
                     >
                         {href ? (

@@ -191,7 +191,7 @@ export default function ThemeSwitcherClient({
 
       {/* 定义展开后的主题菜单。 */}
       <div
-        className="absolute right-0 top-[calc(100%+6px)] z-10 w-max rounded-md border border-[var(--color-border)] bg-[var(--color-overlay-background)] p-1 shadow-[var(--color-overlay-shadow)]"
+        className="absolute right-0 top-[calc(100%+var(--ds-space-6))] z-[var(--ds-z-dropdown)] w-max rounded-[var(--ds-popover-radius)] border border-[var(--color-border)] bg-[var(--color-overlay-background)] p-[var(--ds-space-4)] shadow-ds-popover"
         role="menu"
         aria-label={labels.menu}
       >
@@ -201,7 +201,7 @@ export default function ThemeSwitcherClient({
               key={theme.value}
               type="button"
               variant="ghost"
-              className="h-auto w-full cursor-pointer justify-start gap-2.5 whitespace-nowrap rounded p-2 text-left font-[inherit] text-sm text-[var(--color-text)] hover:bg-[var(--color-background-hover)] focus-visible:bg-[var(--color-background-hover)]"
+              className="h-auto w-full cursor-pointer justify-start gap-[var(--ds-gap-icon-text)] whitespace-nowrap rounded p-2 text-left font-[inherit] text-sm text-[var(--color-text)] hover:bg-[var(--color-background-hover)] focus-visible:bg-[var(--color-background-hover)]"
               role="menuitemradio"
               aria-checked={currentTheme === theme.value}
               onClick={() => changeTheme(theme.value)}

@@ -15,10 +15,10 @@ export function WGS84GCJ02Article({
     translations,
 }: WGS84GCJ02ArticleProps) {
     return (
-        <article className="page-container py-10 pb-16 max-sm:py-7 max-sm:pb-12">
+        <article className="page-container page-shell">
             <TableOfContents translations={translations} />
 
-            <div className="mx-auto mt-10 w-full max-w-[760px] space-y-6 text-left text-base leading-8 text-[var(--color-text)] max-sm:mt-7 max-sm:space-y-5 max-sm:leading-7">
+            <div className="article-body mt-[var(--ds-gap-stack-lg)] w-full text-left text-[var(--ds-color-foreground)]">
                 <h1 id="article-title" className="scroll-mt-6">{translations.title}</h1>
                 <p>阅读时长：约 ? 分钟 发布时间：???? 年 ?? 月 ?? 日</p>
 

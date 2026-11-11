@@ -34,11 +34,14 @@ export default defineConfig([
   // 不参与检查的文件
   globalIgnores([
     ".next/**",
+    ".open-next/**",
+    ".wrangler/**",
     "out/**",
     "build/**",
     "dist/**",
     "coverage/**",
     "node_modules/**",
+    "public/eeg-to-hypnogram/eeg_inference.js",
     "next-env.d.ts",
   ]),
 ]);

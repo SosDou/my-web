@@ -24,7 +24,7 @@ function CodeBlock({
       data-variant={variant}
       data-size={size}
       className={cn(
-        "group/code-block relative w-full overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-background-secondary)] text-[var(--color-text)]",
+        "group/code-block relative w-full overflow-hidden rounded-[var(--ds-card-radius)] border border-[var(--color-border)] bg-[var(--color-background-secondary)] text-[var(--color-text)]",
         "data-[variant=destructive]:border-destructive/40 data-[variant=destructive]:bg-destructive/10",
         "[&>[data-slot=code-block-actions]]:absolute [&>[data-slot=code-block-actions]]:end-2 [&>[data-slot=code-block-actions]]:top-2",
         className
@@ -214,7 +214,7 @@ function CodeBlockContent({
       data-slot="code-block-content"
       tabIndex={tabIndex}
       className={cn(
-        "m-0 max-w-full overflow-auto p-4 font-mono text-sm leading-6 outline-none",
+        "m-0 max-w-full overflow-auto p-4 font-mono text-ds-code outline-none",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--color-text-secondary)]",
         "group-data-[size=sm]/code-block:p-3 group-data-[size=sm]/code-block:text-xs group-data-[size=sm]/code-block:leading-5",
         wrap ? "whitespace-pre-wrap break-words" : "whitespace-pre",

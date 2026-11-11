@@ -7,6 +7,7 @@
 ```text
 my-web/
 ├─ app/                                      # Next.js App Router 页面目录
+│  ├─ design-tokens.css                      # 全局设计令牌
 │  ├─ global.css                             # 全局公共样式
 │  ├─ robots.ts                              # 动态生成 robots.txt
 │  ├─ sitemap.ts                             # 动态生成 sitemap.xml

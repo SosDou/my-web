@@ -13,8 +13,8 @@ const DEFAULT_CENTER: [longitude: number, latitude: number] = [
     22.543099,
 ];
 
-const WGS84_MARKER_COLOR = '#55cdfc';
-const GCJ02_MARKER_COLOR = '#f7a8b8';
+const WGS84_MARKER_COLOR = 'var(--ds-color-brand-primary)';
+const GCJ02_MARKER_COLOR = 'var(--ds-color-brand-secondary)';
 
 type CoordinateComparisonMapProps = {
     labels: Dictionary['wgs84Gcj02']['map'];

@@ -47,7 +47,7 @@ export default function MapView({
     center,
     enableMarkers = false,
     labels,
-    markerColor = '#55cdfc',
+    markerColor = 'var(--ds-color-brand-primary)',
     markerFactory,
     markers,
     zoom = 9.5,
