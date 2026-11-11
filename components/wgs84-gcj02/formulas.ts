@@ -30,8 +30,10 @@ T_{\lambda}(x,y) =\;&
 \left[\sin(6\pi x)+\sin(2\pi x)\right] \\
 &+ \frac{40}{3}\sin(\pi x)
 + \frac{80}{3}\sin\left(\frac{\pi x}{3}\right) \\
-&+ 150\sin\left(\frac{\pi x}{12}\right)
+&+ \frac{2}{3}\left[
+150\sin\left(\frac{\pi x}{12}\right)
 + 300\sin\left(\frac{\pi x}{30}\right)
+\right]
 \end{aligned}
 `;
 
@@ -45,8 +47,10 @@ T_{\varphi}(x,y) =\;&
 \left[\sin(6\pi x)+\sin(2\pi x)\right] \\
 &+ \frac{40}{3}\sin(\pi y)
 + \frac{80}{3}\sin\left(\frac{\pi y}{3}\right) \\
-&+ 160\sin\left(\frac{\pi y}{12}\right)
+&+ \frac{2}{3}\left[
+160\sin\left(\frac{\pi y}{12}\right)
 + 320\sin\left(\frac{\pi y}{30}\right)
+\right]
 \end{aligned}
 `;
 
