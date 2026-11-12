@@ -11,29 +11,32 @@ type TableOfContentsProps = {
 };
 
 export function TableOfContents({ translations }: TableOfContentsProps) {
+    const { sections } = translations;
     const tableOfContents: TableOfContentsItem[] = [
         { id: "article-title", label: translations.title, level: 1 },
-        { id: "what-is-wgs84-gcj02", label: "什么是 WGS84 和 GCJ02", level: 2 },
-        { id: "wgs84-gcj02-differences", label: "WGS84 与 GCJ02 的区别", level: 2 },
-        { id: "wgs84-gcj02-conversion", label: "WGS84 与 GCJ02 的转换", level: 2 },
-        { id: "conversion-explanation", label: "转换方法详细解释", level: 2 },
-        { id: "conversion-constants", label: "一、常量", level: 3 },
-        { id: "coordinate-offset-formulas", label: "二、坐标偏移计算公式", level: 3 },
-        { id: "wgs84-to-gcj02", label: "三、WGS-84 转换为 GCJ-02", level: 3 },
-        { id: "gcj02-to-wgs84", label: "四、GCJ-02 反算为 WGS-84", level: 3 },
-        { id: "wait-why", label: "等一下！这些公式是怎么来的？", level: 2 },
-        { id: "part-polynomial", label: "一、多项式部分", level: 3 },
-        { id: "part-square-root", label: "二、平方根部分", level: 3 },
-        { id: "part-sine-disturbance", label: "三、正弦扰动部分", level: 3 },
+        { id: "what-is-wgs84-gcj02", label: sections.overview.title, level: 2 },
+        { id: "wgs84-gcj02-differences", label: sections.differences.title, level: 2 },
+        { id: "wgs84-gcj02-conversion", label: sections.conversion.title, level: 2 },
+        { id: "conversion-explanation", label: sections.explanation.title, level: 2 },
+        { id: "conversion-constants", label: sections.constants.title, level: 3 },
+        { id: "coordinate-offset-formulas", label: sections.offsetFormulas.title, level: 3 },
+        { id: "wgs84-to-gcj02", label: sections.forward.title, level: 3 },
+        { id: "gcj02-to-wgs84", label: sections.inverse.title, level: 3 },
+        { id: "wait-why", label: sections.origins.title, level: 2 },
+        { id: "part-polynomial", label: sections.polynomial.title, level: 3 },
+        { id: "part-square-root", label: sections.squareRoot.title, level: 3 },
+        { id: "part-sine-disturbance", label: sections.sine.title, level: 3 },
     ];
 
     return (
         <aside
-            aria-label="文章目录"
+            aria-label={translations.tableOfContents.ariaLabel}
             className="fixed left-[calc(50%+412px)] top-24 z-10 max-h-[calc(100vh-7.5rem)] w-max min-w-52 max-w-[calc(50vw-428px)] overflow-y-auto max-[1279px]:hidden"
         >
             <nav className="border-l border-[var(--color-border)] pl-4">
-                <p className="mb-3 text-sm font-semibold text-[var(--color-text)]">目录</p>
+                <p className="mb-3 text-sm font-semibold text-[var(--color-text)]">
+                    {translations.tableOfContents.title}
+                </p>
                 <ol className="space-y-2">
                     {tableOfContents.map((item) => (
                         <li

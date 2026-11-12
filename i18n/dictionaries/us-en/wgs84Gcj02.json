@@ -1,11 +1,115 @@
 {
   "title": "About WGS-84 and GCJ-02",
   "description": "A detailed explanation of the differences between the WGS-84 and GCJ-02 coordinate systems, as well as their use cases and so on.",
+  "meta": "Reading time: about 10 minutes Published: November 11, 2026",
+  "tableOfContents": {
+    "ariaLabel": "Article table of contents",
+    "title": "Contents"
+  },
+  "codeLanguageLabel": "Programming language",
   "map": {
     "legendLabel": "Coordinate marker color legend",
     "wgs84Coordinate": "WGS84 coordinate",
     "gcj02Coordinate": "GCJ02 coordinate",
     "wgs84Marker": "WGS84",
     "gcj02Marker": "GCJ02"
+  },
+  "sections": {
+    "overview": {
+      "title": "What are WGS84 and GCJ02?",
+      "wgs84": "WGS84 (World Geodetic System 1984) is a globally used geographic coordinate system for representing locations on the Earth's surface. It is the coordinate system used by GPS and is widely used in navigation, surveying, and geographic information systems.",
+      "gcj02": "GCJ02 is a geographic coordinate system established by China's national surveying authority and is also known as the \"Mars coordinate system.\" To meet China's security requirements for map data, GCJ02 applies an obfuscating offset to WGS84 coordinates, so map services used in mainland China generally use GCJ02 coordinates."
+    },
+    "differences": {
+      "title": "Differences between WGS84 and GCJ02",
+      "description": "WGS84 is a global coordinate system, while GCJ02 is specific to China. Their main difference is the coordinate offset and obfuscation applied by GCJ02. As a result, plotting unconverted WGS84 coordinates on a GCJ02 map in mainland China produces a visible positional discrepancy.",
+      "conclusion": "When using map services in mainland China, WGS84 coordinates therefore need to be converted to GCJ02 coordinates so that locations align correctly."
+    },
+    "conversion": {
+      "title": "Converting between WGS84 and GCJ02",
+      "description": "Map applications in mainland China commonly need to convert WGS84 coordinates to GCJ02. The following implementations show how to perform the conversion in several popular programming languages."
+    },
+    "explanation": {
+      "title": "How the conversion works",
+      "introduction": "There is no single fixed offset between WGS-84 and GCJ-02. The actual offset changes with location and requires a region check, a nonlinear offset calculation, and an ellipsoid correction. The following sections break down the process in program execution order."
+    },
+    "constants": {
+      "title": "1. Constants",
+      "chinaRangeTitle": "1. China region bounds",
+      "chinaRangeIntroduction": "The GCJ-02 conversion applies only to coordinates in China. Implementations usually begin with the following four boundary constants as a fast check to decide whether an input coordinate needs conversion:",
+      "chinaRangeDetails": "Here, λ denotes longitude and φ denotes latitude. The calculation continues only when both values fall within these intervals; otherwise, the original coordinate is returned. These bounds form a rectangular filter for fast screening and are not a precise geometric outline of China's borders.",
+      "ellipsoidTitle": "2. Earth ellipsoid parameters",
+      "ellipsoidDescription": "The initial offset must also be corrected for the Earth's curvature. This conversion algorithm uses two ellipsoid parameters: the semi-major axis a and the square of the first eccentricity e²."
+    },
+    "offsetFormulas": {
+      "title": "2. Coordinate offset formulas",
+      "introduction": "Before the main calculation, longitude and latitude are translated relative to the reference point 105°E, 35°N. Here, x is the relative value in the longitude direction and y is the relative value in the latitude direction:",
+      "longitudeTitle": "1. Longitude offset function",
+      "longitudeDescription": "Substituting x and y into the longitude offset function produces an initial longitude-direction offset that has not yet been corrected for the ellipsoid. The function combines polynomial terms with several groups of periodic terms:",
+      "latitudeTitle": "2. Latitude offset function",
+      "latitudeDescription": "The latitude direction uses an offset function with a similar structure but different coefficients. Polynomial terms describe the overall trend, while several trigonometric terms add periodic variation at different scales, so the result changes dynamically with the input coordinate."
+    },
+    "forward": {
+      "title": "3. Converting WGS-84 to GCJ-02",
+      "initialOffsetTitle": "1. Calculate the initial offsets",
+      "initialOffsetDescription": "Evaluate the latitude and longitude offset functions separately to obtain the initial offsets in both directions before they are converted into actual angular differences:",
+      "ellipsoidCorrectionTitle": "2. Calculate the ellipsoid correction parameters",
+      "ellipsoidCorrectionDescription": "The ellipsoid correction uses the sine and cosine of latitude. First convert the original latitude from degrees to radians, then calculate the correction factor M and its square root S:",
+      "latitudeOffsetTitle": "3. Calculate the latitude offset",
+      "latitudeOffsetDescription": "Scale the initial latitude offset using the meridional curvature at the current latitude to obtain the latitude offset in degrees:",
+      "longitudeOffsetTitle": "4. Calculate the longitude offset",
+      "longitudeOffsetDescription": "The longitude direction is scaled using the radius of the parallel at the current latitude, so the formula also contains cos(φᵣ):",
+      "resultTitle": "5. Obtain the GCJ-02 coordinate",
+      "resultDescription": "Finally, add the two directional offsets to the original WGS-84 latitude and longitude to obtain the GCJ-02 coordinate:",
+      "notation": "The WGS subscript denotes the original WGS-84 coordinate, and the GCJ subscript denotes the converted GCJ-02 coordinate."
+    },
+    "inverse": {
+      "title": "4. Converting GCJ-02 back to WGS-84",
+      "introduction": "The inverse transformation from GCJ-02 to WGS-84 is approximated iteratively. Each iteration calls the forward conversion and uses the error between the predicted and target coordinates to correct the current estimate until it converges.",
+      "initializeTitle": "1. Initialize the coordinate",
+      "initializeInput": "Let the input GCJ-02 coordinate be:",
+      "initializeEstimate": "Because the two coordinate sets are usually close, the input GCJ-02 coordinate can be used directly as the initial estimate of the WGS-84 coordinate:",
+      "errorTitle": "2. Forward conversion and error calculation",
+      "prediction": "At iteration k, pass the current WGS-84 estimate to the forward conversion function F to obtain the corresponding predicted GCJ-02 coordinate:",
+      "error": "The difference between the predicted coordinate and the target GCJ-02 coordinate is the latitude and longitude error to eliminate in this iteration:",
+      "correctionTitle": "3. Iterative correction",
+      "correction": "Subtract each directional error from the current estimate to obtain the next estimate. If the iteration converges, its forward-converted result progressively approaches the target GCJ-02 coordinate:",
+      "terminationTitle": "4. Iteration termination condition",
+      "termination": "Set a maximum iteration count N and an error threshold ε. Stop iterating when the errors in both directions are below the threshold:",
+      "terminationLimit": "The maximum iteration count provides a safety limit. If the error threshold is still not met when the limit is reached, the program should stop and either return the current approximation or report that the calculation did not converge, according to the application's needs.",
+      "resultTitle": "5. Obtain the WGS-84 coordinate",
+      "result": "Once the termination condition is met, use the current estimate as the inverse-converted WGS-84 coordinate:"
+    },
+    "origins": {
+      "title": "Wait—where do these formulas come from?",
+      "questionIntroduction": "You may be wondering about these two functions:",
+      "longitudeTitle": "1. Longitude offset function",
+      "latitudeTitle": "2. Latitude offset function",
+      "question": "How were these unusual formulas obtained?",
+      "model": "The GCJ-02 coordinate offset functions are not derived directly from Earth geometry or geophysical laws. They form an artificially constructed nonlinear coordinate perturbation model made from polynomials, a square-root function, and several sine functions. The two offset functions can be represented uniformly as:",
+      "components": "Here, P(x,y) is the polynomial component that establishes the base offset variation; R(x,y) is the square-root component that introduces nonlinear variation; and S(x,y) is the sine perturbation component that creates multiscale periodic variation.",
+      "longitudeExample": "Using the longitude offset function as an example:"
+    },
+    "polynomial": {
+      "title": "1. Polynomial component",
+      "description": "The polynomial describes a base offset that changes smoothly with position. Mathematically, the constant term 300 provides the longitude-direction baseline; x and 2y control the first-order trend as longitude and latitude change; 0.1x² introduces curvature in the longitude direction; and 0.1xy couples longitude and latitude so the same longitude change can have different effects at different latitudes.",
+      "coefficients": "These coefficients determine the relative weight of each term in the total offset. The constant establishes the overall baseline, the linear terms control direction and slope, and the quadratic and cross terms control curvature and the coupling strength between the two directions. Translating coordinates near the reference point with x = λ - 105 and y = φ - 35 also avoids substituting large longitude and latitude values directly, making the magnitude of each term easier to control."
+    },
+    "squareRoot": {
+      "title": "2. Square-root component",
+      "description": "The square-root term adds nonlinear variation that would be difficult to express with only a few polynomial terms. The absolute value ensures a real result when x is negative. The square root grows as |x| increases, but at a gradually decreasing rate, introducing a symmetric, bounded-curvature variation on both sides of the reference meridian.",
+      "coefficient": "The coefficient 0.1 reduces the weight of this nonlinear term. Within the rectangular filter described above, 0.1√|x| remains below about 0.58, showing that it primarily fine-tunes the function's shape rather than determining the main offset magnitude. This value is still an intermediate quantity before ellipsoid correction and must not be interpreted directly as meters or as the final longitude difference."
+    },
+    "sine": {
+      "title": "3. Sine perturbation component",
+      "description": "Sine functions are an important part of this model. Adding sine terms with different periods and amplitudes lets the offset vary smoothly and periodically across multiple spatial scales. For the general form sin(ωx), the period is determined by the angular frequency ω:",
+      "example": "For example:",
+      "tableIntroduction": "The actual amplitudes and periods of the sine terms in the longitude offset function are shown below. Since x = λ - 105, the translation does not change the period, so the periods in the table are measured in degrees of longitude.",
+      "functionHeader": "Sine function",
+      "amplitudeHeader": "Actual amplitude",
+      "periodHeader": "Period",
+      "amplitudeExplanation": "The coefficient before each sine term controls its amplitude: the larger its absolute value, the larger that term's maximum contribution to the intermediate offset. The coefficient multiplying x inside the sine function controls its period. The shorter-period terms here have smaller amplitudes and add local, fine-scale variation, while longer-period terms have larger amplitudes and create broader regional variation. Together, the sine terms produce a spatial perturbation that is more complex than a single period while remaining continuous.",
+      "conclusion": "This construction resembles the use of trigonometric functions at different frequencies in a Fourier series, but that similarity explains only the mathematical role of the terms. It does not establish that the specific GCJ-02 coefficients were obtained through Fourier analysis or any publicly documented fitting process. Public implementations provide no authoritative derivation for these constants, so there is no rigorous public explanation for the exact choices of 300, 0.1, 40/3, or 200. What can be established is that together they define the empirical model's baseline, trend, nonlinear strength, amplitude, and spatial scale. To remain compatible with common GCJ-02 conversion implementations, applications should treat them as fixed model parameters rather than tune them independently."
+    }
   }
 }

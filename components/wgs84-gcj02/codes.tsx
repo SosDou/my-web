@@ -607,7 +607,11 @@ export type CoordinateCodeLanguage = keyof typeof coordinateCodeExamples;
 
 const codeLanguages = Object.keys(coordinateCodeExamples) as CoordinateCodeLanguage[];
 
-export function ArticleCodeBlock() {
+type ArticleCodeBlockProps = {
+    ariaLabel: string;
+};
+
+export function ArticleCodeBlock({ ariaLabel }: ArticleCodeBlockProps) {
     const [language, setLanguage] = useState<CoordinateCodeLanguage>("typescript");
     const example = coordinateCodeExamples[language];
 
@@ -615,7 +619,7 @@ export function ArticleCodeBlock() {
         <CodeBlock>
             <div
                 role="tablist"
-                aria-label="代码语言"
+                aria-label={ariaLabel}
                 className="flex gap-1 overflow-x-auto border-b border-[var(--color-border)] p-1.5"
             >
                 {codeLanguages.map((codeLanguage) => {
