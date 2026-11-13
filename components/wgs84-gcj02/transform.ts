@@ -1,4 +1,4 @@
-const CHINA_BBOX = {
+export const CHINA_BBOX = {
   minLng: 72.004,
   maxLng: 137.8347,
   minLat: 0.8293,

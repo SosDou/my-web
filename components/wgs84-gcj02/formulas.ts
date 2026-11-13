@@ -201,11 +201,11 @@ S_{\lambda}(x)
 
 // 正弦函数的周期及示例
 const sineFunctionPeriodString = String.raw`
-\sin(\omega x)\text{ 的周期为 }T = \frac{2\pi}{|\omega|}
+\sin(\omega x), \qquad T = \frac{2\pi}{|\omega|}
 `;
 
 const sineFunctionPeriodExampleString = String.raw`
-\sin(6\pi x)\text{ 的周期为 }T = \frac{2\pi}{6\pi} = \frac{1}{3}
+\sin(6\pi x), \qquad T = \frac{2\pi}{6\pi} = \frac{1}{3}
 `;
 
 /** WGS84 与 GCJ02 转换文章中使用的 LaTeX 公式。 */

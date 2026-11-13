@@ -3,16 +3,19 @@ import { ArticleCodeBlock } from "@/components/wgs84-gcj02/codes";
 import { TableOfContents } from "@/components/wgs84-gcj02/table-of-contents";
 import { WGS84GCJ02Formulas } from "@/components/wgs84-gcj02/formulas";
 import { CoordinateComparisonMap } from "@/components/wgs84-gcj02/coordinate-comparison-map";
+import { CoordinateOffsetSurface } from "@/components/wgs84-gcj02/coordinate-offset-surface";
 import { MathBlock } from "../ui/math-block";
 
 type WGS84GCJ02ArticleProps = {
     mapTranslations: Dictionary["map"];
     translations: Dictionary["wgs84Gcj02"];
+    visualizationTranslations: Dictionary["visualizationWindow"];
 };
 
 export function WGS84GCJ02Article({
     mapTranslations,
     translations,
+    visualizationTranslations,
 }: WGS84GCJ02ArticleProps) {
     const {
         overview,
@@ -96,6 +99,10 @@ export function WGS84GCJ02Article({
                 <p className="font-semibold">{forward.longitudeOffsetTitle}</p>
                 <p>{forward.longitudeOffsetDescription}</p>
                 <MathBlock>{WGS84GCJ02Formulas.longitudeOffsetString}</MathBlock>
+                <CoordinateOffsetSurface
+                    labels={translations.surface}
+                    windowTranslations={visualizationTranslations}
+                />
 
                 <p className="font-semibold">{forward.resultTitle}</p>
                 <p>{forward.resultDescription}</p>

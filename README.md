@@ -55,6 +55,7 @@ my-web/
 │  └─ wgs84-gcj02/
 │     ├─ codes.tsx                           # 文章代码与代码块
 │     ├─ coordinate-comparison-map.tsx       # 文章中的可操作地图组件
+│     ├─ coordinate-offset-surface.tsx       # 文章中的可操作坐标偏移曲面
 │     ├─ formulas.ts                         # 文章使用的 LaTeX 数学公式
 │     ├─ table-of-contents.tsx               # 文章目录
 │     ├─ transform.ts                        # 地图组件中使用的坐标转换函数

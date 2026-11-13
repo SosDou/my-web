@@ -7,6 +7,21 @@
     "title": "Contents"
   },
   "codeLanguageLabel": "Programming language",
+  "surface": {
+    "longitudeTab": "Longitude offset",
+    "latitudeTab": "Latitude offset",
+    "longitudeTitle": "3D longitude offset surface",
+    "latitudeTitle": "3D latitude offset surface",
+    "longitudeAxis": "Longitude λ (°)",
+    "latitudeAxis": "Latitude φ (°)",
+    "longitudeOffsetAxis": "Longitude offset Δλ (°)",
+    "latitudeOffsetAxis": "Latitude offset Δφ (°)",
+    "longitudeRange": "Longitude range",
+    "latitudeRange": "Latitude range",
+    "colorLegend": "Offset (low → high)",
+    "description": "The surface shows coordinate offsets in degrees after ellipsoid correction, within the rectangular screening bounds. Height is amplified using the current view's minimum and maximum so variations are visible; colors follow the same range. Drag to rotate, use the wheel or two fingers to zoom, and select Reset view to restore the initial angle.",
+    "webglUnavailable": "This browser cannot display the 3D surface."
+  },
   "map": {
     "legendLabel": "Coordinate marker color legend",
     "wgs84Coordinate": "WGS84 coordinate",

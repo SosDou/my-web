@@ -7,6 +7,21 @@
     "title": "目录"
   },
   "codeLanguageLabel": "代码语言",
+  "surface": {
+    "longitudeTab": "经度偏移",
+    "latitudeTab": "纬度偏移",
+    "longitudeTitle": "经度偏移三维曲面",
+    "latitudeTitle": "纬度偏移三维曲面",
+    "longitudeAxis": "经度 λ (°)",
+    "latitudeAxis": "纬度 φ (°)",
+    "longitudeOffsetAxis": "经度偏移 Δλ (°)",
+    "latitudeOffsetAxis": "纬度偏移 Δφ (°)",
+    "longitudeRange": "经度范围",
+    "latitudeRange": "纬度范围",
+    "colorLegend": "偏移量（低 → 高）",
+    "description": "曲面显示矩形筛选范围内、经过椭球体修正后的坐标角度偏移。竖向高度按当前视图的最小值与最大值放大，以便观察变化；颜色也对应这一范围。拖动旋转，滚轮或双指缩放，点击重置视图可恢复初始角度。",
+    "webglUnavailable": "此浏览器无法显示三维曲面。"
+  },
   "map": {
     "legendLabel": "坐标标记颜色图例",
     "wgs84Coordinate": "WGS84 坐标",
